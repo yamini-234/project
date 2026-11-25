@@ -1,0 +1,877 @@
+/* =====================================================
+   GENERAL
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #172b4d;
+    background: #ffffff;
+}
+
+button {
+    font-family: inherit;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+    width: 100%;
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 60px;
+
+    background: white;
+
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+    position: relative;
+    z-index: 10;
+}
+
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: #172b4d;
+}
+
+.logo span {
+    color: #1677ff;
+}
+
+
+.navbar nav {
+    display: flex;
+    gap: 35px;
+}
+
+.navbar nav a {
+    color: #344054;
+    font-size: 16px;
+    font-weight: 500;
+
+    transition: 0.3s;
+}
+
+.navbar nav a:hover {
+    color: #1677ff;
+}
+
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+
+.login-btn,
+.signup-btn {
+    padding: 10px 20px;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.login-btn {
+    background: white;
+    color: #1677ff;
+
+    border: 1px solid #1677ff;
+}
+
+.login-btn:hover {
+    background: #1677ff;
+    color: white;
+}
+
+
+.signup-btn {
+    background: #1677ff;
+    color: white;
+
+    border: 1px solid #1677ff;
+}
+
+.signup-btn:hover {
+    background: #0b5ed7;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    min-height: 560px;
+
+    padding: 80px 50px 100px;
+
+    background:
+        linear-gradient(
+            rgba(10, 55, 100, 0.45),
+            rgba(10, 55, 100, 0.25)
+        ),
+        url("https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1800&q=85");
+
+    background-size: cover;
+    background-position: center;
+
+    position: relative;
+}
+
+
+.hero-content {
+    max-width: 1200px;
+
+    margin: auto;
+
+    color: white;
+
+    text-align: center;
+}
+
+
+.hero-content h1 {
+    font-size: 55px;
+    line-height: 1.15;
+
+    margin-bottom: 20px;
+}
+
+.hero-content h1 span {
+    color: #80c7ff;
+}
+
+
+.hero-content p {
+    font-size: 20px;
+
+    max-width: 650px;
+
+    margin: auto;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   BOOKING BOX
+===================================================== */
+
+.booking-box {
+    max-width: 1150px;
+
+    margin: 60px auto 0;
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+}
+
+
+.booking-tabs {
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 25px;
+}
+
+
+.booking-tabs button {
+    border: none;
+
+    background: #f1f5f9;
+
+    color: #344054;
+
+    padding: 12px 25px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+
+.booking-tabs button:hover,
+.booking-tabs button.active {
+    background: #1677ff;
+    color: white;
+}
+
+
+.booking-form {
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr
+        1fr
+        1fr
+        auto;
+
+    gap: 15px;
+
+    align-items: end;
+}
+
+
+.input-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.input-group label {
+    font-size: 13px;
+
+    color: #667085;
+
+    font-weight: 600;
+}
+
+
+.input-group input,
+.input-group select {
+    height: 45px;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 8px;
+
+    padding: 0 12px;
+
+    outline: none;
+
+    font-size: 14px;
+}
+
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #1677ff;
+
+    box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.1);
+}
+
+
+.search-btn {
+    height: 45px;
+
+    padding: 0 25px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #1677ff;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.search-btn:hover {
+    background: #0b5ed7;
+}
+
+
+/* =====================================================
+   POPULAR DESTINATIONS
+===================================================== */
+
+.popular-destinations {
+    padding: 80px 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eaf6ff,
+            #f8fbff,
+            #eaf4ff
+        );
+}
+
+
+/* Heading */
+
+.destination-header {
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+
+.destination-header h2 {
+    font-size: 40px;
+
+    color: #172b4d;
+
+    margin-bottom: 10px;
+}
+
+
+.destination-header p {
+    font-size: 18px;
+
+    color: #667085;
+}
+
+
+/* Cards */
+
+.destination-container {
+    max-width: 1400px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 25px;
+}
+
+
+.destination-card {
+    background: white;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s ease;
+}
+
+
+.destination-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 18px 40px
+        rgba(0, 0, 0, 0.15);
+}
+
+
+/* Destination images */
+
+.destination-image {
+    height: 210px;
+
+    background-size: cover;
+
+    background-position: center;
+}
+
+
+.destination-image.dubai {
+    background-image:
+        url("https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80");
+}
+
+
+.destination-image.bali {
+    background-image:
+        url("https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=900&q=80");
+}
+
+
+.destination-image.tokyo {
+    background-image:
+        url("https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=900&q=80");
+}
+
+
+.destination-image.paris {
+    background-image:
+        url("https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=80");
+}
+
+
+/* Destination content */
+
+.destination-content {
+    padding: 25px;
+}
+
+
+.destination-content h3 {
+    font-size: 27px;
+
+    color: #172b4d;
+
+    margin-bottom: 7px;
+}
+
+
+.destination-content p {
+    font-size: 16px;
+
+    color: #667085;
+
+    margin-bottom: 20px;
+
+    line-height: 1.5;
+}
+
+
+.destination-content span {
+    display: block;
+
+    font-size: 15px;
+
+    color: #667085;
+
+    margin-bottom: 20px;
+}
+
+
+.destination-content strong {
+    color: #1677ff;
+
+    font-size: 20px;
+}
+
+
+/* Explore button */
+
+.destination-content button {
+    border: none;
+
+    background: #1677ff;
+
+    color: white;
+
+    padding: 12px 22px;
+
+    border-radius: 25px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.destination-content button:hover {
+    background: #0b5ed7;
+
+    transform: translateX(3px);
+}
+
+
+/* =====================================================
+   SERVICES
+===================================================== */
+
+.services {
+    padding: 80px 50px;
+
+    background: white;
+}
+
+
+.section-title {
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+
+.section-title h2 {
+    font-size: 36px;
+
+    color: #172b4d;
+
+    margin-bottom: 10px;
+}
+
+
+.section-title p {
+    font-size: 17px;
+
+    color: #667085;
+}
+
+
+.service-container {
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+.service-card {
+    text-align: center;
+
+    padding: 35px 25px;
+
+    background: #f8fafc;
+
+    border-radius: 16px;
+
+    transition: 0.3s;
+}
+
+
+.service-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0, 0, 0, 0.08);
+}
+
+
+.service-icon {
+    font-size: 45px;
+
+    margin-bottom: 15px;
+}
+
+
+.service-card h3 {
+    font-size: 22px;
+
+    margin-bottom: 12px;
+}
+
+
+.service-card p {
+    color: #667085;
+
+    line-height: 1.6;
+
+    margin-bottom: 20px;
+}
+
+
+.service-card button {
+    border: none;
+
+    background: #1677ff;
+
+    color: white;
+
+    padding: 11px 22px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+
+.service-card button:hover {
+    background: #0b5ed7;
+}
+
+
+/* =====================================================
+   WHY CHOOSE US
+===================================================== */
+
+.why-us {
+    padding: 80px 50px;
+
+    background: #f5f9ff;
+}
+
+
+.why-container {
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+
+.why-card {
+    text-align: center;
+
+    background: white;
+
+    padding: 30px 20px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.05);
+}
+
+
+.why-icon {
+    font-size: 35px;
+
+    margin-bottom: 15px;
+}
+
+
+.why-card h3 {
+    margin-bottom: 10px;
+
+    font-size: 19px;
+}
+
+
+.why-card p {
+    color: #667085;
+
+    line-height: 1.5;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+    background: #172b4d;
+
+    color: white;
+
+    padding-top: 50px;
+}
+
+
+.footer-content {
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 0 40px 40px;
+
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr;
+
+    gap: 50px;
+}
+
+
+.footer-content h2 {
+    font-size: 27px;
+
+    margin-bottom: 15px;
+}
+
+
+.footer-content h2 span {
+    color: #80c7ff;
+}
+
+
+.footer-content h3 {
+    margin-bottom: 15px;
+}
+
+
+.footer-content p {
+    color: #cbd5e1;
+
+    line-height: 1.7;
+}
+
+
+.footer-content a {
+    display: block;
+
+    color: #cbd5e1;
+
+    margin-bottom: 10px;
+
+    transition: 0.3s;
+}
+
+
+.footer-content a:hover {
+    color: white;
+}
+
+
+.footer-bottom {
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.15);
+
+    text-align: center;
+
+    padding: 20px;
+
+    color: #cbd5e1;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .navbar {
+        padding: 0 30px;
+    }
+
+    .booking-form {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .search-btn {
+        width: 100%;
+    }
+
+    .destination-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .why-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .navbar {
+        height: auto;
+
+        padding: 20px;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+
+    .navbar nav {
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+
+    .hero {
+        padding: 60px 20px 80px;
+    }
+
+
+    .hero-content h1 {
+        font-size: 40px;
+    }
+
+
+    .booking-box {
+        margin-top: 40px;
+
+        padding: 20px;
+    }
+
+
+    .booking-form {
+        grid-template-columns: 1fr;
+    }
+
+
+    .popular-destinations,
+    .services,
+    .why-us {
+        padding: 60px 20px;
+    }
+
+
+    .destination-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    .service-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    .why-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    .footer-content {
+        grid-template-columns: 1fr;
+
+        padding: 0 25px 35px;
+    }
+
+}

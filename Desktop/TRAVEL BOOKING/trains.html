@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Train Booking</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            TravelGo
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="results.html">
+                Flights
+            </a>
+
+            <a href="hotels.html">
+                Hotels
+            </a>
+
+            <a href="trains.html">
+                Trains
+            </a>
+
+        </div>
+
+
+        <div class="nav-buttons">
+
+            <button
+                class="login-btn"
+                onclick="window.location.href='login.html'">
+
+                Login
+
+            </button>
+
+
+            <button
+                class="signup-btn"
+                onclick="window.location.href='signup.html'">
+
+                Sign Up
+
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         TRAIN PAGE
+    ========================== -->
+
+    <section class="results-page">
+
+        <div class="results-container">
+
+
+            <h1>
+                Book Your Train
+            </h1>
+
+
+            <p class="results-subtitle">
+                Find available trains and choose your preferred class
+            </p>
+
+
+
+            <!-- =========================
+                 SEARCH
+            ========================== -->
+
+            <div class="search-summary">
+
+
+                <div>
+
+                    <strong>
+                        From
+                    </strong>
+
+                    <input
+                        type="text"
+                        id="trainFrom"
+                        placeholder="Departure station"
+                        value="Hyderabad">
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        To
+                    </strong>
+
+                    <input
+                        type="text"
+                        id="trainTo"
+                        placeholder="Arrival station"
+                        value="Vijayawada">
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Journey Date
+                    </strong>
+
+                    <input
+                        type="date"
+                        id="trainDate">
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Passengers
+                    </strong>
+
+                    <select id="trainPassengers">
+
+                        <option value="1">
+                            1 Passenger
+                        </option>
+
+                        <option value="2" selected>
+                            2 Passengers
+                        </option>
+
+                        <option value="3">
+                            3 Passengers
+                        </option>
+
+                        <option value="4">
+                            4 Passengers
+                        </option>
+
+                        <option value="5">
+                            5 Passengers
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    class="search-btn"
+                    onclick="searchTrains()">
+
+                    Search Trains
+
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TRAIN 1
+            ================================================== -->
+
+            <div class="result-card">
+
+
+                <div class="result-left">
+
+                    <div class="airline-icon">
+                        🚆
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Vande Bharat Express
+                        </h2>
+
+                        <p>
+                            ⭐⭐⭐⭐⭐ Premium Train
+                        </p>
+
+                        <p>
+                            Hyderabad → Vijayawada
+                        </p>
+
+                        <p>
+                            🚆 06:00 AM → 10:30 AM
+                        </p>
+
+                        <p>
+                            ⏱️ Duration: 4h 30m
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="result-middle">
+
+                    <h3>
+                        Ticket Availability
+                    </h3>
+
+
+                    <!-- AVAILABLE -->
+
+                    <p style="color: green; font-weight: bold;">
+
+                        🟢 Available: 42
+
+                    </p>
+
+
+                    <!-- WAITING -->
+
+                    <p style="color: orange; font-weight: bold;">
+
+                        🟠 Waiting List: WL 08
+
+                    </p>
+
+
+                    <h3>
+                        Select Class
+                    </h3>
+
+
+                    <select
+                        class="room-select"
+                        id="trainClass1">
+
+                        <option value="Sleeper|799|Available 42">
+                            Sleeper (SL) - ₹799
+                        </option>
+
+                        <option value="1st AC|2499|Available 8">
+                            1st AC (1A) - ₹2,499
+                        </option>
+
+                        <option value="2nd AC|1799|Available 18">
+                            2nd AC (2A) - ₹1,799
+                        </option>
+
+                        <option value="3rd AC|1299|Available 31">
+                            3rd AC (3A) - ₹1,299
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="result-right">
+
+                    <p>
+                        Starting from
+                    </p>
+
+
+                    <div class="price">
+                        ₹799
+                    </div>
+
+
+                    <small>
+                        per passenger
+                    </small>
+
+
+                    <br><br>
+
+
+                    <button
+                        class="search-btn"
+                        onclick="bookTrain(
+                            'Vande Bharat Express',
+                            'trainClass1'
+                        )">
+
+                        Book Now
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TRAIN 2
+            ================================================== -->
+
+            <div class="result-card">
+
+
+                <div class="result-left">
+
+                    <div class="airline-icon">
+                        🚆
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Godavari Express
+                        </h2>
+
+                        <p>
+                            ⭐⭐⭐⭐ Superfast Express
+                        </p>
+
+                        <p>
+                            Hyderabad → Vijayawada
+                        </p>
+
+                        <p>
+                            🚆 08:15 AM → 01:00 PM
+                        </p>
+
+                        <p>
+                            ⏱️ Duration: 4h 45m
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="result-middle">
+
+                    <h3>
+                        Ticket Availability
+                    </h3>
+
+
+                    <p style="color: green; font-weight: bold;">
+
+                        🟢 Available: 65
+
+                    </p>
+
+
+                    <p style="color: orange; font-weight: bold;">
+
+                        🟠 Waiting List: WL 12
+
+                    </p>
+
+
+                    <h3>
+                        Select Class
+                    </h3>
+
+
+                    <select
+                        class="room-select"
+                        id="trainClass2">
+
+                        <option value="Sleeper|599|Available 65">
+                            Sleeper (SL) - ₹599
+                        </option>
+
+                        <option value="1st AC|2199|Available 5">
+                            1st AC (1A) - ₹2,199
+                        </option>
+
+                        <option value="2nd AC|1499|Available 14">
+                            2nd AC (2A) - ₹1,499
+                        </option>
+
+                        <option value="3rd AC|999|Available 27">
+                            3rd AC (3A) - ₹999
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="result-right">
+
+                    <p>
+                        Starting from
+                    </p>
+
+
+                    <div class="price">
+                        ₹599
+                    </div>
+
+
+                    <small>
+                        per passenger
+                    </small>
+
+
+                    <br><br>
+
+
+                    <button
+                        class="search-btn"
+                        onclick="bookTrain(
+                            'Godavari Express',
+                            'trainClass2'
+                        )">
+
+                        Book Now
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TRAIN 3
+            ================================================== -->
+
+            <div class="result-card">
+
+
+                <div class="result-left">
+
+                    <div class="airline-icon">
+                        🚆
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Krishna Express
+                        </h2>
+
+                        <p>
+                            ⭐⭐⭐ Express Train
+                        </p>
+
+                        <p>
+                            Hyderabad → Vijayawada
+                        </p>
+
+                        <p>
+                            🚆 09:30 PM → 02:30 AM
+                        </p>
+
+                        <p>
+                            ⏱️ Duration: 5h
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="result-middle">
+
+                    <h3>
+                        Ticket Availability
+                    </h3>
+
+
+                    <p style="color: green; font-weight: bold;">
+
+                        🟢 Available: 29
+
+                    </p>
+
+
+                    <p style="color: orange; font-weight: bold;">
+
+                        🟠 Waiting List: WL 21
+
+                    </p>
+
+
+                    <h3>
+                        Select Class
+                    </h3>
+
+
+                    <select
+                        class="room-select"
+                        id="trainClass3">
+
+                        <option value="Sleeper|499|Available 29">
+                            Sleeper (SL) - ₹499
+                        </option>
+
+                        <option value="1st AC|1999|Available 3">
+                            1st AC (1A) - ₹1,999
+                        </option>
+
+                        <option value="2nd AC|1399|Available 9">
+                            2nd AC (2A) - ₹1,399
+                        </option>
+
+                        <option value="3rd AC|899|Available 19">
+                            3rd AC (3A) - ₹899
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="result-right">
+
+                    <p>
+                        Starting from
+                    </p>
+
+
+                    <div class="price">
+                        ₹499
+                    </div>
+
+
+                    <small>
+                        per passenger
+                    </small>
+
+
+                    <br><br>
+
+
+                    <button
+                        class="search-btn"
+                        onclick="bookTrain(
+                            'Krishna Express',
+                            'trainClass3'
+                        )">
+
+                        Book Now
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <br>
+
+
+            <a
+                href="index.html"
+                class="back-results">
+
+                ← Back to Home
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+
+        // =========================
+        // SEARCH TRAINS
+        // =========================
+
+        function searchTrains() {
+
+
+            const from =
+                document.getElementById(
+                    "trainFrom"
+                ).value;
+
+
+            const to =
+                document.getElementById(
+                    "trainTo"
+                ).value;
+
+
+            const date =
+                document.getElementById(
+                    "trainDate"
+                ).value;
+
+
+            const passengers =
+                document.getElementById(
+                    "trainPassengers"
+                ).value;
+
+
+
+            if (from === "") {
+
+                alert(
+                    "Please enter departure station."
+                );
+
+                return;
+
+            }
+
+
+            if (to === "") {
+
+                alert(
+                    "Please enter arrival station."
+                );
+
+                return;
+
+            }
+
+
+            if (date === "") {
+
+                alert(
+                    "Please select journey date."
+                );
+
+                return;
+
+            }
+
+
+
+            localStorage.setItem(
+                "trainFrom",
+                from
+            );
+
+
+            localStorage.setItem(
+                "trainTo",
+                to
+            );
+
+
+            localStorage.setItem(
+                "trainDate",
+                date
+            );
+
+
+            localStorage.setItem(
+                "trainPassengers",
+                passengers
+            );
+
+
+            alert(
+                "Trains found for " +
+                from +
+                " → " +
+                to +
+                "!"
+            );
+
+        }
+
+
+
+        // =========================
+        // BOOK TRAIN
+        // =========================
+
+        function bookTrain(
+            train,
+            classId
+        ) {
+
+
+            const classValue =
+                document.getElementById(
+                    classId
+                ).value;
+
+
+            const classData =
+                classValue.split("|");
+
+
+            const trainClass =
+                classData[0];
+
+
+            const trainPrice =
+                classData[1];
+
+
+            const availability =
+                classData[2];
+
+
+
+            const from =
+                document.getElementById(
+                    "trainFrom"
+                ).value;
+
+
+            const to =
+                document.getElementById(
+                    "trainTo"
+                ).value;
+
+
+            const date =
+                document.getElementById(
+                    "trainDate"
+                ).value;
+
+
+            const passengers =
+                document.getElementById(
+                    "trainPassengers"
+                ).value;
+
+
+
+            // =========================
+            // VALIDATION
+            // =========================
+
+            if (from === "") {
+
+                alert(
+                    "Please enter departure station."
+                );
+
+                return;
+
+            }
+
+
+            if (to === "") {
+
+                alert(
+                    "Please enter arrival station."
+                );
+
+                return;
+
+            }
+
+
+            if (date === "") {
+
+                alert(
+                    "Please select journey date."
+                );
+
+                return;
+
+            }
+
+
+
+            // =========================
+            // TRAIN BOOKING
+            // =========================
+
+            localStorage.setItem(
+                "bookingType",
+                "train"
+            );
+
+
+            localStorage.setItem(
+                "selectedTrain",
+                train
+            );
+
+
+            localStorage.setItem(
+                "selectedTrainClass",
+                trainClass
+            );
+
+
+            localStorage.setItem(
+                "selectedTrainPrice",
+                trainPrice
+            );
+
+
+            localStorage.setItem(
+                "trainAvailability",
+                availability
+            );
+
+
+            localStorage.setItem(
+                "trainFrom",
+                from
+            );
+
+
+            localStorage.setItem(
+                "trainTo",
+                to
+            );
+
+
+            localStorage.setItem(
+                "trainDate",
+                date
+            );
+
+
+            localStorage.setItem(
+                "trainPassengers",
+                passengers
+            );
+
+
+
+            // =========================
+            // CLEAR OLD BOOKING DATA
+            // =========================
+
+            localStorage.removeItem(
+                "selectedAirline"
+            );
+
+
+            localStorage.removeItem(
+                "selectedPrice"
+            );
+
+
+            localStorage.removeItem(
+                "selectedHotel"
+            );
+
+
+            localStorage.removeItem(
+                "selectedHotelPrice"
+            );
+
+
+            localStorage.removeItem(
+                "selectedRoomType"
+            );
+
+
+
+            // =========================
+            // SUCCESS
+            // =========================
+
+            alert(
+
+                "Train selected successfully! 🚆\n\n" +
+
+                "Train: " +
+                train +
+
+                "\n\nClass: " +
+                trainClass +
+
+                "\n\nAvailability: " +
+                availability +
+
+                "\n\nPrice: ₹" +
+                trainPrice +
+                " per passenger" +
+
+                "\n\nProceeding to payment..."
+
+            );
+
+
+            // =========================
+            // PAYMENT
+            // =========================
+
+            window.location.href =
+                "payment.html";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

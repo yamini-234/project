@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Payment</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f4f8fc;
+
+            color: #172b4d;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+
+            height: 75px;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 60px;
+
+            box-shadow:
+                0 2px 12px
+                rgba(0,0,0,0.08);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+
+        .logo {
+
+            font-size: 28px;
+
+            font-weight: 700;
+        }
+
+
+        .logo span {
+
+            color: #1677ff;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 30px;
+        }
+
+
+        .nav-links a {
+
+            text-decoration: none;
+
+            color: #344054;
+
+            font-size: 16px;
+
+            font-weight: 500;
+        }
+
+
+        .nav-links a:hover {
+
+            color: #1677ff;
+        }
+
+
+        .nav-buttons {
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        .login-btn,
+        .signup-btn {
+
+            padding: 10px 20px;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        .login-btn {
+
+            background: white;
+
+            border: 1px solid #1677ff;
+
+            color: #1677ff;
+        }
+
+
+        .signup-btn {
+
+            background: #1677ff;
+
+            border: 1px solid #1677ff;
+
+            color: white;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        .page-header {
+
+            background:
+
+                linear-gradient(
+                    rgba(10,75,145,0.88),
+                    rgba(10,75,145,0.88)
+                ),
+
+                url("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+
+            background-position: center;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 55px 20px;
+        }
+
+
+        .page-header h1 {
+
+            font-size: 42px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .page-header p {
+
+            font-size: 18px;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .payment-container {
+
+            max-width: 1050px;
+
+            margin: 40px auto 70px;
+
+            padding: 0 20px;
+
+            display: grid;
+
+            grid-template-columns:
+                1.3fr
+                0.7fr;
+
+            gap: 25px;
+        }
+
+
+        /* ================= PAYMENT CARD ================= */
+
+        .payment-card {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,0.08);
+        }
+
+
+        .payment-card h2 {
+
+            font-size: 25px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .payment-card > p {
+
+            color: #667085;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* ================= METHODS ================= */
+
+        .payment-methods {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 10px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .method {
+
+            border: 1px solid #d0d5dd;
+
+            background: white;
+
+            padding: 14px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            text-align: center;
+
+            font-weight: 600;
+
+            color: #475467;
+        }
+
+
+        .method.active {
+
+            border-color: #1677ff;
+
+            background: #eef5ff;
+
+            color: #1677ff;
+        }
+
+
+        /* ================= FORM ================= */
+
+        .payment-section {
+
+            display: none;
+        }
+
+
+        .payment-section.active {
+
+            display: block;
+        }
+
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .form-group label {
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: #344054;
+        }
+
+
+        .form-group input,
+        .form-group select {
+
+            height: 48px;
+
+            border: 1px solid #d0d5dd;
+
+            border-radius: 9px;
+
+            padding: 0 14px;
+
+            font-size: 14px;
+
+            outline: none;
+        }
+
+
+        .form-group input:focus {
+
+            border-color: #1677ff;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(22,119,255,0.1);
+        }
+
+
+        .two-columns {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 15px;
+        }
+
+
+        .pay-btn {
+
+            width: 100%;
+
+            height: 50px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #1677ff;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            margin-top: 10px;
+        }
+
+
+        .pay-btn:hover {
+
+            background: #0b5ed7;
+        }
+
+
+        /* ================= BOOKING SUMMARY ================= */
+
+        .summary-card {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,0.08);
+
+            height: fit-content;
+        }
+
+
+        .summary-card h2 {
+
+            font-size: 22px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .booking-type {
+
+            display: inline-block;
+
+            background: #eaf3ff;
+
+            color: #1677ff;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 18px;
+        }
+
+
+        .summary-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 12px 0;
+
+            border-bottom:
+                1px solid #eaecf0;
+
+            font-size: 14px;
+        }
+
+
+        .summary-row span:first-child {
+
+            color: #667085;
+        }
+
+
+        .summary-row span:last-child {
+
+            text-align: right;
+
+            font-weight: 600;
+        }
+
+
+        .total-row {
+
+            margin-top: 15px;
+
+            padding-top: 15px;
+
+            border-top:
+                2px solid #eaecf0;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            font-size: 18px;
+
+            font-weight: 700;
+        }
+
+
+        .total-row span:last-child {
+
+            color: #1677ff;
+        }
+
+
+        .demo-note {
+
+            margin-top: 20px;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            background: #fff8e6;
+
+            color: #8a6116;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+
+            background: #172b4d;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 800px) {
+
+            .navbar {
+
+                padding: 15px 25px;
+
+                height: auto;
+
+                flex-wrap: wrap;
+
+                gap: 15px;
+            }
+
+
+            .nav-links {
+
+                order: 3;
+
+                width: 100%;
+
+                justify-content: center;
+            }
+
+
+            .payment-container {
+
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media(max-width: 550px) {
+
+            .nav-buttons {
+
+                display: none;
+            }
+
+
+            .page-header h1 {
+
+                font-size: 32px;
+            }
+
+
+            .payment-methods {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .two-columns {
+
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        Travel<span>Go</span>
+    </div>
+
+
+    <nav class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="results.html">Flights</a>
+
+        <a href="hotels.html">Hotels</a>
+
+        <a href="trains.html">Trains</a>
+
+    </nav>
+
+
+    <div class="nav-buttons">
+
+        <button
+            class="login-btn"
+            onclick="window.location.href='login.html'"
+        >
+            Login
+        </button>
+
+
+        <button
+            class="signup-btn"
+            onclick="window.location.href='signup.html'"
+        >
+            Sign Up
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= HEADER ================= -->
+
+<section class="page-header">
+
+    <h1>
+        Secure Payment
+    </h1>
+
+    <p>
+        Complete your booking safely and easily
+    </p>
+
+</section>
+
+
+<!-- ================= PAYMENT ================= -->
+
+<main class="payment-container">
+
+
+    <!-- PAYMENT CARD -->
+
+    <section class="payment-card">
+
+        <h2>
+            Payment Details
+        </h2>
+
+        <p>
+            Choose your preferred payment method.
+        </p>
+
+
+        <!-- METHODS -->
+
+        <div class="payment-methods">
+
+            <button
+                class="method active"
+                id="cardMethod"
+                onclick="selectMethod('card')"
+            >
+                💳 Card
+            </button>
+
+
+            <button
+                class="method"
+                id="upiMethod"
+                onclick="selectMethod('upi')"
+            >
+                📱 UPI
+            </button>
+
+
+            <button
+                class="method"
+                id="bankMethod"
+                onclick="selectMethod('bank')"
+            >
+                🏦 Net Banking
+            </button>
+
+        </div>
+
+
+        <!-- CARD -->
+
+        <div
+            class="payment-section active"
+            id="cardSection"
+        >
+
+            <div class="form-group">
+
+                <label>
+                    Card Holder Name
+                </label>
+
+                <input
+                    type="text"
+                    id="cardName"
+                    placeholder="Enter card holder name"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Card Number
+                </label>
+
+                <input
+                    type="text"
+                    id="cardNumber"
+                    maxlength="19"
+                    placeholder="1234 5678 9012 3456"
+                >
+
+            </div>
+
+
+            <div class="two-columns">
+
+                <div class="form-group">
+
+                    <label>
+                        Expiry Date
+                    </label>
+
+                    <input
+                        type="text"
+                        id="expiry"
+                        placeholder="MM/YY"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        CVV
+                    </label>
+
+                    <input
+                        type="password"
+                        id="cvv"
+                        maxlength="3"
+                        placeholder="123"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- UPI -->
+
+        <div
+            class="payment-section"
+            id="upiSection"
+        >
+
+            <div class="form-group">
+
+                <label>
+                    UPI ID
+                </label>
+
+                <input
+                    type="text"
+                    id="upiId"
+                    placeholder="example@upi"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- BANK -->
+
+        <div
+            class="payment-section"
+            id="bankSection"
+        >
+
+            <div class="form-group">
+
+                <label>
+                    Select Bank
+                </label>
+
+                <select id="bankName">
+
+                    <option value="">
+                        Select your bank
+                    </option>
+
+                    <option>
+                        State Bank of India
+                    </option>
+
+                    <option>
+                        HDFC Bank
+                    </option>
+
+                    <option>
+                        ICICI Bank
+                    </option>
+
+                    <option>
+                        Axis Bank
+                    </option>
+
+                    <option>
+                        Kotak Mahindra Bank
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="pay-btn"
+            onclick="makePayment()"
+        >
+            Pay Now
+        </button>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+
+    <aside class="summary-card">
+
+        <h2>
+            Booking Summary
+        </h2>
+
+
+        <span
+            class="booking-type"
+            id="bookingTypeDisplay"
+        >
+            BOOKING
+        </span>
+
+
+        <div id="summaryDetails">
+        </div>
+
+
+        <div class="total-row">
+
+            <span>
+                Total
+            </span>
+
+            <span id="totalPrice">
+                ₹0
+            </span>
+
+        </div>
+
+
+        <div class="demo-note">
+
+            <strong>Demo Payment:</strong>
+
+            This is a frontend project.
+            No real money will be charged.
+
+            For UPI testing you can use:
+            <strong>test@upi</strong>
+
+        </div>
+
+    </aside>
+
+</main>
+
+
+<footer>
+
+    © 2026 TravelGo. All rights reserved.
+
+</footer>
+
+
+<script>
+
+    /* ================= BOOKING TYPE ================= */
+
+    const bookingType =
+        localStorage.getItem("bookingType");
+
+
+    if (
+        bookingType !== "flight" &&
+        bookingType !== "hotel" &&
+        bookingType !== "train"
+    ) {
+
+        alert(
+            "No booking selected."
+        );
+
+        window.location.href =
+            "index.html";
+    }
+
+
+    /* ================= SUMMARY ================= */
+
+    const summary =
+        document.getElementById(
+            "summaryDetails"
+        );
+
+    const typeDisplay =
+        document.getElementById(
+            "bookingTypeDisplay"
+        );
+
+    const totalPrice =
+        document.getElementById(
+            "totalPrice"
+        );
+
+
+    let price = "₹0";
+
+
+    if (bookingType === "flight") {
+
+        typeDisplay.textContent =
+            "✈ FLIGHT";
+
+        const airline =
+            localStorage.getItem(
+                "selectedAirline"
+            ) || "-";
+
+        const from =
+            localStorage.getItem(
+                "travelFrom"
+            ) || "-";
+
+        const to =
+            localStorage.getItem(
+                "travelTo"
+            ) || "-";
+
+        const date =
+            localStorage.getItem(
+                "travelDeparture"
+            ) || "-";
+
+        const travellers =
+            localStorage.getItem(
+                "travelTravellers"
+            ) || "1";
+
+        price =
+            localStorage.getItem(
+                "selectedPrice"
+            ) || "₹0";
+
+
+        summary.innerHTML = `
+
+            <div class="summary-row">
+                <span>Airline</span>
+                <span>${airline}</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Route</span>
+                <span>${from} → ${to}</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Departure</span>
+                <span>${date}</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Travellers</span>
+                <span>${travellers}</span>
+            </div>
+
+        `;
+
+    }
+
+
+    else if (bookingType === "hotel") {
+
+        typeDisplay.textContent =
+            "🏨 HOTEL";
+
+        const hotel =
+            localStorage.getItem(
+                "selectedHotel"
+            ) || "-";
+
+        const room =
+            localStorage.getItem(
+                "selectedRoomType"
+            ) || "-";
+
+        const destination =
+            localStorage.getItem(
+                "hotelDestination"
+            ) || "-";
+
+        const checkIn =
+            localStorage.getItem(
+                "hotelCheckIn"
+            ) || "-";
+
+        const checkOut =
+            localStorage.getItem(
+                "hotelCheckOut"
+            ) || "-";
+
+        const guests =
+            localStorage.getItem(
+                "hotelGuests"
+            ) || "1";
+
+        price =
+            localStorage.getItem(
+                "selectedHotelPrice"
+            ) || "₹0";
+
+
+        summary.innerHTML = `
+
+            <div class="summary-row">
+                <span>Hotel</span>
+                <span>${hotel}</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Room</span>
+                <span>${room}</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Destination</span>
+                <span>${destination}</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Check-in</span>
+                <span>${checkIn}</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Check-out</span>
+                <span>${checkOut}</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Guests</span>
+                <span>${guests}</span>
+            </div>
+
+        `;
+
+    }
+
+
+    else if (bookingType === "train") {
+
+        typeDisplay.textContent =
+            "🚆 TRAIN";
+
+        const train =
+            localStorage.getItem(
+                "selectedTrain"
+            ) || "-";
+
+        const from =
+            localStorage.getItem(
+                "trainFrom"
+            ) || "-";
+
+        const to =
+            localStorage.getItem(
+                "trainTo"
+            ) || "-";
+
+        const trainClass =
+            localStorage.getItem(
+                "selectedTrainClass"
+            ) || "-";
+
+        const date =
+            localStorage.getItem(
+                "trainDate"
+            ) || "-";
+
+        const passengers =
+            localStorage.getItem(
+                "trainPassengers"
+            ) || "1";
+
+        price =
+            localStorage.getItem(
+                "selectedTrainPrice"
+            ) || "₹0";
+
+
+        summary.innerHTML = `
+
+            <div class="summary-row">
+                <span>Train</span>
+                <span>${train}</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Route</span>
+                <span>${from} → ${to}</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Class</span>
+                <span>${trainClass}</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Journey Date</span>
+                <span>${date}</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Passengers</span>
+                <span>${passengers}</span>
+            </div>
+
+        `;
+
+    }
+
+
+    totalPrice.textContent =
+        price;
+
+
+    /* ================= PAYMENT METHOD ================= */
+
+    function selectMethod(method) {
+
+        document
+            .querySelectorAll(".method")
+            .forEach(function(button) {
+
+                button.classList.remove(
+                    "active"
+                );
+
+            });
+
+
+        document
+            .querySelectorAll(
+                ".payment-section"
+            )
+            .forEach(function(section) {
+
+                section.classList.remove(
+                    "active"
+                );
+
+            });
+
+
+        if (method === "card") {
+
+            document
+                .getElementById("cardMethod")
+                .classList.add("active");
+
+            document
+                .getElementById("cardSection")
+                .classList.add("active");
+
+        }
+
+
+        else if (method === "upi") {
+
+            document
+                .getElementById("upiMethod")
+                .classList.add("active");
+
+            document
+                .getElementById("upiSection")
+                .classList.add("active");
+
+        }
+
+
+        else {
+
+            document
+                .getElementById("bankMethod")
+                .classList.add("active");
+
+            document
+                .getElementById("bankSection")
+                .classList.add("active");
+
+        }
+
+    }
+
+
+    /* ================= PAYMENT ================= */
+
+    function makePayment() {
+
+
+        const activeMethod =
+            document.querySelector(
+                ".method.active"
+            );
+
+
+        let paymentMethod = "Card";
+
+
+        if (
+            activeMethod &&
+            activeMethod.id === "upiMethod"
+        ) {
+
+            paymentMethod = "UPI";
+
+        }
+
+
+        else if (
+            activeMethod &&
+            activeMethod.id === "bankMethod"
+        ) {
+
+            paymentMethod =
+                "Net Banking";
+
+        }
+
+
+        /* CARD VALIDATION */
+
+        if (paymentMethod === "Card") {
+
+            const cardName =
+                document.getElementById(
+                    "cardName"
+                ).value.trim();
+
+            const cardNumber =
+                document.getElementById(
+                    "cardNumber"
+                ).value.trim();
+
+            const expiry =
+                document.getElementById(
+                    "expiry"
+                ).value.trim();
+
+            const cvv =
+                document.getElementById(
+                    "cvv"
+                ).value.trim();
+
+
+            if (
+                cardName === "" ||
+                cardNumber === "" ||
+                expiry === "" ||
+                cvv === ""
+            ) {
+
+                alert(
+                    "Please enter all card details."
+                );
+
+                return;
+            }
+
+        }
+
+
+        /* UPI VALIDATION */
+
+        if (paymentMethod === "UPI") {
+
+            const upi =
+                document.getElementById(
+                    "upiId"
+                ).value.trim();
+
+
+            if (
+                upi === "" ||
+                !upi.includes("@")
+            ) {
+
+                alert(
+                    "Please enter a valid UPI ID."
+                );
+
+                return;
+            }
+
+        }
+
+
+        /* BANK VALIDATION */
+
+        if (paymentMethod === "Net Banking") {
+
+            const bank =
+                document.getElementById(
+                    "bankName"
+                ).value;
+
+
+            if (bank === "") {
+
+                alert(
+                    "Please select your bank."
+                );
+
+                return;
+            }
+
+        }
+
+
+        /* ================= BOOKING ID ================= */
+
+        const randomNumber =
+            Math.floor(
+                100000 +
+                Math.random() * 900000
+            );
+
+
+        const bookingId =
+            "TG2026" + randomNumber;
+
+
+        /* ================= CUSTOMER ================= */
+
+        const customerName =
+            localStorage.getItem(
+                "passengerName"
+            ) ||
+            localStorage.getItem(
+                "userName"
+            ) ||
+            "Guest";
+
+
+        const customerEmail =
+            localStorage.getItem(
+                "passengerEmail"
+            ) ||
+            localStorage.getItem(
+                "userEmail"
+            ) ||
+            "-";
+
+
+        const customerPhone =
+            localStorage.getItem(
+                "passengerPhone"
+            ) || "-";
+
+
+        const customerAge =
+            localStorage.getItem(
+                "passengerAge"
+            ) || "-";
+
+
+        const customerGender =
+            localStorage.getItem(
+                "passengerGender"
+            ) || "-";
+
+
+        const customerCity =
+            localStorage.getItem(
+                "passengerCity"
+            ) || "-";
+
+
+        /* ================= BOOKING OBJECT ================= */
+
+        let booking = {
+
+            id: bookingId,
+
+            customer: customerName,
+
+            email: customerEmail,
+
+            phone: customerPhone,
+
+            age: customerAge,
+
+            gender: customerGender,
+
+            city: customerCity,
+
+            type: bookingType,
+
+            paymentMethod:
+                paymentMethod,
+
+            status:
+                "Confirmed",
+
+            dateCreated:
+                new Date().toLocaleString()
+
+        };
+
+
+        /* ================= FLIGHT ================= */
+
+        if (bookingType === "flight") {
+
+            booking.airline =
+                localStorage.getItem(
+                    "selectedAirline"
+                ) || "-";
+
+            booking.from =
+                localStorage.getItem(
+                    "travelFrom"
+                ) || "-";
+
+            booking.to =
+                localStorage.getItem(
+                    "travelTo"
+                ) || "-";
+
+            booking.travelDate =
+                localStorage.getItem(
+                    "travelDeparture"
+                ) || "-";
+
+            booking.travellers =
+                localStorage.getItem(
+                    "travelTravellers"
+                ) || "1";
+
+            booking.price =
+                localStorage.getItem(
+                    "selectedPrice"
+                ) || "₹0";
+
+            booking.details =
+                booking.airline +
+                " | " +
+                booking.from +
+                " → " +
+                booking.to;
+
+        }
+
+
+        /* ================= HOTEL ================= */
+
+        else if (bookingType === "hotel") {
+
+            booking.hotel =
+                localStorage.getItem(
+                    "selectedHotel"
+                ) || "-";
+
+            booking.room =
+                localStorage.getItem(
+                    "selectedRoomType"
+                ) || "-";
+
+            booking.destination =
+                localStorage.getItem(
+                    "hotelDestination"
+                ) || "-";
+
+            booking.checkIn =
+                localStorage.getItem(
+                    "hotelCheckIn"
+                ) || "-";
+
+            booking.checkOut =
+                localStorage.getItem(
+                    "hotelCheckOut"
+                ) || "-";
+
+            booking.guests =
+                localStorage.getItem(
+                    "hotelGuests"
+                ) || "1";
+
+            booking.price =
+                localStorage.getItem(
+                    "selectedHotelPrice"
+                ) || "₹0";
+
+            booking.details =
+                booking.hotel +
+                " | " +
+                booking.room;
+
+        }
+
+
+        /* ================= TRAIN ================= */
+
+        else if (bookingType === "train") {
+
+            booking.train =
+                localStorage.getItem(
+                    "selectedTrain"
+                ) || "-";
+
+            booking.from =
+                localStorage.getItem(
+                    "trainFrom"
+                ) || "-";
+
+            booking.to =
+                localStorage.getItem(
+                    "trainTo"
+                ) || "-";
+
+            booking.trainClass =
+                localStorage.getItem(
+                    "selectedTrainClass"
+                ) || "-";
+
+            booking.journeyDate =
+                localStorage.getItem(
+                    "trainDate"
+                ) || "-";
+
+            booking.passengers =
+                localStorage.getItem(
+                    "trainPassengers"
+                ) || "1";
+
+            booking.availability =
+                localStorage.getItem(
+                    "trainAvailability"
+                ) || "Available";
+
+            booking.price =
+                localStorage.getItem(
+                    "selectedTrainPrice"
+                ) || "₹0";
+
+            booking.details =
+                booking.train +
+                " | " +
+                booking.from +
+                " → " +
+                booking.to;
+
+        }
+
+
+        /* ================= SAVE ALL BOOKINGS ================= */
+
+        let allBookings = [];
+
+        const existingBookings =
+            localStorage.getItem(
+                "allBookings"
+            );
+
+
+        if (existingBookings) {
+
+            try {
+
+                allBookings =
+                    JSON.parse(
+                        existingBookings
+                    );
+
+            }
+
+            catch(error) {
+
+                allBookings = [];
+
+            }
+
+        }
+
+
+        allBookings.push(
+            booking
+        );
+
+
+        localStorage.setItem(
+            "allBookings",
+            JSON.stringify(
+                allBookings
+            )
+        );
+
+
+        /* ================= SAVE TO USER BOOKING HISTORY ================= */
+
+        // Use the signed-in account email so the ticket appears in that user's login.
+        const historyEmail = (
+            localStorage.getItem("userEmail") || customerEmail || ""
+        ).trim().toLowerCase();
+
+        if (historyEmail) {
+            let bookingsByUser = {};
+            try {
+                bookingsByUser = JSON.parse(localStorage.getItem("bookingsByUser") || "{}");
+            } catch (error) {
+                bookingsByUser = {};
+            }
+
+            if (!Array.isArray(bookingsByUser[historyEmail])) {
+                bookingsByUser[historyEmail] = [];
+            }
+
+            const historyRecord = {
+                id: bookingId,
+                type: bookingType,
+                status: "Confirmed",
+                customerName,
+                customerEmail: historyEmail,
+                customerPhone,
+                price: booking.price || "₹0",
+                bookedAt: new Date().toISOString(),
+                details: {}
+            };
+
+            if (bookingType === "flight") {
+                historyRecord.details = {
+                    airline: booking.airline,
+                    from: booking.from,
+                    to: booking.to,
+                    date: booking.travelDate,
+                    travellers: booking.travellers
+                };
+            } else if (bookingType === "hotel") {
+                historyRecord.details = {
+                    hotel: booking.hotel,
+                    room: booking.room,
+                    destination: booking.destination,
+                    checkIn: booking.checkIn,
+                    checkOut: booking.checkOut,
+                    guests: booking.guests
+                };
+            } else if (bookingType === "train") {
+                historyRecord.details = {
+                    train: booking.train,
+                    from: booking.from,
+                    to: booking.to,
+                    travelClass: booking.trainClass,
+                    date: booking.journeyDate,
+                    passengers: booking.passengers
+                };
+            }
+
+            if (!bookingsByUser[historyEmail].some(item => item.id === bookingId)) {
+                bookingsByUser[historyEmail].unshift(historyRecord);
+            }
+            localStorage.setItem("bookingsByUser", JSON.stringify(bookingsByUser));
+        }
+
+        /* ================= CURRENT BOOKING ================= */
+
+        localStorage.setItem(
+            "bookingId",
+            bookingId
+        );
+
+        localStorage.setItem(
+            "bookingStatus",
+            "Confirmed"
+        );
+
+
+        alert(
+            "Payment successful!\n\nBooking ID: " +
+            bookingId
+        );
+
+
+        window.location.href =
+            "confirmation.html";
+
+    }
+
+</script>
+
+</body>
+</html>

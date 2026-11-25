@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Travel Booking</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            TravelGo
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="#home">Home</a>
+
+            <a href="#destinations">Destinations</a>
+
+            <a href="#services">Services</a>
+
+            <a href="#packages">Packages</a>
+
+            <a href="#why-us">Why Us</a>
+
+        </div>
+
+
+        <div class="nav-buttons">
+
+            <button
+                class="login-btn"
+                id="loginButton">
+                Login
+            </button>
+
+
+            <button
+                class="signup-btn"
+                id="signupButton">
+                Sign Up
+            </button>
+
+
+            <button
+                class="user-btn"
+                id="userButton"
+                style="display: none;">
+            </button>
+
+
+            <button
+                class="logout-btn"
+                id="logoutButton"
+                style="display: none;">
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         HERO SECTION
+    ========================== -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>
+                Explore the World with TravelGo
+            </h1>
+
+            <p>
+                Book flights, hotels, trains and amazing
+                travel experiences at the best prices.
+            </p>
+
+            <button class="explore-btn">
+                Explore Now
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         BOOKING SECTION
+    ========================== -->
+
+    <section class="booking-section">
+
+        <div class="booking-box">
+
+
+            <!-- BOOKING TABS -->
+
+            <div class="booking-tabs">
+
+                <button class="tab active">
+                    Flights
+                </button>
+
+                <button class="tab">
+                    Hotels
+                </button>
+
+                <button class="tab">
+                    Trains
+                </button>
+
+            </div>
+
+
+
+            <!-- SEARCH FORM -->
+
+            <form
+                class="search-form"
+                onsubmit="event.preventDefault(); searchTravel();">
+
+
+                <!-- FROM -->
+
+                <div class="input-group">
+
+                    <label for="from">
+                        From
+                    </label>
+
+                    <input
+                        type="text"
+                        id="from"
+                        placeholder="Departure city"
+                        required>
+
+                </div>
+
+
+
+                <!-- TO -->
+
+                <div class="input-group">
+
+                    <label for="to">
+                        To
+                    </label>
+
+                    <input
+                        type="text"
+                        id="to"
+                        placeholder="Destination city"
+                        required>
+
+                </div>
+
+
+
+                <!-- DATE -->
+
+                <div class="input-group">
+
+                    <label for="departure">
+                        Departure
+                    </label>
+
+                    <input
+                        type="date"
+                        id="departure"
+                        required>
+
+                </div>
+
+
+
+                <!-- TRAVELLERS -->
+
+                <div class="input-group">
+
+                    <label for="travellers">
+                        Travellers
+                    </label>
+
+                    <select id="travellers">
+
+                        <option value="1">
+                            1 Traveller
+                        </option>
+
+                        <option value="2">
+                            2 Travellers
+                        </option>
+
+                        <option value="3">
+                            3 Travellers
+                        </option>
+
+                        <option value="4">
+                            4 Travellers
+                        </option>
+
+                        <option value="5">
+                            5 Travellers
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- SEARCH -->
+
+                <button
+                    type="submit"
+                    class="search-btn">
+                    Search
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         POPULAR DESTINATIONS
+    ========================== -->
+
+    <section
+        class="destinations"
+        id="destinations">
+
+        <h2 class="section-title">
+            Popular Destinations
+        </h2>
+
+        <p class="section-subtitle">
+            Discover beautiful places around the world
+        </p>
+
+
+        <div class="destination-grid">
+
+
+            <!-- DUBAI -->
+
+            <div
+                class="destination-card"
+                onclick="selectDestination('Dubai')">
+
+                <div class="destination-image dubai-image">
+
+                    <div class="destination-overlay">
+
+                        <h3>
+                            Dubai
+                        </h3>
+
+                        <p>
+                            Experience luxury and adventure
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="card-content">
+
+                    <h3>
+                        Dubai
+                    </h3>
+
+                    <p>
+                        Starting from ₹18,999
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BALI -->
+
+            <div
+                class="destination-card"
+                onclick="selectDestination('Bali')">
+
+                <div class="destination-image bali-image">
+
+                    <div class="destination-overlay">
+
+                        <h3>
+                            Bali
+                        </h3>
+
+                        <p>
+                            Beaches, nature and culture
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="card-content">
+
+                    <h3>
+                        Bali
+                    </h3>
+
+                    <p>
+                        Starting from ₹22,999
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TOKYO -->
+
+            <div
+                class="destination-card"
+                onclick="selectDestination('Tokyo')">
+
+                <div class="destination-image tokyo-image">
+
+                    <div class="destination-overlay">
+
+                        <h3>
+                            Tokyo
+                        </h3>
+
+                        <p>
+                            Modern city and Japanese culture
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="card-content">
+
+                    <h3>
+                        Tokyo
+                    </h3>
+
+                    <p>
+                        Starting from ₹32,999
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PARIS -->
+
+            <div
+                class="destination-card"
+                onclick="selectDestination('Paris')">
+
+                <div class="destination-image paris-image">
+
+                    <div class="destination-overlay">
+
+                        <h3>
+                            Paris
+                        </h3>
+
+                        <p>
+                            Romance, art and history
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="card-content">
+
+                    <h3>
+                        Paris
+                    </h3>
+
+                    <p>
+                        Starting from ₹39,999
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         SERVICES
+    ========================== -->
+
+    <section
+        class="services"
+        id="services">
+
+        <h2 class="section-title">
+            Our Services
+        </h2>
+
+        <p class="section-subtitle">
+            Everything you need for a perfect trip
+        </p>
+
+
+        <div class="service-grid">
+
+
+            <!-- FLIGHTS -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    ✈️
+                </div>
+
+                <h3>
+                    Flights
+                </h3>
+
+                <p>
+                    Find and book affordable flights
+                    to destinations around the world.
+                </p>
+
+                <button
+                    onclick="window.location.href='index.html'">
+                    Book Flights
+                </button>
+
+            </div>
+
+
+
+            <!-- HOTELS -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    🏨
+                </div>
+
+                <h3>
+                    Hotels
+                </h3>
+
+                <p>
+                    Stay in comfortable hotels
+                    at the best available prices.
+                </p>
+
+                <button
+                    onclick="window.location.href='hotels.html'">
+                    Book Hotels
+                </button>
+
+            </div>
+
+
+
+            <!-- TRAINS -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    🚆
+                </div>
+
+                <h3>
+                    Trains
+                </h3>
+
+                <p>
+                    Book convenient train journeys
+                    for your next trip.
+                </p>
+
+                <button
+                    onclick="window.location.href='trains.html'">
+                    Book Trains
+                </button>
+
+            </div>
+
+
+
+            <!-- CAR RENTALS -->
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    🚗
+                </div>
+
+                <h3>
+                    Car Rentals
+                </h3>
+
+                <p>
+                    Rent cars easily and travel
+                    comfortably at your destination.
+                </p>
+
+                <button>
+                    Rent a Car
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         TRAVEL PACKAGES
+    ========================== -->
+
+    <section
+        class="packages"
+        id="packages">
+
+        <h2 class="section-title">
+            Popular Travel Packages
+        </h2>
+
+        <p class="section-subtitle">
+            Enjoy unforgettable holidays with our
+            specially designed packages
+        </p>
+
+
+        <div class="package-grid">
+
+
+            <!-- MALDIVES -->
+
+            <div class="package-card">
+
+                <div class="package-image maldives-image">
+
+                    <div class="package-overlay">
+
+                        <h3>
+                            Maldives
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="package-content">
+
+                    <h3>
+                        Maldives Paradise
+                    </h3>
+
+                    <p>
+                        5 Days / 4 Nights
+                    </p>
+
+                    <p>
+                        🏨 Luxury Hotel
+                    </p>
+
+                    <p>
+                        🍽️ Breakfast Included
+                    </p>
+
+                    <div class="package-bottom">
+
+                        <span>
+                            ₹49,999
+                        </span>
+
+                        <button>
+                            View Package
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SWITZERLAND -->
+
+            <div class="package-card">
+
+                <div class="package-image switzerland-image">
+
+                    <div class="package-overlay">
+
+                        <h3>
+                            Switzerland
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="package-content">
+
+                    <h3>
+                        Swiss Adventure
+                    </h3>
+
+                    <p>
+                        7 Days / 6 Nights
+                    </p>
+
+                    <p>
+                        🏨 Premium Hotels
+                    </p>
+
+                    <p>
+                        🚆 Train Pass Included
+                    </p>
+
+                    <div class="package-bottom">
+
+                        <span>
+                            ₹89,999
+                        </span>
+
+                        <button>
+                            View Package
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- THAILAND -->
+
+            <div class="package-card">
+
+                <div class="package-image thailand-image">
+
+                    <div class="package-overlay">
+
+                        <h3>
+                            Thailand
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="package-content">
+
+                    <h3>
+                        Thailand Escape
+                    </h3>
+
+                    <p>
+                        6 Days / 5 Nights
+                    </p>
+
+                    <p>
+                        🏨 Beach Resort
+                    </p>
+
+                    <p>
+                        🏝️ Island Tours
+                    </p>
+
+                    <div class="package-bottom">
+
+                        <span>
+                            ₹39,999
+                        </span>
+
+                        <button>
+                            View Package
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         WHY CHOOSE US
+    ========================== -->
+
+    <section
+        class="why-us"
+        id="why-us">
+
+        <h2 class="section-title">
+            Why Choose TravelGo?
+        </h2>
+
+
+        <div class="features">
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    💰
+                </div>
+
+                <h3>
+                    Best Prices
+                </h3>
+
+                <p>
+                    Get competitive prices and
+                    great travel deals.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🔒
+                </div>
+
+                <h3>
+                    Secure Booking
+                </h3>
+
+                <p>
+                    Your booking information is
+                    handled securely.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    Easy Booking
+                </h3>
+
+                <p>
+                    Book your complete trip
+                    quickly and easily.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📞
+                </div>
+
+                <h3>
+                    24/7 Support
+                </h3>
+
+                <p>
+                    Our support team is available
+                    whenever you need help.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-content">
+
+
+            <div class="footer-column">
+
+                <h3>
+                    TravelGo
+                </h3>
+
+                <p>
+                    Your trusted travel partner for
+                    flights, hotels and train bookings.
+                </p>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#destinations">
+                    Destinations
+                </a>
+
+                <a href="#services">
+                    Services
+                </a>
+
+                <a href="#packages">
+                    Packages
+                </a>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Services
+                </h3>
+
+                <a href="results.html">
+                    Flights
+                </a>
+
+                <a href="hotels.html">
+                    Hotels
+                </a>
+
+                <a href="trains.html">
+                    Trains
+                </a>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Contact
+                </h3>
+
+                <p>
+                    📧 support@travelgo.com
+                </p>
+
+                <p>
+                    📞 +91 98765 43210
+                </p>
+
+                <p>
+                    📍 India
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            <p>
+                © 2026 TravelGo. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================
+         SCRIPT
+    ========================== -->
+
+    <script src="script.js"></script>
+
+
+    <script>
+
+        // =========================
+        // LOGIN STATE
+        // =========================
+
+        const loginButtonHome =
+            document.getElementById("loginButton");
+
+        const signupButtonHome =
+            document.getElementById("signupButton");
+
+        const userButton =
+            document.getElementById("userButton");
+
+        const logoutButton =
+            document.getElementById("logoutButton");
+
+
+        const savedUserName =
+            localStorage.getItem("userName");
+
+
+        // =========================
+        // USER LOGGED IN
+        // =========================
+
+        if (savedUserName) {
+
+            loginButtonHome.style.display = "none";
+
+            signupButtonHome.style.display = "none";
+
+            userButton.style.display = "inline-block";
+
+            logoutButton.style.display = "inline-block";
+
+            userButton.textContent =
+                "Hi, " + savedUserName;
+
+        }
+
+
+        // =========================
+        // LOGIN
+        // =========================
+
+        loginButtonHome.addEventListener(
+            "click",
+            function() {
+
+                window.location.href =
+                    "login.html";
+
+            }
+        );
+
+
+        // =========================
+        // SIGN UP
+        // =========================
+
+        signupButtonHome.addEventListener(
+            "click",
+            function() {
+
+                window.location.href =
+                    "signup.html";
+
+            }
+        );
+
+
+        // =========================
+        // LOGOUT
+        // =========================
+
+        logoutButton.addEventListener(
+            "click",
+            function() {
+
+                localStorage.removeItem("userName");
+
+                localStorage.removeItem("userEmail");
+
+                localStorage.removeItem("userPassword");
+
+                alert(
+                    "You have been logged out."
+                );
+
+                window.location.reload();
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

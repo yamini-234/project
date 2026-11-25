@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Sign Up</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    rgba(15, 67, 120, 0.72),
+                    rgba(22, 119, 255, 0.55)
+                ),
+                url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=85");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-attachment: fixed;
+
+            color: #172b4d;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+
+            height: 75px;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 60px;
+
+            box-shadow:
+                0 2px 12px
+                rgba(0,0,0,0.10);
+
+        }
+
+
+        .logo {
+
+            font-size: 28px;
+
+            font-weight: 700;
+
+            color: #172b4d;
+        }
+
+
+        .logo span {
+
+            color: #1677ff;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 30px;
+        }
+
+
+        .nav-links a {
+
+            text-decoration: none;
+
+            color: #344054;
+
+            font-size: 16px;
+
+            font-weight: 500;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-links a:hover {
+
+            color: #1677ff;
+        }
+
+
+        .nav-buttons {
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        .login-nav-btn {
+
+            border: 1px solid #1677ff;
+
+            background: white;
+
+            color: #1677ff;
+
+            padding: 10px 20px;
+
+            border-radius: 8px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .signup-page {
+
+            min-height:
+                calc(100vh - 75px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 50px 20px;
+        }
+
+
+        .signup-card {
+
+            width: 100%;
+
+            max-width: 950px;
+
+            background: rgba(
+                255,
+                255,
+                255,
+                0.97
+            );
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            display: grid;
+
+            grid-template-columns:
+                0.9fr
+                1.1fr;
+
+            box-shadow:
+                0 25px 60px
+                rgba(0,0,0,0.22);
+        }
+
+
+        /* ================= LEFT SIDE ================= */
+
+        .signup-info {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #1677ff,
+                    #0753b8
+                );
+
+            color: white;
+
+            padding: 50px 40px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+
+        .signup-info h1 {
+
+            font-size: 40px;
+
+            line-height: 1.15;
+
+            margin-bottom: 18px;
+        }
+
+
+        .signup-info h1 span {
+
+            color: #b9ddff;
+        }
+
+
+        .signup-info > p {
+
+            color: #e5f1ff;
+
+            line-height: 1.7;
+
+            margin-bottom: 30px;
+        }
+
+
+        .benefit {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 18px;
+
+            color: white;
+        }
+
+
+        .benefit-icon {
+
+            width: 38px;
+
+            height: 38px;
+
+            background:
+                rgba(255,255,255,0.18);
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 19px;
+        }
+
+
+        .benefit span {
+
+            font-size: 14px;
+
+            line-height: 1.4;
+        }
+
+
+        /* ================= FORM SIDE ================= */
+
+        .signup-form-area {
+
+            padding: 45px 45px;
+        }
+
+
+        .signup-form-area h2 {
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+
+            color: #172b4d;
+        }
+
+
+        .signup-subtitle {
+
+            color: #667085;
+
+            margin-bottom: 28px;
+
+            font-size: 15px;
+        }
+
+
+        .form-group {
+
+            margin-bottom: 18px;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: #344054;
+
+            margin-bottom: 7px;
+        }
+
+
+        .form-group input {
+
+            width: 100%;
+
+            height: 48px;
+
+            border: 1px solid #d0d5dd;
+
+            border-radius: 9px;
+
+            padding: 0 14px;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+
+        .form-group input:focus {
+
+            border-color: #1677ff;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(22,119,255,0.10);
+        }
+
+
+        .password-note {
+
+            font-size: 12px;
+
+            color: #667085;
+
+            margin-top: 6px;
+        }
+
+
+        .create-btn {
+
+            width: 100%;
+
+            height: 50px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #1677ff;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            margin-top: 5px;
+        }
+
+
+        .create-btn:hover {
+
+            background: #0b5ed7;
+
+            transform: translateY(-1px);
+        }
+
+
+        .login-text {
+
+            text-align: center;
+
+            margin-top: 22px;
+
+            color: #667085;
+
+            font-size: 14px;
+        }
+
+
+        .login-text a {
+
+            color: #1677ff;
+
+            text-decoration: none;
+
+            font-weight: 700;
+        }
+
+
+        .login-text a:hover {
+
+            text-decoration: underline;
+        }
+
+
+        .home-link {
+
+            display: block;
+
+            text-align: center;
+
+            margin-top: 15px;
+
+            color: #667085;
+
+            text-decoration: none;
+
+            font-size: 14px;
+        }
+
+
+        .home-link:hover {
+
+            color: #1677ff;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 800px) {
+
+            .navbar {
+
+                height: auto;
+
+                padding: 18px 25px;
+
+                flex-wrap: wrap;
+
+                gap: 15px;
+            }
+
+
+            .nav-links {
+
+                display: none;
+            }
+
+
+            .signup-page {
+
+                padding: 30px 15px;
+            }
+
+
+            .signup-card {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .signup-info {
+
+                padding: 35px 30px;
+            }
+
+
+            .signup-info h1 {
+
+                font-size: 32px;
+            }
+
+
+            .signup-form-area {
+
+                padding: 35px 30px;
+            }
+        }
+
+
+        @media(max-width: 450px) {
+
+            .navbar {
+
+                padding: 18px;
+            }
+
+
+            .login-nav-btn {
+
+                padding: 9px 15px;
+            }
+
+
+            .signup-info {
+
+                padding: 30px 22px;
+            }
+
+
+            .signup-form-area {
+
+                padding: 30px 22px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        Travel<span>Go</span>
+
+    </div>
+
+
+    <nav class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="results.html">
+            Flights
+        </a>
+
+        <a href="hotels.html">
+            Hotels
+        </a>
+
+        <a href="trains.html">
+            Trains
+        </a>
+
+    </nav>
+
+
+    <div class="nav-buttons">
+
+        <button
+            class="login-nav-btn"
+            onclick="window.location.href='login.html'"
+        >
+            Login
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= SIGNUP ================= -->
+
+<main class="signup-page">
+
+
+    <div class="signup-card">
+
+
+        <!-- LEFT -->
+
+        <section class="signup-info">
+
+            <h1>
+                Start Your
+                <span>Journey</span>
+            </h1>
+
+
+            <p>
+
+                Create your TravelGo account and
+                make your travel bookings easier,
+                faster and more convenient.
+
+            </p>
+
+
+            <div class="benefit">
+
+                <div class="benefit-icon">
+                    ✈️
+                </div>
+
+                <span>
+                    Book flights with ease
+                </span>
+
+            </div>
+
+
+            <div class="benefit">
+
+                <div class="benefit-icon">
+                    🏨
+                </div>
+
+                <span>
+                    Find comfortable hotels
+                </span>
+
+            </div>
+
+
+            <div class="benefit">
+
+                <div class="benefit-icon">
+                    🚆
+                </div>
+
+                <span>
+                    Book train journeys
+                </span>
+
+            </div>
+
+
+            <div class="benefit">
+
+                <div class="benefit-icon">
+                    🎫
+                </div>
+
+                <span>
+                    Keep your bookings organized
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT -->
+
+        <section class="signup-form-area">
+
+            <h2>
+                Create Account
+            </h2>
+
+
+            <p class="signup-subtitle">
+
+                Enter your details to create your
+                TravelGo account.
+
+            </p>
+
+
+            <form id="signupForm">
+
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create a password"
+                        minlength="6"
+                        required
+                    >
+
+                    <p class="password-note">
+                        Password must contain at least 6 characters.
+                    </p>
+
+                </div>
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="form-group">
+
+                    <label>
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm your password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="create-btn"
+                >
+                    Create Account
+                </button>
+
+
+            </form>
+
+
+            <p class="login-text">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </p>
+
+
+            <a
+                href="index.html"
+                class="home-link"
+            >
+                ← Back to Home
+            </a>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<script>
+
+    document.getElementById(
+        "signupForm"
+    ).addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document.getElementById(
+                    "name"
+                ).value.trim();
+
+
+            const email =
+                document.getElementById(
+                    "email"
+                ).value.trim();
+
+
+            const password =
+                document.getElementById(
+                    "password"
+                ).value;
+
+
+            const confirmPassword =
+                document.getElementById(
+                    "confirmPassword"
+                ).value;
+
+
+            /* PASSWORD CHECK */
+
+            if (password.length < 6) {
+
+                alert(
+                    "Password must contain at least 6 characters."
+                );
+
+                return;
+            }
+
+
+            /* CONFIRM PASSWORD */
+
+            if (password !== confirmPassword) {
+
+                alert(
+                    "Passwords do not match."
+                );
+
+                return;
+            }
+
+
+            /* ================= SAVE CURRENT USER ================= */
+
+            localStorage.setItem(
+                "userName",
+                name
+            );
+
+            localStorage.setItem(
+                "userEmail",
+                email
+            );
+
+            localStorage.setItem(
+                "userPassword",
+                password
+            );
+
+
+            /* ================= SAVE ALL USERS ================= */
+
+            let allUsers = [];
+
+            const savedUsers =
+                localStorage.getItem(
+                    "allUsers"
+                );
+
+
+            if (savedUsers) {
+
+                try {
+
+                    allUsers =
+                        JSON.parse(
+                            savedUsers
+                        );
+
+                }
+
+                catch(error) {
+
+                    allUsers = [];
+
+                }
+
+            }
+
+
+            /* CHECK EXISTING EMAIL */
+
+            const existingUser =
+                allUsers.find(
+                    function(user) {
+
+                        return user.email
+                            .toLowerCase() ===
+                            email.toLowerCase();
+
+                    }
+                );
+
+
+            if (existingUser) {
+
+                alert(
+                    "An account with this email already exists."
+                );
+
+                return;
+            }
+
+
+            /* ADD USER */
+
+            allUsers.push({
+
+                name: name,
+
+                email: email,
+
+                password: password,
+
+                dateCreated:
+                    new Date().toLocaleString()
+
+            });
+
+
+            localStorage.setItem(
+                "allUsers",
+                JSON.stringify(
+                    allUsers
+                )
+            );
+
+
+            alert(
+                "Account created successfully!"
+            );
+
+
+            window.location.href =
+                "login.html";
+
+        }
+    );
+
+</script>
+
+</body>
+</html>

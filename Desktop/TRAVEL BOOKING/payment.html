@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Payment</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body class="payment-page">
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            TravelGo
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="results.html">Flights</a>
+
+            <a href="hotels.html">Hotels</a>
+
+            <a href="trains.html">Trains</a>
+
+        </div>
+
+        <div class="nav-buttons">
+
+            <button
+                class="login-btn"
+                onclick="window.location.href='login.html'">
+                Login
+            </button>
+
+            <button
+                class="signup-btn"
+                onclick="window.location.href='signup.html'">
+                Sign Up
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         PAYMENT SECTION
+    ========================== -->
+
+    <section class="payment-section">
+
+        <div class="payment-container">
+
+
+            <h1>
+                Complete Payment
+            </h1>
+
+            <p class="payment-subtitle">
+                Choose your payment method and complete your booking.
+            </p>
+
+
+
+            <!-- =========================
+                 BOOKING SUMMARY
+            ========================== -->
+
+            <div class="payment-summary">
+
+                <h2>
+                    Booking Summary
+                </h2>
+
+
+                <!-- =========================
+                     FLIGHT
+                ========================== -->
+
+                <div id="flightSummary"
+                     style="display:none;">
+
+                    <div class="summary-row">
+
+                        <span>Booking Type</span>
+
+                        <strong>
+                            ✈️ Flight
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Airline</span>
+
+                        <strong id="paymentAirline">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Route</span>
+
+                        <strong id="paymentFlightRoute">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Departure</span>
+
+                        <strong id="paymentFlightDate">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Travellers</span>
+
+                        <strong id="paymentTravellers">
+                            1
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row total-row">
+
+                        <span>Total</span>
+
+                        <strong id="paymentFlightPrice">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                     HOTEL
+                ========================== -->
+
+                <div id="hotelSummary"
+                     style="display:none;">
+
+                    <div class="summary-row">
+
+                        <span>Booking Type</span>
+
+                        <strong>
+                            🏨 Hotel
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Hotel</span>
+
+                        <strong id="paymentHotel">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Room Type</span>
+
+                        <strong id="paymentRoom">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Destination</span>
+
+                        <strong id="paymentHotelDestination">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Check-in</span>
+
+                        <strong id="paymentCheckIn">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Check-out</span>
+
+                        <strong id="paymentCheckOut">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Guests</span>
+
+                        <strong id="paymentGuests">
+                            1
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row total-row">
+
+                        <span>Total</span>
+
+                        <strong id="paymentHotelPrice">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                     TRAIN
+                ========================== -->
+
+                <div id="trainSummary"
+                     style="display:none;">
+
+                    <div class="summary-row">
+
+                        <span>Booking Type</span>
+
+                        <strong>
+                            🚆 Train
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Train</span>
+
+                        <strong id="paymentTrain">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Route</span>
+
+                        <strong id="paymentTrainRoute">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Class</span>
+
+                        <strong id="paymentTrainClass">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Journey Date</span>
+
+                        <strong id="paymentTrainDate">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Passengers</span>
+
+                        <strong id="paymentTrainPassengers">
+                            1
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Availability</span>
+
+                        <strong id="paymentTrainAvailability">
+                            Available
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row total-row">
+
+                        <span>Total</span>
+
+                        <strong id="paymentTrainPrice">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- NO BOOKING -->
+
+                <div id="unknownSummary"
+                     style="display:none;">
+
+                    <p>
+                        No valid booking was found.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 PAYMENT CARD
+            ========================== -->
+
+            <div class="payment-card">
+
+                <h2>
+                    Payment Method
+                </h2>
+
+
+
+                <!-- =========================
+                     PAYMENT METHOD BUTTONS
+                ========================== -->
+
+                <div class="payment-methods">
+
+
+                    <button
+                        type="button"
+                        id="cardButton"
+                        class="payment-method active"
+                        onclick="selectPayment('card')">
+
+                        💳 Card
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="upiButton"
+                        class="payment-method"
+                        onclick="selectPayment('upi')">
+
+                        📱 UPI
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="bankButton"
+                        class="payment-method"
+                        onclick="selectPayment('bank')">
+
+                        🏦 Net Banking
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- =========================
+                     CARD PAYMENT
+                ========================== -->
+
+                <div id="cardPayment"
+                     class="payment-option">
+
+
+                    <div class="payment-field">
+
+                        <label for="cardName">
+                            Cardholder Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="cardName"
+                            placeholder="Enter cardholder name">
+
+                    </div>
+
+
+                    <div class="payment-field">
+
+                        <label for="cardNumber">
+                            Card Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="cardNumber"
+                            placeholder="1234 5678 9012 3456"
+                            maxlength="19">
+
+                    </div>
+
+
+                    <div class="payment-row">
+
+
+                        <div class="payment-field">
+
+                            <label for="expiry">
+                                Expiry Date
+                            </label>
+
+                            <input
+                                type="text"
+                                id="expiry"
+                                placeholder="MM/YY"
+                                maxlength="5">
+
+                        </div>
+
+
+                        <div class="payment-field">
+
+                            <label for="cvv">
+                                CVV
+                            </label>
+
+                            <input
+                                type="password"
+                                id="cvv"
+                                placeholder="123"
+                                maxlength="3">
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                     UPI PAYMENT
+                ========================== -->
+
+                <div id="upiPayment"
+                     class="payment-option"
+                     style="display:none;">
+
+
+                    <div class="payment-field">
+
+                        <label for="upiId">
+                            UPI ID
+                        </label>
+
+                        <input
+                            type="text"
+                            id="upiId"
+                            placeholder="example@upi">
+
+                    </div>
+
+
+                    <p style="margin-top:10px;">
+                        Enter your UPI ID to continue.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =========================
+                     NET BANKING
+                ========================== -->
+
+                <div id="bankPayment"
+                     class="payment-option"
+                     style="display:none;">
+
+
+                    <div class="payment-field">
+
+                        <label for="bank">
+                            Select Bank
+                        </label>
+
+                        <select id="bank">
+
+                            <option value="">
+                                Select Bank
+                            </option>
+
+                            <option value="SBI">
+                                State Bank of India
+                            </option>
+
+                            <option value="HDFC">
+                                HDFC Bank
+                            </option>
+
+                            <option value="ICICI">
+                                ICICI Bank
+                            </option>
+
+                            <option value="Axis">
+                                Axis Bank
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="payment-field">
+
+                        <label for="bankUser">
+                            User ID
+                        </label>
+
+                        <input
+                            type="text"
+                            id="bankUser"
+                            placeholder="Enter User ID">
+
+                    </div>
+
+
+                    <div class="payment-field">
+
+                        <label for="bankPassword">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="bankPassword"
+                            placeholder="Enter Password">
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                     SECURITY
+                ========================== -->
+
+                <div class="secure-payment">
+
+                    🔒 Your payment information is secure.
+
+                </div>
+
+
+
+                <!-- =========================
+                     PAY BUTTON
+                ========================== -->
+
+                <button
+                    type="button"
+                    class="pay-button"
+                    onclick="makePayment()">
+
+                    Pay Now
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =========================
+                 BACK BUTTON
+            ========================== -->
+
+            <div class="back-results">
+
+                <button
+                    class="search-btn"
+                    onclick="goBack()">
+
+                    ← Back
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+
+        // =====================================
+        // GET BOOKING TYPE
+        // =====================================
+
+        const bookingType =
+            localStorage.getItem("bookingType");
+
+
+        console.log(
+            "BOOKING TYPE:",
+            bookingType
+        );
+
+
+
+        // =====================================
+        // SHOW CORRECT SUMMARY
+        // =====================================
+
+        if (bookingType === "flight") {
+
+            document.getElementById(
+                "flightSummary"
+            ).style.display = "block";
+
+
+            document.getElementById(
+                "paymentAirline"
+            ).textContent =
+                localStorage.getItem(
+                    "selectedAirline"
+                ) || "IndiGo Airlines";
+
+
+            document.getElementById(
+                "paymentFlightRoute"
+            ).textContent =
+
+                (localStorage.getItem(
+                    "travelFrom"
+                ) || "Hyderabad")
+
+                + " → " +
+
+                (localStorage.getItem(
+                    "travelTo"
+                ) || "Dubai");
+
+
+            document.getElementById(
+                "paymentFlightDate"
+            ).textContent =
+                localStorage.getItem(
+                    "travelDeparture"
+                ) || "-";
+
+
+            document.getElementById(
+                "paymentTravellers"
+            ).textContent =
+                localStorage.getItem(
+                    "travelTravellers"
+                ) || "1";
+
+
+            document.getElementById(
+                "paymentFlightPrice"
+            ).textContent =
+                localStorage.getItem(
+                    "selectedPrice"
+                ) || "₹0";
+
+        }
+
+
+
+        else if (bookingType === "hotel") {
+
+            document.getElementById(
+                "hotelSummary"
+            ).style.display = "block";
+
+
+            document.getElementById(
+                "paymentHotel"
+            ).textContent =
+                localStorage.getItem(
+                    "selectedHotel"
+                ) || "-";
+
+
+            document.getElementById(
+                "paymentRoom"
+            ).textContent =
+                localStorage.getItem(
+                    "selectedRoomType"
+                ) || "-";
+
+
+            document.getElementById(
+                "paymentHotelDestination"
+            ).textContent =
+                localStorage.getItem(
+                    "hotelDestination"
+                ) || "-";
+
+
+            document.getElementById(
+                "paymentCheckIn"
+            ).textContent =
+                localStorage.getItem(
+                    "hotelCheckIn"
+                ) || "-";
+
+
+            document.getElementById(
+                "paymentCheckOut"
+            ).textContent =
+                localStorage.getItem(
+                    "hotelCheckOut"
+                ) || "-";
+
+
+            document.getElementById(
+                "paymentGuests"
+            ).textContent =
+                localStorage.getItem(
+                    "hotelGuests"
+                ) || "1";
+
+
+            document.getElementById(
+                "paymentHotelPrice"
+            ).textContent =
+                localStorage.getItem(
+                    "selectedHotelPrice"
+                ) || "₹0";
+
+        }
+
+
+
+        else if (bookingType === "train") {
+
+            document.getElementById(
+                "trainSummary"
+            ).style.display = "block";
+
+
+            document.getElementById(
+                "paymentTrain"
+            ).textContent =
+                localStorage.getItem(
+                    "selectedTrain"
+                ) || "-";
+
+
+            document.getElementById(
+                "paymentTrainRoute"
+            ).textContent =
+
+                (localStorage.getItem(
+                    "trainFrom"
+                ) || "Hyderabad")
+
+                + " → " +
+
+                (localStorage.getItem(
+                    "trainTo"
+                ) || "Vijayawada");
+
+
+            document.getElementById(
+                "paymentTrainClass"
+            ).textContent =
+                localStorage.getItem(
+                    "selectedTrainClass"
+                ) || "-";
+
+
+            document.getElementById(
+                "paymentTrainDate"
+            ).textContent =
+                localStorage.getItem(
+                    "trainDate"
+                ) || "-";
+
+
+            document.getElementById(
+                "paymentTrainPassengers"
+            ).textContent =
+                localStorage.getItem(
+                    "trainPassengers"
+                ) || "1";
+
+
+            document.getElementById(
+                "paymentTrainAvailability"
+            ).textContent =
+                localStorage.getItem(
+                    "trainAvailability"
+                ) || "Available";
+
+
+            document.getElementById(
+                "paymentTrainPrice"
+            ).textContent =
+                localStorage.getItem(
+                    "selectedTrainPrice"
+                ) || "₹0";
+
+        }
+
+
+
+        else {
+
+            document.getElementById(
+                "unknownSummary"
+            ).style.display = "block";
+
+
+            document.querySelector(
+                ".payment-card"
+            ).style.display = "none";
+
+        }
+
+
+
+        // =====================================
+        // SELECT PAYMENT METHOD
+        // =====================================
+
+        function selectPayment(method) {
+
+
+            const card =
+                document.getElementById(
+                    "cardPayment"
+                );
+
+            const upi =
+                document.getElementById(
+                    "upiPayment"
+                );
+
+            const bank =
+                document.getElementById(
+                    "bankPayment"
+                );
+
+
+            const cardButton =
+                document.getElementById(
+                    "cardButton"
+                );
+
+            const upiButton =
+                document.getElementById(
+                    "upiButton"
+                );
+
+            const bankButton =
+                document.getElementById(
+                    "bankButton"
+                );
+
+
+            // Hide all
+
+            card.style.display = "none";
+
+            upi.style.display = "none";
+
+            bank.style.display = "none";
+
+
+            // Remove active
+
+            cardButton.classList.remove(
+                "active"
+            );
+
+            upiButton.classList.remove(
+                "active"
+            );
+
+            bankButton.classList.remove(
+                "active"
+            );
+
+
+            // Show selected
+
+            if (method === "card") {
+
+                card.style.display = "block";
+
+                cardButton.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            else if (method === "upi") {
+
+                upi.style.display = "block";
+
+                upiButton.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            else if (method === "bank") {
+
+                bank.style.display = "block";
+
+                bankButton.classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+
+
+
+        // =====================================
+        // MAKE PAYMENT
+        // =====================================
+
+        function makePayment() {
+
+
+            // Check booking
+
+            if (
+                bookingType !== "flight" &&
+                bookingType !== "hotel" &&
+                bookingType !== "train"
+            ) {
+
+                alert(
+                    "No valid booking found."
+                );
+
+                return;
+
+            }
+
+
+
+            // =================================
+            // CHECK CARD
+            // =================================
+
+            const cardVisible =
+                document.getElementById(
+                    "cardPayment"
+                ).style.display !== "none";
+
+
+            // =================================
+            // CHECK UPI
+            // =================================
+
+            const upiVisible =
+                document.getElementById(
+                    "upiPayment"
+                ).style.display !== "none";
+
+
+            // =================================
+            // CHECK BANK
+            // =================================
+
+            const bankVisible =
+                document.getElementById(
+                    "bankPayment"
+                ).style.display !== "none";
+
+
+
+            // =================================
+            // CARD VALIDATION
+            // =================================
+
+            if (cardVisible) {
+
+                const cardName =
+                    document.getElementById(
+                        "cardName"
+                    ).value.trim();
+
+
+                const cardNumber =
+                    document.getElementById(
+                        "cardNumber"
+                    ).value.trim();
+
+
+                const expiry =
+                    document.getElementById(
+                        "expiry"
+                    ).value.trim();
+
+
+                const cvv =
+                    document.getElementById(
+                        "cvv"
+                    ).value.trim();
+
+
+                if (
+                    cardName === "" ||
+                    cardNumber === "" ||
+                    expiry === "" ||
+                    cvv === ""
+                ) {
+
+                    alert(
+                        "Please enter all card details."
+                    );
+
+                    return;
+
+                }
+
+            }
+
+
+
+            // =================================
+            // UPI VALIDATION
+            // =================================
+
+            if (upiVisible) {
+
+                const upiId =
+                    document.getElementById(
+                        "upiId"
+                    ).value.trim();
+
+
+                if (upiId === "") {
+
+                    alert(
+                        "Please enter your UPI ID."
+                    );
+
+                    return;
+
+                }
+
+
+                if (!upiId.includes("@")) {
+
+                    alert(
+                        "Please enter a valid UPI ID.\n\nExample: aditya@upi"
+                    );
+
+                    return;
+
+                }
+
+            }
+
+
+
+            // =================================
+            // BANK VALIDATION
+            // =================================
+
+            if (bankVisible) {
+
+                const bank =
+                    document.getElementById(
+                        "bank"
+                    ).value;
+
+
+                const user =
+                    document.getElementById(
+                        "bankUser"
+                    ).value.trim();
+
+
+                const password =
+                    document.getElementById(
+                        "bankPassword"
+                    ).value.trim();
+
+
+                if (
+                    bank === "" ||
+                    user === "" ||
+                    password === ""
+                ) {
+
+                    alert(
+                        "Please enter all net banking details."
+                    );
+
+                    return;
+
+                }
+
+            }
+
+
+
+            // =================================
+            // CREATE BOOKING ID
+            // =================================
+
+            const randomNumber =
+                Math.floor(
+                    100000 +
+                    Math.random() * 900000
+                );
+
+
+            const bookingId =
+                "TG2026" +
+                randomNumber;
+
+
+            localStorage.setItem(
+                "bookingId",
+                bookingId
+            );
+
+
+            localStorage.setItem(
+                "bookingStatus",
+                "Confirmed"
+            );
+
+
+
+            // =================================
+            // BOOKING NAME
+            // =================================
+
+            let bookingLabel;
+
+
+            if (bookingType === "flight") {
+
+                bookingLabel = "Flight ✈️";
+
+            }
+
+            else if (bookingType === "hotel") {
+
+                bookingLabel = "Hotel 🏨";
+
+            }
+
+            else if (bookingType === "train") {
+
+                bookingLabel = "Train 🚆";
+
+            }
+
+
+
+            // =================================
+            // SUCCESS
+            // =================================
+
+            alert(
+
+                "Payment Successful! ✅\n\n" +
+
+                bookingLabel +
+                " booking confirmed.\n\n" +
+
+                "Booking ID:\n" +
+
+                bookingId
+
+            );
+
+
+            // =================================
+            // CONFIRMATION
+            // =================================
+
+            window.location.href =
+                "confirmation.html";
+
+        }
+
+
+
+        // =====================================
+        // BACK
+        // =====================================
+
+        function goBack() {
+
+
+            if (bookingType === "flight") {
+
+                window.location.href =
+                    "booking.html";
+
+            }
+
+            else if (bookingType === "hotel") {
+
+                window.location.href =
+                    "hotels.html";
+
+            }
+
+            else if (bookingType === "train") {
+
+                window.location.href =
+                    "trains.html";
+
+            }
+
+            else {
+
+                window.location.href =
+                    "index.html";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

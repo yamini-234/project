@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Passenger Details</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body class="booking-page">
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            TravelGo
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="results.html">
+                Flights
+            </a>
+
+            <a href="hotels.html">
+                Hotels
+            </a>
+
+            <a href="trains.html">
+                Trains
+            </a>
+
+        </div>
+
+
+        <div class="nav-buttons">
+
+            <button
+                class="login-btn"
+                onclick="window.location.href='login.html'">
+
+                Login
+
+            </button>
+
+
+            <button
+                class="signup-btn"
+                onclick="window.location.href='signup.html'">
+
+                Sign Up
+
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         BOOKING SECTION
+    ========================== -->
+
+    <section class="booking-section">
+
+        <div class="booking-container">
+
+
+            <h1>
+                Passenger Details
+            </h1>
+
+
+            <p class="booking-subtitle">
+                Enter your details to continue with your flight booking.
+            </p>
+
+
+
+            <!-- =========================
+                 SELECTED FLIGHT
+            ========================== -->
+
+            <div class="selected-flight">
+
+                <h2>
+                    ✈️ Selected Flight
+                </h2>
+
+
+                <div class="flight-details">
+
+
+                    <div>
+
+                        <span>
+                            Airline
+                        </span>
+
+                        <strong id="bookingAirline">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Route
+                        </span>
+
+                        <strong id="bookingRoute">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Departure
+                        </span>
+
+                        <strong id="bookingDate">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Travellers
+                        </span>
+
+                        <strong id="bookingTravellers">
+                            1
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="booking-price">
+
+                    <span>
+                        Total Price
+                    </span>
+
+                    <strong id="bookingPrice">
+                        ₹0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 PASSENGER FORM
+            ========================== -->
+
+            <form id="bookingForm"
+                  class="passenger-form">
+
+
+                <h2>
+                    Passenger Information
+                </h2>
+
+
+                <!-- NAME -->
+
+                <div class="form-row">
+
+                    <div class="form-field">
+
+                        <label for="passengerName">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="passengerName"
+                            placeholder="Enter your full name"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- EMAIL + PHONE -->
+
+                <div class="form-row">
+
+
+                    <div class="form-field">
+
+                        <label for="passengerEmail">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="passengerEmail"
+                            placeholder="Enter your email"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="passengerPhone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="passengerPhone"
+                            placeholder="Enter your phone number"
+                            required>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- AGE + GENDER -->
+
+                <div class="form-row">
+
+
+                    <div class="form-field">
+
+                        <label for="passengerAge">
+                            Age
+                        </label>
+
+                        <input
+                            type="number"
+                            id="passengerAge"
+                            min="1"
+                            max="120"
+                            placeholder="Enter age"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="passengerGender">
+                            Gender
+                        </label>
+
+                        <select
+                            id="passengerGender"
+                            required>
+
+                            <option value="">
+                                Select Gender
+                            </option>
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- CITY -->
+
+                <div class="form-row">
+
+                    <div class="form-field">
+
+                        <label for="passengerCity">
+                            City
+                        </label>
+
+                        <input
+                            type="text"
+                            id="passengerCity"
+                            placeholder="Enter your city"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TERMS -->
+
+                <div class="terms">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            required>
+
+                        I agree to the terms and conditions.
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- CONTINUE -->
+
+                <button
+                    type="submit"
+                    class="continue-payment">
+
+                    Continue to Payment →
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- BACK -->
+
+            <div class="back-results">
+
+                <button
+                    class="search-btn"
+                    onclick="window.location.href='results.html'">
+
+                    ← Back to Flights
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+
+        // =====================================
+        // GET FLIGHT DETAILS
+        // =====================================
+
+        const airline =
+            localStorage.getItem("selectedAirline");
+
+        const price =
+            localStorage.getItem("selectedPrice");
+
+        const from =
+            localStorage.getItem("travelFrom");
+
+        const to =
+            localStorage.getItem("travelTo");
+
+        const departure =
+            localStorage.getItem("travelDeparture");
+
+        const travellers =
+            localStorage.getItem("travelTravellers");
+
+
+
+        // =====================================
+        // DISPLAY FLIGHT DETAILS
+        // =====================================
+
+        document.getElementById(
+            "bookingAirline"
+        ).textContent =
+            airline || "IndiGo Airlines";
+
+
+        document.getElementById(
+            "bookingRoute"
+        ).textContent =
+            (from || "Hyderabad") +
+            " → " +
+            (to || "Dubai");
+
+
+        document.getElementById(
+            "bookingDate"
+        ).textContent =
+            departure || "-";
+
+
+        document.getElementById(
+            "bookingTravellers"
+        ).textContent =
+            travellers || "1";
+
+
+        document.getElementById(
+            "bookingPrice"
+        ).textContent =
+            price || "₹18,999";
+
+
+
+        // =====================================
+        // LOAD SAVED USER EMAIL
+        // =====================================
+
+        const savedEmail =
+            localStorage.getItem("userEmail");
+
+
+        if (savedEmail) {
+
+            document.getElementById(
+                "passengerEmail"
+            ).value = savedEmail;
+
+        }
+
+
+
+        // =====================================
+        // BOOKING FORM SUBMIT
+        // =====================================
+
+        document.getElementById(
+            "bookingForm"
+        ).addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                // Get passenger name
+
+                const name =
+                    document.getElementById(
+                        "passengerName"
+                    ).value.trim();
+
+
+                const email =
+                    document.getElementById(
+                        "passengerEmail"
+                    ).value.trim();
+
+
+                const phone =
+                    document.getElementById(
+                        "passengerPhone"
+                    ).value.trim();
+
+
+                const age =
+                    document.getElementById(
+                        "passengerAge"
+                    ).value;
+
+
+                const gender =
+                    document.getElementById(
+                        "passengerGender"
+                    ).value;
+
+
+                const city =
+                    document.getElementById(
+                        "passengerCity"
+                    ).value.trim();
+
+
+
+                // =================================
+                // SAVE PASSENGER DETAILS
+                // =================================
+
+                localStorage.setItem(
+                    "passengerName",
+                    name
+                );
+
+
+                localStorage.setItem(
+                    "passengerEmail",
+                    email
+                );
+
+
+                localStorage.setItem(
+                    "passengerPhone",
+                    phone
+                );
+
+
+                localStorage.setItem(
+                    "passengerAge",
+                    age
+                );
+
+
+                localStorage.setItem(
+                    "passengerGender",
+                    gender
+                );
+
+
+                localStorage.setItem(
+                    "passengerCity",
+                    city
+                );
+
+
+
+                // Make absolutely sure
+                // this is a flight booking.
+
+                localStorage.setItem(
+                    "bookingType",
+                    "flight"
+                );
+
+
+
+                // =================================
+                // SUCCESS MESSAGE
+                // =================================
+
+                alert(
+
+                    "Passenger details saved successfully! ✅\n\n" +
+
+                    "Passenger: " +
+                    name +
+
+                    "\nAirline: " +
+                    (airline || "IndiGo Airlines") +
+
+                    "\nPrice: " +
+                    (price || "₹18,999") +
+
+                    "\n\nProceeding to payment..."
+
+                );
+
+
+
+                // =================================
+                // GO TO PAYMENT
+                // =================================
+
+                window.location.href =
+                    "payment.html";
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

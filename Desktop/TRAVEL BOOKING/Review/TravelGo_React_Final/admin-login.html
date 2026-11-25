@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Admin Login</title>
+
+
+    <style>
+
+        /* ================= RESET ================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            min-height: 100vh;
+
+            background:
+
+                linear-gradient(
+                    rgba(15, 67, 120, 0.72),
+                    rgba(22, 119, 255, 0.55)
+                ),
+
+                url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=85");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-attachment: fixed;
+
+            color: #172b4d;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+
+            height: 75px;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 60px;
+
+            box-shadow:
+                0 2px 12px
+                rgba(0, 0, 0, 0.10);
+        }
+
+
+        .logo {
+
+            font-size: 28px;
+
+            font-weight: 700;
+
+            color: #172b4d;
+
+            text-decoration: none;
+        }
+
+
+        .logo span {
+
+            color: #1677ff;
+        }
+
+
+        .back-home {
+
+            text-decoration: none;
+
+            color: #475467;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+
+        .back-home:hover {
+
+            color: #1677ff;
+        }
+
+
+        /* ================= PAGE ================= */
+
+        .admin-login-page {
+
+            min-height:
+                calc(100vh - 75px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 50px 20px;
+        }
+
+
+        /* ================= CARD ================= */
+
+        .admin-login-card {
+
+            width: 100%;
+
+            max-width: 900px;
+
+            min-height: 500px;
+
+            background: rgba(
+                255,
+                255,
+                255,
+                0.97
+            );
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr;
+
+            box-shadow:
+                0 25px 60px
+                rgba(0,0,0,0.23);
+        }
+
+
+        /* ================= LEFT ================= */
+
+        .admin-info {
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    #1677ff,
+                    #0753b8
+                );
+
+            color: white;
+
+            padding: 50px 42px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+
+        .admin-icon {
+
+            width: 70px;
+
+            height: 70px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,255,255,0.16);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 34px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .admin-info h1 {
+
+            font-size: 40px;
+
+            line-height: 1.15;
+
+            margin-bottom: 18px;
+        }
+
+
+        .admin-info h1 span {
+
+            color: #b9ddff;
+        }
+
+
+        .admin-info > p {
+
+            color: #e5f1ff;
+
+            line-height: 1.7;
+
+            font-size: 15px;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* ================= FEATURES ================= */
+
+        .admin-feature {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 17px;
+        }
+
+
+        .feature-icon {
+
+            width: 38px;
+
+            height: 38px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(255,255,255,0.15);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 17px;
+        }
+
+
+        .admin-feature span {
+
+            color: white;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= RIGHT FORM ================= */
+
+        .admin-form-area {
+
+            padding: 50px 45px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+
+        .admin-badge {
+
+            display: inline-block;
+
+            width: fit-content;
+
+            background: #eaf3ff;
+
+            color: #1677ff;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 15px;
+        }
+
+
+        .admin-form-area h2 {
+
+            font-size: 31px;
+
+            color: #172b4d;
+
+            margin-bottom: 8px;
+        }
+
+
+        .admin-subtitle {
+
+            color: #667085;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            margin-bottom: 28px;
+        }
+
+
+        /* ================= FORM ================= */
+
+        .form-group {
+
+            margin-bottom: 20px;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            color: #344054;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            margin-bottom: 7px;
+        }
+
+
+        .input-wrapper {
+
+            position: relative;
+        }
+
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 14px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            font-size: 16px;
+        }
+
+
+        .form-group input {
+
+            width: 100%;
+
+            height: 50px;
+
+            border: 1px solid #d0d5dd;
+
+            border-radius: 9px;
+
+            padding:
+                0 14px 0 43px;
+
+            font-size: 14px;
+
+            outline: none;
+
+            color: #172b4d;
+
+            transition: 0.2s;
+        }
+
+
+        .form-group input:focus {
+
+            border-color: #1677ff;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(22,119,255,0.10);
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .admin-login-btn {
+
+            width: 100%;
+
+            height: 50px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #1677ff;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            margin-top: 3px;
+        }
+
+
+        .admin-login-btn:hover {
+
+            background: #0b5ed7;
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        /* ================= DEMO INFO ================= */
+
+        .demo-box {
+
+            background: #f8fafc;
+
+            border: 1px solid #eaecf0;
+
+            border-radius: 10px;
+
+            padding: 13px 15px;
+
+            margin-top: 20px;
+
+            font-size: 12px;
+
+            color: #667085;
+
+            line-height: 1.7;
+        }
+
+
+        .demo-box strong {
+
+            color: #344054;
+        }
+
+
+        /* ================= BACK ================= */
+
+        .back-link {
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #667085;
+
+            font-size: 14px;
+
+            text-decoration: none;
+        }
+
+
+        .back-link:hover {
+
+            color: #1677ff;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 800px) {
+
+            .navbar {
+
+                height: auto;
+
+                padding: 18px 25px;
+            }
+
+
+            .admin-login-page {
+
+                padding: 30px 15px;
+            }
+
+
+            .admin-login-card {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .admin-info {
+
+                padding: 35px 30px;
+            }
+
+
+            .admin-info h1 {
+
+                font-size: 32px;
+            }
+
+
+            .admin-form-area {
+
+                padding: 35px 30px;
+            }
+        }
+
+
+        @media(max-width: 450px) {
+
+            .navbar {
+
+                padding: 18px;
+            }
+
+
+            .admin-info {
+
+                padding: 30px 22px;
+            }
+
+
+            .admin-form-area {
+
+                padding: 30px 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+
+    <a
+        href="index.html"
+        class="logo"
+    >
+        Travel<span>Go</span>
+    </a>
+
+
+    <a
+        href="index.html"
+        class="back-home"
+    >
+        ← Back to TravelGo
+    </a>
+
+
+</header>
+
+
+<!-- =====================================================
+     ADMIN LOGIN
+===================================================== -->
+
+<main class="admin-login-page">
+
+
+    <div class="admin-login-card">
+
+
+        <!-- ================= LEFT SIDE ================= -->
+
+        <section class="admin-info">
+
+
+            <div class="admin-icon">
+                🔐
+            </div>
+
+
+            <h1>
+
+                TravelGo
+                <span>Admin</span>
+
+            </h1>
+
+
+            <p>
+
+                Manage your travel booking platform
+                from one secure administration portal.
+
+            </p>
+
+
+            <div class="admin-feature">
+
+                <div class="feature-icon">
+                    📊
+                </div>
+
+                <span>
+                    Monitor booking statistics
+                </span>
+
+            </div>
+
+
+            <div class="admin-feature">
+
+                <div class="feature-icon">
+                    🎫
+                </div>
+
+                <span>
+                    Manage customer bookings
+                </span>
+
+            </div>
+
+
+            <div class="admin-feature">
+
+                <div class="feature-icon">
+                    👥
+                </div>
+
+                <span>
+                    View registered users
+                </span>
+
+            </div>
+
+
+            <div class="admin-feature">
+
+                <div class="feature-icon">
+                    ✈️
+                </div>
+
+                <span>
+                    Manage travel services
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ================= RIGHT SIDE ================= -->
+
+        <section class="admin-form-area">
+
+
+            <div class="admin-badge">
+                ADMINISTRATION
+            </div>
+
+
+            <h2>
+                Admin Login
+            </h2>
+
+
+            <p class="admin-subtitle">
+
+                Enter your administrator credentials
+                to access the TravelGo Admin Portal.
+
+            </p>
+
+
+            <form id="adminLoginForm">
+
+
+                <!-- USERNAME -->
+
+                <div class="form-group">
+
+                    <label for="username">
+                        Admin Username
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            👤
+                        </span>
+
+
+                        <input
+                            type="text"
+                            id="username"
+                            placeholder="Enter username"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            🔑
+                        </span>
+
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter password"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- LOGIN -->
+
+                <button
+                    type="submit"
+                    class="admin-login-btn"
+                >
+                    Login as Admin
+                </button>
+
+
+            </form>
+
+
+            <!-- DEMO CREDENTIALS -->
+
+            <div class="demo-box">
+
+                <strong>
+                    Demo Admin Credentials
+                </strong>
+
+                <br>
+
+                Username:
+                <strong>admin</strong>
+
+                <br>
+
+                Password:
+                <strong>admin123</strong>
+
+            </div>
+
+
+            <a
+                href="index.html"
+                class="back-link"
+            >
+                ← Back to TravelGo
+            </a>
+
+
+        </section>
+
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+    document.getElementById(
+        "adminLoginForm"
+    ).addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const username =
+                document.getElementById(
+                    "username"
+                ).value.trim();
+
+
+            const password =
+                document.getElementById(
+                    "password"
+                ).value;
+
+
+            /* =================
+               ADMIN CREDENTIALS
+            ================= */
+
+            if (
+                username === "admin" &&
+                password === "admin123"
+            ) {
+
+
+                localStorage.setItem(
+                    "adminLoggedIn",
+                    "true"
+                );
+
+
+                window.location.href =
+                    "admin.html";
+
+
+            }
+
+            else {
+
+                alert(
+                    "Invalid admin username or password."
+                );
+
+            }
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>

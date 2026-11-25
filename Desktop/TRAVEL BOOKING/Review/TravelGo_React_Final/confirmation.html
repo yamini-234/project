@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Booking Confirmed</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f4f8fc;
+
+            color: #172b4d;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+
+            height: 75px;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 60px;
+
+            box-shadow:
+                0 2px 12px
+                rgba(0,0,0,0.08);
+        }
+
+
+        .logo {
+
+            font-size: 28px;
+
+            font-weight: 700;
+        }
+
+
+        .logo span {
+
+            color: #1677ff;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 30px;
+        }
+
+
+        .nav-links a {
+
+            text-decoration: none;
+
+            color: #344054;
+
+            font-size: 16px;
+
+            font-weight: 500;
+        }
+
+
+        .nav-links a:hover {
+
+            color: #1677ff;
+        }
+
+
+        .nav-buttons {
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        .home-btn {
+
+            background: #1677ff;
+
+            border: none;
+
+            color: white;
+
+            padding: 10px 20px;
+
+            border-radius: 8px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        /* ================= SUCCESS HEADER ================= */
+
+        .success-header {
+
+            background:
+
+                linear-gradient(
+                    rgba(10,100,100,0.9),
+                    rgba(10,100,100,0.9)
+                );
+
+            color: white;
+
+            text-align: center;
+
+            padding: 55px 20px;
+        }
+
+
+        .success-icon {
+
+            width: 70px;
+
+            height: 70px;
+
+            background: white;
+
+            color: #16a34a;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 40px;
+
+            margin: 0 auto 18px;
+        }
+
+
+        .success-header h1 {
+
+            font-size: 40px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .success-header p {
+
+            font-size: 17px;
+        }
+
+
+        /* ================= TICKET ================= */
+
+        .confirmation-container {
+
+            max-width: 900px;
+
+            margin: 40px auto 70px;
+
+            padding: 0 20px;
+        }
+
+
+        .ticket {
+
+            background: white;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 12px 35px
+                rgba(0,0,0,0.1);
+        }
+
+
+        .ticket-top {
+
+            padding: 28px 30px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            border-bottom:
+                1px dashed #cbd5e1;
+        }
+
+
+        .ticket-type {
+
+            display: inline-block;
+
+            background: #eaf3ff;
+
+            color: #1677ff;
+
+            padding: 7px 13px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 10px;
+        }
+
+
+        .ticket-top h2 {
+
+            font-size: 25px;
+        }
+
+
+        .booking-id {
+
+            text-align: right;
+        }
+
+
+        .booking-id small {
+
+            display: block;
+
+            color: #667085;
+
+            font-size: 12px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .booking-id strong {
+
+            color: #1677ff;
+
+            font-size: 18px;
+        }
+
+
+        /* ================= TICKET CONTENT ================= */
+
+        .ticket-content {
+
+            padding: 30px;
+        }
+
+
+        .ticket-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+
+        .ticket-item {
+
+            background: #f8fafc;
+
+            border-radius: 10px;
+
+            padding: 16px;
+        }
+
+
+        .ticket-item small {
+
+            display: block;
+
+            color: #667085;
+
+            font-size: 12px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .ticket-item strong {
+
+            font-size: 15px;
+
+            color: #172b4d;
+        }
+
+
+        .total-box {
+
+            margin-top: 25px;
+
+            padding: 20px;
+
+            background: #eef6ff;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+
+        .total-box span:first-child {
+
+            font-size: 16px;
+
+            font-weight: 600;
+        }
+
+
+        .total-box span:last-child {
+
+            color: #1677ff;
+
+            font-size: 25px;
+
+            font-weight: 700;
+        }
+
+
+        /* ================= CUSTOMER ================= */
+
+        .customer-section {
+
+            margin-top: 25px;
+
+            padding-top: 25px;
+
+            border-top:
+                1px solid #eaecf0;
+        }
+
+
+        .customer-section h3 {
+
+            margin-bottom: 18px;
+
+            font-size: 20px;
+        }
+
+
+        .customer-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+        }
+
+
+        .customer-item {
+
+            padding: 14px;
+
+            background: #f8fafc;
+
+            border-radius: 9px;
+        }
+
+
+        .customer-item small {
+
+            display: block;
+
+            color: #667085;
+
+            margin-bottom: 5px;
+
+            font-size: 12px;
+        }
+
+
+        .customer-item strong {
+
+            font-size: 14px;
+        }
+
+
+        /* ================= ACTIONS ================= */
+
+        .ticket-actions {
+
+            padding: 0 30px 30px;
+
+            display: flex;
+
+            gap: 12px;
+        }
+
+
+        .action-btn {
+
+            flex: 1;
+
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-weight: 600;
+
+            font-size: 14px;
+        }
+
+
+        .primary-btn {
+
+            background: #1677ff;
+
+            color: white;
+        }
+
+
+        .secondary-btn {
+
+            background: #eef2f7;
+
+            color: #344054;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+
+            background: #172b4d;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 700px) {
+
+            .navbar {
+
+                height: auto;
+
+                padding: 18px 20px;
+
+                flex-wrap: wrap;
+
+                gap: 15px;
+            }
+
+
+            .nav-links {
+
+                order: 3;
+
+                width: 100%;
+
+                justify-content: center;
+
+                gap: 15px;
+            }
+
+
+            .nav-buttons {
+
+                display: none;
+            }
+
+
+            .success-header h1 {
+
+                font-size: 32px;
+            }
+
+
+            .ticket-top {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 15px;
+            }
+
+
+            .booking-id {
+
+                text-align: left;
+            }
+
+
+            .ticket-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .customer-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .ticket-actions {
+
+                flex-direction: column;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        Travel<span>Go</span>
+    </div>
+
+
+    <nav class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="results.html">Flights</a>
+
+        <a href="hotels.html">Hotels</a>
+
+        <a href="trains.html">Trains</a>
+
+    </nav>
+
+
+    <div class="nav-buttons">
+
+        <button
+            class="home-btn"
+            onclick="window.location.href='index.html'"
+        >
+            Home
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= SUCCESS ================= -->
+
+<section class="success-header">
+
+    <div class="success-icon">
+        ✓
+    </div>
+
+    <h1>
+        Booking Confirmed!
+    </h1>
+
+    <p>
+        Your TravelGo booking has been successfully confirmed.
+    </p>
+
+</section>
+
+
+<!-- ================= CONFIRMATION ================= -->
+
+<main class="confirmation-container">
+
+    <section class="ticket">
+
+
+        <!-- TOP -->
+
+        <div class="ticket-top">
+
+            <div>
+
+                <span
+                    class="ticket-type"
+                    id="ticketType"
+                >
+                    BOOKING
+                </span>
+
+                <h2 id="ticketTitle">
+                    TravelGo Booking
+                </h2>
+
+            </div>
+
+
+            <div class="booking-id">
+
+                <small>
+                    Booking ID
+                </small>
+
+                <strong id="bookingId">
+                    -
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- DETAILS -->
+
+        <div class="ticket-content">
+
+            <div
+                class="ticket-grid"
+                id="ticketDetails"
+            >
+            </div>
+
+
+            <!-- TOTAL -->
+
+            <div class="total-box">
+
+                <span>
+                    Total Amount
+                </span>
+
+                <span id="totalPrice">
+                    ₹0
+                </span>
+
+            </div>
+
+
+            <!-- CUSTOMER -->
+
+            <div class="customer-section">
+
+                <h3>
+                    Customer Details
+                </h3>
+
+
+                <div class="customer-grid">
+
+                    <div class="customer-item">
+
+                        <small>
+                            Name
+                        </small>
+
+                        <strong id="customerName">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="customer-item">
+
+                        <small>
+                            Email
+                        </small>
+
+                        <strong id="customerEmail">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="customer-item">
+
+                        <small>
+                            Phone
+                        </small>
+
+                        <strong id="customerPhone">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="customer-item">
+
+                        <small>
+                            Age
+                        </small>
+
+                        <strong id="customerAge">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="customer-item">
+
+                        <small>
+                            Gender
+                        </small>
+
+                        <strong id="customerGender">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="customer-item">
+
+                        <small>
+                            City
+                        </small>
+
+                        <strong id="customerCity">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="ticket-actions">
+
+            <button
+                class="action-btn secondary-btn"
+                onclick="window.location.href='index.html'"
+            >
+                ← Back to Home
+            </button>
+
+
+            <button
+                class="action-btn primary-btn"
+                onclick="downloadTicket()"
+            >
+                Download Ticket
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    © 2026 TravelGo. All rights reserved.
+
+</footer>
+
+
+<script>
+
+    /* ================= BOOKING TYPE ================= */
+
+    const bookingType =
+        localStorage.getItem(
+            "bookingType"
+        );
+
+
+    let bookingId =
+        localStorage.getItem(
+            "bookingId"
+        );
+
+
+    if (!bookingId) {
+
+        const randomNumber =
+            Math.floor(
+                100000 +
+                Math.random() * 900000
+            );
+
+        bookingId =
+            "TG2026" +
+            randomNumber;
+
+        localStorage.setItem(
+            "bookingId",
+            bookingId
+        );
+    }
+
+
+    document.getElementById(
+        "bookingId"
+    ).textContent =
+        bookingId;
+
+
+    /* ================= ELEMENTS ================= */
+
+    const ticketType =
+        document.getElementById(
+            "ticketType"
+        );
+
+    const ticketTitle =
+        document.getElementById(
+            "ticketTitle"
+        );
+
+    const ticketDetails =
+        document.getElementById(
+            "ticketDetails"
+        );
+
+    const totalPrice =
+        document.getElementById(
+            "totalPrice"
+        );
+
+
+    /* ================= FLIGHT ================= */
+
+    if (bookingType === "flight") {
+
+        ticketType.textContent =
+            "✈ FLIGHT";
+
+        ticketTitle.textContent =
+            "Flight Booking";
+
+
+        const airline =
+            localStorage.getItem(
+                "selectedAirline"
+            ) || "-";
+
+        const from =
+            localStorage.getItem(
+                "travelFrom"
+            ) || "-";
+
+        const to =
+            localStorage.getItem(
+                "travelTo"
+            ) || "-";
+
+        const date =
+            localStorage.getItem(
+                "travelDeparture"
+            ) || "-";
+
+        const travellers =
+            localStorage.getItem(
+                "travelTravellers"
+            ) || "1";
+
+        const price =
+            localStorage.getItem(
+                "selectedPrice"
+            ) || "₹0";
+
+
+        totalPrice.textContent =
+            price;
+
+
+        ticketDetails.innerHTML = `
+
+            <div class="ticket-item">
+
+                <small>
+                    Airline
+                </small>
+
+                <strong>
+                    ${airline}
+                </strong>
+
+            </div>
+
+
+            <div class="ticket-item">
+
+                <small>
+                    Route
+                </small>
+
+                <strong>
+                    ${from} → ${to}
+                </strong>
+
+            </div>
+
+
+            <div class="ticket-item">
+
+                <small>
+                    Departure
+                </small>
+
+                <strong>
+                    ${date}
+                </strong>
+
+            </div>
+
+
+            <div class="ticket-item">
+
+                <small>
+                    Travellers
+                </small>
+
+                <strong>
+                    ${travellers}
+                </strong>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* ================= HOTEL ================= */
+
+    else if (bookingType === "hotel") {
+
+        ticketType.textContent =
+            "🏨 HOTEL";
+
+        ticketTitle.textContent =
+            "Hotel Booking";
+
+
+        const hotel =
+            localStorage.getItem(
+                "selectedHotel"
+            ) || "-";
+
+        const room =
+            localStorage.getItem(
+                "selectedRoomType"
+            ) || "-";
+
+        const destination =
+            localStorage.getItem(
+                "hotelDestination"
+            ) || "-";
+
+        const checkIn =
+            localStorage.getItem(
+                "hotelCheckIn"
+            ) || "-";
+
+        const checkOut =
+            localStorage.getItem(
+                "hotelCheckOut"
+            ) || "-";
+
+        const guests =
+            localStorage.getItem(
+                "hotelGuests"
+            ) || "1";
+
+        const price =
+            localStorage.getItem(
+                "selectedHotelPrice"
+            ) || "₹0";
+
+
+        totalPrice.textContent =
+            price;
+
+
+        ticketDetails.innerHTML = `
+
+            <div class="ticket-item">
+
+                <small>
+                    Hotel
+                </small>
+
+                <strong>
+                    ${hotel}
+                </strong>
+
+            </div>
+
+
+            <div class="ticket-item">
+
+                <small>
+                    Room
+                </small>
+
+                <strong>
+                    ${room}
+                </strong>
+
+            </div>
+
+
+            <div class="ticket-item">
+
+                <small>
+                    Destination
+                </small>
+
+                <strong>
+                    ${destination}
+                </strong>
+
+            </div>
+
+
+            <div class="ticket-item">
+
+                <small>
+                    Check-in
+                </small>
+
+                <strong>
+                    ${checkIn}
+                </strong>
+
+            </div>
+
+
+            <div class="ticket-item">
+
+                <small>
+                    Check-out
+                </small>
+
+                <strong>
+                    ${checkOut}
+                </strong>
+
+            </div>
+
+
+            <div class="ticket-item">
+
+                <small>
+                    Guests
+                </small>
+
+                <strong>
+                    ${guests}
+                </strong>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* ================= TRAIN ================= */
+
+    else if (bookingType === "train") {
+
+        ticketType.textContent =
+            "🚆 TRAIN";
+
+        ticketTitle.textContent =
+            "Train Booking";
+
+
+        const train =
+            localStorage.getItem(
+                "selectedTrain"
+            ) || "-";
+
+        const trainClass =
+            localStorage.getItem(
+                "selectedTrainClass"
+            ) || "-";
+
+        const from =
+            localStorage.getItem(
+                "trainFrom"
+            ) || "-";
+
+        const to =
+            localStorage.getItem(
+                "trainTo"
+            ) || "-";
+
+        const date =
+            localStorage.getItem(
+                "trainDate"
+            ) || "-";
+
+        const passengers =
+            localStorage.getItem(
+                "trainPassengers"
+            ) || "1";
+
+        const availability =
+            localStorage.getItem(
+                "trainAvailability"
+            ) || "Available";
+
+        const price =
+            localStorage.getItem(
+                "selectedTrainPrice"
+            ) || "₹0";
+
+
+        totalPrice.textContent =
+            price;
+
+
+        ticketDetails.innerHTML = `
+
+            <div class="ticket-item">
+
+                <small>
+                    Train
+                </small>
+
+                <strong>
+                    ${train}
+                </strong>
+
+            </div>
+
+
+            <div class="ticket-item">
+
+                <small>
+                    Route
+                </small>
+
+                <strong>
+                    ${from} → ${to}
+                </strong>
+
+            </div>
+
+
+            <div class="ticket-item">
+
+                <small>
+                    Class
+                </small>
+
+                <strong>
+                    ${trainClass}
+                </strong>
+
+            </div>
+
+
+            <div class="ticket-item">
+
+                <small>
+                    Journey Date
+                </small>
+
+                <strong>
+                    ${date}
+                </strong>
+
+            </div>
+
+
+            <div class="ticket-item">
+
+                <small>
+                    Passengers
+                </small>
+
+                <strong>
+                    ${passengers}
+                </strong>
+
+            </div>
+
+
+            <div class="ticket-item">
+
+                <small>
+                    Availability
+                </small>
+
+                <strong>
+                    ${availability} seats
+                </strong>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* ================= CUSTOMER ================= */
+
+    document.getElementById(
+        "customerName"
+    ).textContent =
+        localStorage.getItem(
+            "passengerName"
+        ) ||
+        localStorage.getItem(
+            "userName"
+        ) ||
+        "Guest";
+
+
+    document.getElementById(
+        "customerEmail"
+    ).textContent =
+        localStorage.getItem(
+            "passengerEmail"
+        ) ||
+        localStorage.getItem(
+            "userEmail"
+        ) ||
+        "-";
+
+
+    document.getElementById(
+        "customerPhone"
+    ).textContent =
+        localStorage.getItem(
+            "passengerPhone"
+        ) ||
+        "-";
+
+
+    document.getElementById(
+        "customerAge"
+    ).textContent =
+        localStorage.getItem(
+            "passengerAge"
+        ) ||
+        "-";
+
+
+    document.getElementById(
+        "customerGender"
+    ).textContent =
+        localStorage.getItem(
+            "passengerGender"
+        ) ||
+        "-";
+
+
+    document.getElementById(
+        "customerCity"
+    ).textContent =
+        localStorage.getItem(
+            "passengerCity"
+        ) ||
+        "-";
+
+
+    /* ================= SAVE CONFIRMED BOOKING ================= */
+
+    // Save this confirmed ticket under the account email.
+    // Booking ID is used to prevent duplicate history entries on refresh.
+    (function saveConfirmedBooking() {
+        const email = (
+            localStorage.getItem("userEmail") ||
+            localStorage.getItem("passengerEmail") ||
+            ""
+        ).trim().toLowerCase();
+
+        if (!email || !bookingType) return;
+
+        const get = (key, fallback = "-") =>
+            localStorage.getItem(key) || fallback;
+
+        let details = {};
+        let price = "₹0";
+
+        if (bookingType === "flight") {
+            details = {
+                airline: get("selectedAirline"),
+                from: get("travelFrom"),
+                to: get("travelTo"),
+                date: get("travelDeparture"),
+                travellers: get("travelTravellers", "1")
+            };
+            price = get("selectedPrice", "₹0");
+        } else if (bookingType === "hotel") {
+            details = {
+                hotel: get("selectedHotel"),
+                room: get("selectedRoomType"),
+                destination: get("hotelDestination"),
+                checkIn: get("hotelCheckIn"),
+                checkOut: get("hotelCheckOut"),
+                guests: get("hotelGuests", "1")
+            };
+            price = get("selectedHotelPrice", "₹0");
+        } else if (bookingType === "train") {
+            details = {
+                train: get("selectedTrain"),
+                from: get("trainFrom"),
+                to: get("trainTo"),
+                travelClass: get("selectedTrainClass"),
+                date: get("trainDate"),
+                passengers: get("trainPassengers", "1")
+            };
+            price = get("selectedTrainPrice", "₹0");
+        }
+
+        const booking = {
+            id: bookingId,
+            type: bookingType,
+            status: "Confirmed",
+            customerName: get("passengerName", get("userName", "Traveller")),
+            customerEmail: email,
+            customerPhone: get("passengerPhone"),
+            price,
+            details,
+            bookedAt: new Date().toISOString()
+        };
+
+        let bookingsByUser = {};
+        try {
+            bookingsByUser = JSON.parse(localStorage.getItem("bookingsByUser") || "{}");
+        } catch (error) {
+            bookingsByUser = {};
+        }
+
+        if (!Array.isArray(bookingsByUser[email])) {
+            bookingsByUser[email] = [];
+        }
+
+        if (!bookingsByUser[email].some(item => item.id === booking.id)) {
+            bookingsByUser[email].unshift(booking);
+            localStorage.setItem("bookingsByUser", JSON.stringify(bookingsByUser));
+        }
+    })();
+
+    /* ================= DOWNLOAD ================= */
+
+    function downloadTicket() {
+
+        alert(
+            "Ticket download is a demo feature.\n\n" +
+            "Booking ID: " +
+            bookingId
+        );
+
+    }
+
+</script>
+
+</body>
+</html>

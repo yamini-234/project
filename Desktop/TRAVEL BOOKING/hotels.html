@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Hotel Booking</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            TravelGo
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="results.html">Flights</a>
+
+            <a href="hotels.html">Hotels</a>
+
+            <a href="trains.html">Trains</a>
+
+        </div>
+
+
+        <div class="nav-buttons">
+
+            <button
+                class="login-btn"
+                onclick="window.location.href='login.html'">
+
+                Login
+
+            </button>
+
+
+            <button
+                class="signup-btn"
+                onclick="window.location.href='signup.html'">
+
+                Sign Up
+
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         HOTEL BOOKING PAGE
+    ========================== -->
+
+    <section class="results-page">
+
+        <div class="results-container">
+
+
+            <h1>
+                Find Your Perfect Hotel
+            </h1>
+
+
+            <p class="results-subtitle">
+                Choose your destination, dates and room type
+            </p>
+
+
+
+            <!-- =========================
+                 HOTEL SEARCH
+            ========================== -->
+
+            <div class="search-summary">
+
+
+                <div>
+
+                    <strong>
+                        Destination
+                    </strong>
+
+                    <input
+                        type="text"
+                        id="hotelDestination"
+                        placeholder="Enter city"
+                        value="Hyderabad">
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Check-in
+                    </strong>
+
+                    <input
+                        type="date"
+                        id="checkIn">
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Check-out
+                    </strong>
+
+                    <input
+                        type="date"
+                        id="checkOut">
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Guests
+                    </strong>
+
+                    <select id="hotelGuests">
+
+                        <option value="1">
+                            1 Guest
+                        </option>
+
+                        <option value="2" selected>
+                            2 Guests
+                        </option>
+
+                        <option value="3">
+                            3 Guests
+                        </option>
+
+                        <option value="4">
+                            4 Guests
+                        </option>
+
+                        <option value="5">
+                            5 Guests
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    class="search-btn"
+                    onclick="searchHotels()">
+
+                    Search Hotels
+
+                </button>
+
+            </div>
+
+
+
+            <!-- =========================
+                 HOTEL 1
+            ========================== -->
+
+            <div class="result-card">
+
+
+                <div class="result-left">
+
+                    <div class="airline-icon">
+                        🏨
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Grand Palace Hotel
+                        </h2>
+
+                        <p>
+                            ⭐⭐⭐⭐⭐ Luxury Hotel
+                        </p>
+
+                        <p>
+                            📍 Hyderabad
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="result-middle">
+
+                    <p>
+                        🛏️ Select Room Type
+                    </p>
+
+
+                    <select
+                        class="room-select"
+                        id="room1">
+
+                        <option value="Deluxe Room|4999">
+                            Deluxe Room - ₹4,999/night
+                        </option>
+
+                        <option value="Executive Room|6499">
+                            Executive Room - ₹6,499/night
+                        </option>
+
+                        <option value="Suite Room|8999">
+                            Suite Room - ₹8,999/night
+                        </option>
+
+                    </select>
+
+
+                    <p>
+                        🍳 Breakfast Included
+                    </p>
+
+                    <p>
+                        📶 Free Wi-Fi
+                    </p>
+
+                    <p>
+                        🏊 Swimming Pool
+                    </p>
+
+                </div>
+
+
+
+                <div class="result-right">
+
+                    <p>
+                        Starting from
+                    </p>
+
+                    <div class="price">
+                        ₹4,999
+                    </div>
+
+                    <small>
+                        per night
+                    </small>
+
+                    <br><br>
+
+
+                    <button
+                        class="search-btn"
+                        onclick="bookHotel('Grand Palace Hotel', 'room1')">
+
+                        Book Now
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 HOTEL 2
+            ========================== -->
+
+            <div class="result-card">
+
+
+                <div class="result-left">
+
+                    <div class="airline-icon">
+                        🏨
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Royal Residency
+                        </h2>
+
+                        <p>
+                            ⭐⭐⭐⭐ Premium Hotel
+                        </p>
+
+                        <p>
+                            📍 Hyderabad
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="result-middle">
+
+                    <p>
+                        🛏️ Select Room Type
+                    </p>
+
+
+                    <select
+                        class="room-select"
+                        id="room2">
+
+                        <option value="Standard Room|3499">
+                            Standard Room - ₹3,499/night
+                        </option>
+
+                        <option value="Deluxe Room|4499">
+                            Deluxe Room - ₹4,499/night
+                        </option>
+
+                        <option value="Family Room|6999">
+                            Family Room - ₹6,999/night
+                        </option>
+
+                    </select>
+
+
+                    <p>
+                        🍳 Breakfast Included
+                    </p>
+
+                    <p>
+                        📶 Free Wi-Fi
+                    </p>
+
+                    <p>
+                        ❄️ Air Conditioning
+                    </p>
+
+                </div>
+
+
+
+                <div class="result-right">
+
+                    <p>
+                        Starting from
+                    </p>
+
+                    <div class="price">
+                        ₹3,499
+                    </div>
+
+                    <small>
+                        per night
+                    </small>
+
+                    <br><br>
+
+
+                    <button
+                        class="search-btn"
+                        onclick="bookHotel('Royal Residency', 'room2')">
+
+                        Book Now
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 HOTEL 3
+            ========================== -->
+
+            <div class="result-card">
+
+
+                <div class="result-left">
+
+                    <div class="airline-icon">
+                        🏨
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            City View Inn
+                        </h2>
+
+                        <p>
+                            ⭐⭐⭐ Comfortable Hotel
+                        </p>
+
+                        <p>
+                            📍 Hyderabad
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="result-middle">
+
+                    <p>
+                        🛏️ Select Room Type
+                    </p>
+
+
+                    <select
+                        class="room-select"
+                        id="room3">
+
+                        <option value="Standard Room|2499">
+                            Standard Room - ₹2,499/night
+                        </option>
+
+                        <option value="Deluxe Room|3299">
+                            Deluxe Room - ₹3,299/night
+                        </option>
+
+                        <option value="Family Room|4999">
+                            Family Room - ₹4,999/night
+                        </option>
+
+                    </select>
+
+
+                    <p>
+                        📶 Free Wi-Fi
+                    </p>
+
+                    <p>
+                        🚗 Free Parking
+                    </p>
+
+                    <p>
+                        🛎️ 24/7 Reception
+                    </p>
+
+                </div>
+
+
+
+                <div class="result-right">
+
+                    <p>
+                        Starting from
+                    </p>
+
+                    <div class="price">
+                        ₹2,499
+                    </div>
+
+                    <small>
+                        per night
+                    </small>
+
+                    <br><br>
+
+
+                    <button
+                        class="search-btn"
+                        onclick="bookHotel('City View Inn', 'room3')">
+
+                        Book Now
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <br>
+
+
+            <a
+                href="index.html"
+                class="back-results">
+
+                ← Back to Home
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+
+        // =========================
+        // SEARCH HOTELS
+        // =========================
+
+        function searchHotels() {
+
+
+            const destination =
+                document.getElementById(
+                    "hotelDestination"
+                ).value;
+
+
+            const checkIn =
+                document.getElementById(
+                    "checkIn"
+                ).value;
+
+
+            const checkOut =
+                document.getElementById(
+                    "checkOut"
+                ).value;
+
+
+            const guests =
+                document.getElementById(
+                    "hotelGuests"
+                ).value;
+
+
+
+            if (destination === "") {
+
+                alert(
+                    "Please enter your destination."
+                );
+
+                return;
+
+            }
+
+
+            if (checkIn === "") {
+
+                alert(
+                    "Please select check-in date."
+                );
+
+                return;
+
+            }
+
+
+            if (checkOut === "") {
+
+                alert(
+                    "Please select check-out date."
+                );
+
+                return;
+
+            }
+
+
+            if (checkOut <= checkIn) {
+
+                alert(
+                    "Check-out date must be after check-in date."
+                );
+
+                return;
+
+            }
+
+
+
+            localStorage.setItem(
+                "hotelDestination",
+                destination
+            );
+
+
+            localStorage.setItem(
+                "hotelCheckIn",
+                checkIn
+            );
+
+
+            localStorage.setItem(
+                "hotelCheckOut",
+                checkOut
+            );
+
+
+            localStorage.setItem(
+                "hotelGuests",
+                guests
+            );
+
+
+            alert(
+                "Hotels found for " +
+                destination +
+                "!"
+            );
+
+        }
+
+
+
+        // =========================
+        // BOOK HOTEL
+        // =========================
+
+        function bookHotel(hotel, roomId) {
+
+
+            const roomValue =
+                document.getElementById(
+                    roomId
+                ).value;
+
+
+            const roomData =
+                roomValue.split("|");
+
+
+            const roomType =
+                roomData[0];
+
+
+            const roomPrice =
+                roomData[1];
+
+
+
+            const destination =
+                document.getElementById(
+                    "hotelDestination"
+                ).value;
+
+
+            const checkIn =
+                document.getElementById(
+                    "checkIn"
+                ).value;
+
+
+            const checkOut =
+                document.getElementById(
+                    "checkOut"
+                ).value;
+
+
+            const guests =
+                document.getElementById(
+                    "hotelGuests"
+                ).value;
+
+
+
+            // =========================
+            // VALIDATION
+            // =========================
+
+            if (destination === "") {
+
+                alert(
+                    "Please enter your destination."
+                );
+
+                return;
+
+            }
+
+
+            if (checkIn === "") {
+
+                alert(
+                    "Please select check-in date."
+                );
+
+                return;
+
+            }
+
+
+            if (checkOut === "") {
+
+                alert(
+                    "Please select check-out date."
+                );
+
+                return;
+
+            }
+
+
+            if (checkOut <= checkIn) {
+
+                alert(
+                    "Check-out date must be after check-in date."
+                );
+
+                return;
+
+            }
+
+
+
+            // =========================
+            // IMPORTANT
+            // SET BOOKING TYPE
+            // =========================
+
+            localStorage.setItem(
+                "bookingType",
+                "hotel"
+            );
+
+
+
+            // =========================
+            // SAVE HOTEL DETAILS
+            // =========================
+
+            localStorage.setItem(
+                "selectedHotel",
+                hotel
+            );
+
+
+            localStorage.setItem(
+                "selectedRoomType",
+                roomType
+            );
+
+
+            localStorage.setItem(
+                "selectedHotelPrice",
+                roomPrice
+            );
+
+
+            localStorage.setItem(
+                "hotelDestination",
+                destination
+            );
+
+
+            localStorage.setItem(
+                "hotelCheckIn",
+                checkIn
+            );
+
+
+            localStorage.setItem(
+                "hotelCheckOut",
+                checkOut
+            );
+
+
+            localStorage.setItem(
+                "hotelGuests",
+                guests
+            );
+
+
+
+            // =========================
+            // CLEAR OLD FLIGHT DATA
+            // =========================
+
+            localStorage.removeItem(
+                "selectedAirline"
+            );
+
+            localStorage.removeItem(
+                "selectedPrice"
+            );
+
+
+
+            // =========================
+            // SUCCESS MESSAGE
+            // =========================
+
+            alert(
+                "Room selected successfully! 🏨\n\n" +
+
+                "Hotel: " +
+                hotel +
+
+                "\n\nRoom Type: " +
+                roomType +
+
+                "\n\nPrice: ₹" +
+                roomPrice +
+                " per night" +
+
+                "\n\nProceeding to payment..."
+            );
+
+
+
+            // =========================
+            // GO TO PAYMENT
+            // =========================
+
+            window.location.href =
+                "payment.html";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

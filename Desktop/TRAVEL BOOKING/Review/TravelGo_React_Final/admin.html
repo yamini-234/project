@@ -1,0 +1,2972 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Admin Portal</title>
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f4f7fb;
+
+            color: #172b4d;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .admin-navbar {
+
+            height: 72px;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 35px;
+
+            box-shadow:
+                0 2px 12px
+                rgba(0, 0, 0, 0.08);
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            right: 0;
+
+            z-index: 1000;
+        }
+
+
+        .admin-logo {
+
+            font-size: 27px;
+
+            font-weight: 700;
+
+            color: #172b4d;
+        }
+
+
+        .admin-logo span {
+
+            color: #1677ff;
+        }
+
+
+        .admin-title {
+
+            font-size: 14px;
+
+            color: #667085;
+
+            margin-left: 10px;
+
+            padding-left: 15px;
+
+            border-left:
+                1px solid #d0d5dd;
+        }
+
+
+        .admin-navbar-left {
+
+            display: flex;
+
+            align-items: center;
+        }
+
+
+        .admin-profile {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .admin-avatar {
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 50%;
+
+            background: #eaf3ff;
+
+            color: #1677ff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 18px;
+        }
+
+
+        .admin-profile-text strong {
+
+            display: block;
+
+            font-size: 14px;
+
+            color: #172b4d;
+        }
+
+
+        .admin-profile-text span {
+
+            display: block;
+
+            font-size: 12px;
+
+            color: #98a2b3;
+        }
+
+
+        /* =====================================================
+           LAYOUT
+        ===================================================== */
+
+        .admin-layout {
+
+            display: flex;
+
+            padding-top: 72px;
+
+            min-height: 100vh;
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .sidebar {
+
+            width: 240px;
+
+            background: white;
+
+            border-right:
+                1px solid #eaecf0;
+
+            position: fixed;
+
+            top: 72px;
+
+            bottom: 0;
+
+            left: 0;
+
+            padding: 25px 15px;
+
+            overflow-y: auto;
+        }
+
+
+        .sidebar-heading {
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.8px;
+
+            color: #98a2b3;
+
+            padding: 0 14px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .sidebar-link {
+
+            width: 100%;
+
+            border: none;
+
+            background: transparent;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 13px 14px;
+
+            margin-bottom: 5px;
+
+            border-radius: 9px;
+
+            color: #475467;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            text-align: left;
+
+            transition: 0.2s;
+        }
+
+
+        .sidebar-link:hover {
+
+            background: #eef5ff;
+
+            color: #1677ff;
+        }
+
+
+        .sidebar-link.active {
+
+            background: #eaf3ff;
+
+            color: #1677ff;
+        }
+
+
+        .sidebar-icon {
+
+            width: 25px;
+
+            text-align: center;
+
+            font-size: 17px;
+        }
+
+
+        .sidebar-bottom {
+
+            position: absolute;
+
+            bottom: 20px;
+
+            left: 15px;
+
+            right: 15px;
+        }
+
+
+        .logout-btn {
+
+            width: 100%;
+
+            border: none;
+
+            background: #fff1f0;
+
+            color: #d92d20;
+
+            padding: 13px;
+
+            border-radius: 9px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        .logout-btn:hover {
+
+            background: #ffe4e1;
+        }
+
+
+        /* =====================================================
+           MAIN CONTENT
+        ===================================================== */
+
+        .main-content {
+
+            margin-left: 240px;
+
+            width: calc(100% - 240px);
+
+            padding: 35px;
+
+            min-height: calc(100vh - 72px);
+        }
+
+
+        .page {
+
+            display: none;
+        }
+
+
+        .page.active {
+
+            display: block;
+        }
+
+
+        /* =====================================================
+           PAGE HEADER
+        ===================================================== */
+
+        .page-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 30px;
+        }
+
+
+        .page-header h1 {
+
+            font-size: 30px;
+
+            margin-bottom: 6px;
+
+            color: #172b4d;
+        }
+
+
+        .page-header p {
+
+            color: #667085;
+
+            font-size: 14px;
+        }
+
+
+        .date-badge {
+
+            background: white;
+
+            border: 1px solid #eaecf0;
+
+            padding: 10px 15px;
+
+            border-radius: 9px;
+
+            color: #667085;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================================
+           STAT CARDS
+        ===================================================== */
+
+        .stats-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .stat-card {
+
+            background: white;
+
+            border-radius: 15px;
+
+            padding: 22px;
+
+            border:
+                1px solid #eaecf0;
+
+            box-shadow:
+                0 5px 18px
+                rgba(0,0,0,0.04);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        .stat-info p {
+
+            font-size: 13px;
+
+            color: #667085;
+
+            margin-bottom: 8px;
+        }
+
+
+        .stat-info h2 {
+
+            font-size: 29px;
+
+            color: #172b4d;
+        }
+
+
+        .stat-icon {
+
+            width: 50px;
+
+            height: 50px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 23px;
+
+            background: #eaf3ff;
+        }
+
+
+        /* =====================================================
+           CONTENT CARDS
+        ===================================================== */
+
+        .content-card {
+
+            background: white;
+
+            border:
+                1px solid #eaecf0;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 18px
+                rgba(0,0,0,0.04);
+
+            overflow: hidden;
+
+            margin-bottom: 25px;
+        }
+
+
+        .card-header {
+
+            padding: 20px 22px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            border-bottom:
+                1px solid #eaecf0;
+        }
+
+
+        .card-header h3 {
+
+            font-size: 18px;
+
+            color: #172b4d;
+        }
+
+
+        .card-header p {
+
+            font-size: 13px;
+
+            color: #667085;
+
+            margin-top: 4px;
+        }
+
+
+        .view-all-btn {
+
+            border: none;
+
+            background: #eef5ff;
+
+            color: #1677ff;
+
+            padding: 9px 14px;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .view-all-btn:hover {
+
+            background: #dcecff;
+        }
+
+
+        /* =====================================================
+           TABLE
+        ===================================================== */
+
+        .table-container {
+
+            width: 100%;
+
+            overflow-x: auto;
+        }
+
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 750px;
+        }
+
+
+        th {
+
+            background: #f8fafc;
+
+            color: #667085;
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.4px;
+
+            text-align: left;
+
+            padding: 14px 20px;
+
+            white-space: nowrap;
+        }
+
+
+        td {
+
+            padding: 16px 20px;
+
+            border-top:
+                1px solid #f0f2f5;
+
+            font-size: 13px;
+
+            color: #344054;
+
+            vertical-align: middle;
+        }
+
+
+        tr:hover td {
+
+            background: #fafcff;
+        }
+
+
+        .customer-cell strong {
+
+            display: block;
+
+            color: #172b4d;
+
+            margin-bottom: 3px;
+        }
+
+
+        .customer-cell span {
+
+            font-size: 12px;
+
+            color: #98a2b3;
+        }
+
+
+        /* =====================================================
+           BADGES
+        ===================================================== */
+
+        .badge {
+
+            display: inline-block;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        .badge-flight {
+
+            background: #eaf3ff;
+
+            color: #1677ff;
+        }
+
+
+        .badge-hotel {
+
+            background: #f4edff;
+
+            color: #7f56d9;
+        }
+
+
+        .badge-train {
+
+            background: #e9f9ef;
+
+            color: #039855;
+        }
+
+
+        .badge-confirmed {
+
+            background: #e9f9ef;
+
+            color: #027a48;
+        }
+
+
+        .badge-pending {
+
+            background: #fff6ed;
+
+            color: #b54708;
+        }
+
+
+        /* =====================================================
+           EMPTY STATE
+        ===================================================== */
+
+        .empty-state {
+
+            text-align: center;
+
+            padding: 55px 20px;
+
+            color: #98a2b3;
+        }
+
+
+        .empty-icon {
+
+            font-size: 40px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .empty-state h3 {
+
+            color: #475467;
+
+            margin-bottom: 6px;
+        }
+
+
+        .empty-state p {
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================================
+           SERVICE CARDS
+        ===================================================== */
+
+        .service-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 22px;
+        }
+
+
+        .service-card {
+
+            background: white;
+
+            border:
+                1px solid #eaecf0;
+
+            border-radius: 15px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 5px 18px
+                rgba(0,0,0,0.04);
+        }
+
+
+        .service-card-icon {
+
+            width: 52px;
+
+            height: 52px;
+
+            background: #eaf3ff;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 24px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .service-card h3 {
+
+            font-size: 19px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .service-card p {
+
+            color: #667085;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            margin-bottom: 15px;
+        }
+
+
+        .service-status {
+
+            color: #039855;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           DASHBOARD TWO COLUMN
+        ===================================================== */
+
+        .dashboard-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1.5fr
+                1fr;
+
+            gap: 25px;
+        }
+
+
+        /* =====================================================
+           QUICK ACTIONS
+        ===================================================== */
+
+        .quick-actions {
+
+            padding: 20px;
+        }
+
+
+        .quick-action {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 13px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            margin-bottom: 7px;
+
+            transition: 0.2s;
+        }
+
+
+        .quick-action:hover {
+
+            background: #f5f8fc;
+        }
+
+
+        .quick-action-icon {
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 9px;
+
+            background: #eaf3ff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 18px;
+        }
+
+
+        .quick-action strong {
+
+            display: block;
+
+            font-size: 13px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .quick-action span {
+
+            font-size: 11px;
+
+            color: #98a2b3;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 1100px) {
+
+            .stats-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .dashboard-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .service-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media(max-width: 800px) {
+
+            .admin-navbar {
+
+                padding: 0 20px;
+            }
+
+
+            .admin-title {
+
+                display: none;
+            }
+
+
+            .admin-profile-text {
+
+                display: none;
+            }
+
+
+            .sidebar {
+
+                width: 70px;
+
+                padding: 20px 10px;
+            }
+
+
+            .sidebar-heading {
+
+                display: none;
+            }
+
+
+            .sidebar-link {
+
+                justify-content: center;
+
+                padding: 13px 8px;
+            }
+
+
+            .sidebar-link span:not(.sidebar-icon) {
+
+                display: none;
+            }
+
+
+            .sidebar-bottom {
+
+                left: 10px;
+
+                right: 10px;
+            }
+
+
+            .logout-btn {
+
+                font-size: 0;
+
+                padding: 13px;
+            }
+
+
+            .logout-btn::before {
+
+                content: "↪";
+
+                font-size: 18px;
+            }
+
+
+            .main-content {
+
+                margin-left: 70px;
+
+                width: calc(100% - 70px);
+
+                padding: 25px 18px;
+            }
+
+
+            .page-header {
+
+                align-items: flex-start;
+
+                gap: 15px;
+            }
+
+
+            .date-badge {
+
+                display: none;
+            }
+        }
+
+
+        @media(max-width: 600px) {
+
+            .stats-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .service-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .page-header h1 {
+
+                font-size: 25px;
+            }
+
+
+            .admin-logo {
+
+                font-size: 23px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     ADMIN LOGIN PROTECTION
+===================================================== -->
+
+<script>
+
+    const adminLoggedIn =
+        localStorage.getItem(
+            "adminLoggedIn"
+        );
+
+
+    if (
+        adminLoggedIn !== "true"
+    ) {
+
+        window.location.href =
+            "admin-login.html";
+
+    }
+
+</script>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="admin-navbar">
+
+
+    <div class="admin-navbar-left">
+
+        <div class="admin-logo">
+
+            Travel<span>Go</span>
+
+        </div>
+
+
+        <div class="admin-title">
+
+            Admin Portal
+
+        </div>
+
+    </div>
+
+
+    <div class="admin-profile">
+
+        <div class="admin-avatar">
+            👤
+        </div>
+
+
+        <div class="admin-profile-text">
+
+            <strong>
+                Administrator
+            </strong>
+
+            <span>
+                TravelGo Admin
+            </span>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN LAYOUT
+===================================================== -->
+
+<div class="admin-layout">
+
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="sidebar-heading">
+            Management
+        </div>
+
+
+        <button
+            class="sidebar-link active"
+            onclick="showPage('dashboard', this)"
+        >
+
+            <span class="sidebar-icon">
+                📊
+            </span>
+
+            <span>
+                Dashboard
+            </span>
+
+        </button>
+
+
+        <button
+            class="sidebar-link"
+            onclick="showPage('bookings', this)"
+        >
+
+            <span class="sidebar-icon">
+                🎫
+            </span>
+
+            <span>
+                Bookings
+            </span>
+
+        </button>
+
+
+        <button
+            class="sidebar-link"
+            onclick="showPage('users', this)"
+        >
+
+            <span class="sidebar-icon">
+                👥
+            </span>
+
+            <span>
+                Users
+            </span>
+
+        </button>
+
+
+        <div class="sidebar-heading"
+             style="margin-top:25px;">
+
+            Services
+
+        </div>
+
+
+        <button
+            class="sidebar-link"
+            onclick="showPage('flights', this)"
+        >
+
+            <span class="sidebar-icon">
+                ✈️
+            </span>
+
+            <span>
+                Flights
+            </span>
+
+        </button>
+
+
+        <button
+            class="sidebar-link"
+            onclick="showPage('hotels', this)"
+        >
+
+            <span class="sidebar-icon">
+                🏨
+            </span>
+
+            <span>
+                Hotels
+            </span>
+
+        </button>
+
+
+        <button
+            class="sidebar-link"
+            onclick="showPage('trains', this)"
+        >
+
+            <span class="sidebar-icon">
+                🚆
+            </span>
+
+            <span>
+                Trains
+            </span>
+
+        </button>
+
+
+        <div class="sidebar-bottom">
+
+            <button
+                class="logout-btn"
+                onclick="logoutAdmin()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================= -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             DASHBOARD
+        ================================================= -->
+
+        <section
+            id="dashboard"
+            class="page active"
+        >
+
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>
+                        Dashboard
+                    </h1>
+
+                    <p>
+                        Welcome back, Administrator.
+                        Here's your TravelGo overview.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="date-badge"
+                    id="currentDate"
+                >
+                </div>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-info">
+
+                        <p>
+                            Total Bookings
+                        </p>
+
+                        <h2 id="totalBookings">
+                            0
+                        </h2>
+
+                    </div>
+
+                    <div class="stat-icon">
+                        🎫
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-info">
+
+                        <p>
+                            Flight Bookings
+                        </p>
+
+                        <h2 id="flightBookings">
+                            0
+                        </h2>
+
+                    </div>
+
+                    <div class="stat-icon">
+                        ✈️
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-info">
+
+                        <p>
+                            Hotel Bookings
+                        </p>
+
+                        <h2 id="hotelBookings">
+                            0
+                        </h2>
+
+                    </div>
+
+                    <div class="stat-icon">
+                        🏨
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-info">
+
+                        <p>
+                            Train Bookings
+                        </p>
+
+                        <h2 id="trainBookings">
+                            0
+                        </h2>
+
+                    </div>
+
+                    <div class="stat-icon">
+                        🚆
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- DASHBOARD CONTENT -->
+
+            <div class="dashboard-grid">
+
+
+                <!-- RECENT BOOKINGS -->
+
+                <div class="content-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Recent Bookings
+                            </h3>
+
+                            <p>
+                                Latest customer bookings
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="view-all-btn"
+                            onclick="showPageById('bookings')"
+                        >
+                            View All
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="table-container"
+                        id="recentBookingsContainer"
+                    >
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="content-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Quick Actions
+                            </h3>
+
+                            <p>
+                                Manage your platform
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="quick-actions">
+
+
+                        <div
+                            class="quick-action"
+                            onclick="showPageById('bookings')"
+                        >
+
+                            <div class="quick-action-icon">
+                                🎫
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    View Bookings
+                                </strong>
+
+                                <span>
+                                    Manage customer bookings
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="quick-action"
+                            onclick="showPageById('users')"
+                        >
+
+                            <div class="quick-action-icon">
+                                👥
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    View Users
+                                </strong>
+
+                                <span>
+                                    Manage registered users
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="quick-action"
+                            onclick="showPageById('flights')"
+                        >
+
+                            <div class="quick-action-icon">
+                                ✈️
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Flights
+                                </strong>
+
+                                <span>
+                                    View flight services
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="quick-action"
+                            onclick="showPageById('hotels')"
+                        >
+
+                            <div class="quick-action-icon">
+                                🏨
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Hotels
+                                </strong>
+
+                                <span>
+                                    View hotel services
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="quick-action"
+                            onclick="showPageById('trains')"
+                        >
+
+                            <div class="quick-action-icon">
+                                🚆
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Trains
+                                </strong>
+
+                                <span>
+                                    View train services
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             BOOKINGS
+        ================================================= -->
+
+        <section
+            id="bookings"
+            class="page"
+        >
+
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>
+                        Bookings
+                    </h1>
+
+                    <p>
+                        View all customer bookings.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            All Bookings
+                        </h3>
+
+                        <p>
+                            Flight, hotel and train bookings
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="table-container"
+                    id="allBookingsContainer"
+                >
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             USERS
+        ================================================= -->
+
+        <section
+            id="users"
+            class="page"
+        >
+
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>
+                        Users
+                    </h1>
+
+                    <p>
+                        Registered TravelGo customers.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Registered Users
+                        </h3>
+
+                        <p>
+                            Customer account information
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="table-container"
+                    id="usersContainer"
+                >
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FLIGHTS
+        ================================================= -->
+
+        <section
+            id="flights"
+            class="page"
+        >
+
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>
+                        Flights
+                    </h1>
+
+                    <p>
+                        Available flight services.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="service-grid">
+
+
+                <div class="service-card">
+
+                    <div class="service-card-icon">
+                        ✈️
+                    </div>
+
+                    <h3>
+                        IndiGo Airlines
+                    </h3>
+
+                    <p>
+                        Domestic and international
+                        flight services.
+                    </p>
+
+                    <span class="service-status">
+                        ● Available
+                    </span>
+
+                </div>
+
+
+                <div class="service-card">
+
+                    <div class="service-card-icon">
+                        ✈️
+                    </div>
+
+                    <h3>
+                        Air India
+                    </h3>
+
+                    <p>
+                        Premium domestic and
+                        international connectivity.
+                    </p>
+
+                    <span class="service-status">
+                        ● Available
+                    </span>
+
+                </div>
+
+
+                <div class="service-card">
+
+                    <div class="service-card-icon">
+                        ✈️
+                    </div>
+
+                    <h3>
+                        Emirates
+                    </h3>
+
+                    <p>
+                        International premium
+                        travel services.
+                    </p>
+
+                    <span class="service-status">
+                        ● Available
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             HOTELS
+        ================================================= -->
+
+        <section
+            id="hotels"
+            class="page"
+        >
+
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>
+                        Hotels
+                    </h1>
+
+                    <p>
+                        Available hotel services.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="service-grid">
+
+
+                <div class="service-card">
+
+                    <div class="service-card-icon">
+                        🏨
+                    </div>
+
+                    <h3>
+                        Grand Palace Hotel
+                    </h3>
+
+                    <p>
+                        Luxury five-star hotel with
+                        premium rooms and facilities.
+                    </p>
+
+                    <span class="service-status">
+                        ● Available
+                    </span>
+
+                </div>
+
+
+                <div class="service-card">
+
+                    <div class="service-card-icon">
+                        🏨
+                    </div>
+
+                    <h3>
+                        Royal Residency
+                    </h3>
+
+                    <p>
+                        Comfortable premium
+                        accommodation.
+                    </p>
+
+                    <span class="service-status">
+                        ● Available
+                    </span>
+
+                </div>
+
+
+                <div class="service-card">
+
+                    <div class="service-card-icon">
+                        🏨
+                    </div>
+
+                    <h3>
+                        City View Inn
+                    </h3>
+
+                    <p>
+                        Affordable accommodation
+                        for travellers.
+                    </p>
+
+                    <span class="service-status">
+                        ● Available
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             TRAINS
+        ================================================= -->
+
+        <section
+            id="trains"
+            class="page"
+        >
+
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>
+                        Trains
+                    </h1>
+
+                    <p>
+                        Available train services.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="service-grid">
+
+
+                <div class="service-card">
+
+                    <div class="service-card-icon">
+                        🚆
+                    </div>
+
+                    <h3>
+                        Vande Bharat Express
+                    </h3>
+
+                    <p>
+                        Fast premium train service
+                        between major cities.
+                    </p>
+
+                    <span class="service-status">
+                        ● Available
+                    </span>
+
+                </div>
+
+
+                <div class="service-card">
+
+                    <div class="service-card-icon">
+                        🚆
+                    </div>
+
+                    <h3>
+                        Godavari Express
+                    </h3>
+
+                    <p>
+                        Comfortable long-distance
+                        train service.
+                    </p>
+
+                    <span class="service-status">
+                        ● Available
+                    </span>
+
+                </div>
+
+
+                <div class="service-card">
+
+                    <div class="service-card-icon">
+                        🚆
+                    </div>
+
+                    <h3>
+                        Krishna Express
+                    </h3>
+
+                    <p>
+                        Convenient overnight
+                        train service.
+                    </p>
+
+                    <span class="service-status">
+                        ● Available
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+    /* =====================================================
+       GET BOOKINGS
+    ===================================================== */
+
+    function getBookings() {
+
+        const savedBookings =
+            localStorage.getItem(
+                "allBookings"
+            );
+
+
+        if (!savedBookings) {
+
+            return [];
+
+        }
+
+
+        try {
+
+            return JSON.parse(
+                savedBookings
+            );
+
+        }
+
+        catch(error) {
+
+            return [];
+
+        }
+
+    }
+
+
+    /* =====================================================
+       GET USERS
+    ===================================================== */
+
+    function getUsers() {
+
+        const savedUsers =
+            localStorage.getItem(
+                "allUsers"
+            );
+
+
+        if (!savedUsers) {
+
+            return [];
+
+        }
+
+
+        try {
+
+            return JSON.parse(
+                savedUsers
+            );
+
+        }
+
+        catch(error) {
+
+            return [];
+
+        }
+
+    }
+
+
+    /* =====================================================
+       FORMAT BOOKING TYPE
+    ===================================================== */
+
+    function getTypeBadge(type) {
+
+        if (type === "flight") {
+
+            return `
+                <span class="badge badge-flight">
+                    Flight
+                </span>
+            `;
+
+        }
+
+
+        if (type === "hotel") {
+
+            return `
+                <span class="badge badge-hotel">
+                    Hotel
+                </span>
+            `;
+
+        }
+
+
+        if (type === "train") {
+
+            return `
+                <span class="badge badge-train">
+                    Train
+                </span>
+            `;
+
+        }
+
+
+        return `
+            <span class="badge">
+                Unknown
+            </span>
+        `;
+
+    }
+
+
+    /* =====================================================
+       BOOKING DETAILS
+    ===================================================== */
+
+    function getBookingDetails(booking) {
+
+        if (
+            booking.details &&
+            booking.details !== "-"
+        ) {
+
+            return booking.details;
+
+        }
+
+
+        if (booking.type === "flight") {
+
+            return (
+                booking.airline +
+                " | " +
+                booking.from +
+                " → " +
+                booking.to
+            );
+
+        }
+
+
+        if (booking.type === "hotel") {
+
+            return (
+                booking.hotel +
+                " | " +
+                booking.room
+            );
+
+        }
+
+
+        if (booking.type === "train") {
+
+            return (
+                booking.train +
+                " | " +
+                booking.from +
+                " → " +
+                booking.to
+            );
+
+        }
+
+
+        return "-";
+
+    }
+
+
+    /* =====================================================
+       EMPTY STATE
+    ===================================================== */
+
+    function showEmpty(
+        container,
+        icon,
+        title,
+        message
+    ) {
+
+        container.innerHTML = `
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    ${icon}
+                </div>
+
+                <h3>
+                    ${title}
+                </h3>
+
+                <p>
+                    ${message}
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* =====================================================
+       RENDER RECENT BOOKINGS
+    ===================================================== */
+
+    function renderRecentBookings() {
+
+        const container =
+            document.getElementById(
+                "recentBookingsContainer"
+            );
+
+
+        const bookings =
+            getBookings();
+
+
+        if (bookings.length === 0) {
+
+            showEmpty(
+                container,
+                "🎫",
+                "No bookings yet",
+                "Completed customer bookings will appear here."
+            );
+
+            return;
+
+        }
+
+
+        const recent =
+            bookings.slice(-5).reverse();
+
+
+        let html = `
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Customer
+                        </th>
+
+                        <th>
+                            Type
+                        </th>
+
+                        <th>
+                            Details
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+        `;
+
+
+        recent.forEach(
+            function(booking) {
+
+                html += `
+
+                    <tr>
+
+                        <td>
+
+                            <div class="customer-cell">
+
+                                <strong>
+                                    ${booking.customer || "Guest"}
+                                </strong>
+
+                                <span>
+                                    ${booking.email || "-"}
+                                </span>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+                            ${getTypeBadge(booking.type)}
+                        </td>
+
+
+                        <td>
+                            ${getBookingDetails(booking)}
+                        </td>
+
+
+                        <td>
+
+                            <span class="badge badge-confirmed">
+                                ${booking.status || "Confirmed"}
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        );
+
+
+        html += `
+
+                </tbody>
+
+            </table>
+
+        `;
+
+
+        container.innerHTML = html;
+
+    }
+
+
+    /* =====================================================
+       RENDER ALL BOOKINGS
+    ===================================================== */
+
+    function renderAllBookings() {
+
+        const container =
+            document.getElementById(
+                "allBookingsContainer"
+            );
+
+
+        const bookings =
+            getBookings();
+
+
+        if (bookings.length === 0) {
+
+            showEmpty(
+                container,
+                "🎫",
+                "No bookings found",
+                "Once a customer completes a booking, it will appear here."
+            );
+
+            return;
+
+        }
+
+
+        let html = `
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Booking ID
+                        </th>
+
+                        <th>
+                            Customer
+                        </th>
+
+                        <th>
+                            Type
+                        </th>
+
+                        <th>
+                            Details
+                        </th>
+
+                        <th>
+                            Price
+                        </th>
+
+                        <th>
+                            Payment
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+        `;
+
+
+        bookings
+            .slice()
+            .reverse()
+            .forEach(
+                function(booking) {
+
+                    html += `
+
+                        <tr>
+
+                            <td>
+                                <strong>
+                                    ${booking.id || "-"}
+                                </strong>
+                            </td>
+
+
+                            <td>
+
+                                <div class="customer-cell">
+
+                                    <strong>
+                                        ${booking.customer || "Guest"}
+                                    </strong>
+
+                                    <span>
+                                        ${booking.email || "-"}
+                                    </span>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                ${getTypeBadge(booking.type)}
+                            </td>
+
+
+                            <td>
+                                ${getBookingDetails(booking)}
+                            </td>
+
+
+                            <td>
+                                <strong>
+                                    ${booking.price || "₹0"}
+                                </strong>
+                            </td>
+
+
+                            <td>
+                                ${booking.paymentMethod || "-"}
+                            </td>
+
+
+                            <td>
+
+                                <span class="badge badge-confirmed">
+                                    ${booking.status || "Confirmed"}
+                                </span>
+
+                            </td>
+
+
+                            <td>
+                                ${booking.dateCreated || "-"}
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                }
+            );
+
+
+        html += `
+
+                </tbody>
+
+            </table>
+
+        `;
+
+
+        container.innerHTML = html;
+
+    }
+
+
+    /* =====================================================
+       RENDER USERS
+    ===================================================== */
+
+    function renderUsers() {
+
+        const container =
+            document.getElementById(
+                "usersContainer"
+            );
+
+
+        const users =
+            getUsers();
+
+
+        /*
+           If allUsers does not exist,
+           check the old single-user storage.
+        */
+
+        if (users.length === 0) {
+
+            const oldName =
+                localStorage.getItem(
+                    "userName"
+                );
+
+
+            const oldEmail =
+                localStorage.getItem(
+                    "userEmail"
+                );
+
+
+            if (
+                oldName &&
+                oldEmail
+            ) {
+
+                users.push({
+
+                    name: oldName,
+
+                    email: oldEmail,
+
+                    dateCreated: "-"
+
+                });
+
+            }
+
+        }
+
+
+        if (users.length === 0) {
+
+            showEmpty(
+                container,
+                "👥",
+                "No registered users",
+                "Users created through the Sign Up page will appear here."
+            );
+
+            return;
+
+        }
+
+
+        let html = `
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            #
+                        </th>
+
+                        <th>
+                            Name
+                        </th>
+
+                        <th>
+                            Email
+                        </th>
+
+                        <th>
+                            Registered
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+        `;
+
+
+        users.forEach(
+            function(user, index) {
+
+                html += `
+
+                    <tr>
+
+                        <td>
+                            ${index + 1}
+                        </td>
+
+
+                        <td>
+
+                            <div class="customer-cell">
+
+                                <strong>
+                                    ${user.name || "-"}
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+                            ${user.email || "-"}
+                        </td>
+
+
+                        <td>
+                            ${user.dateCreated || "-"}
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        );
+
+
+        html += `
+
+                </tbody>
+
+            </table>
+
+        `;
+
+
+        container.innerHTML = html;
+
+    }
+
+
+    /* =====================================================
+       UPDATE STATISTICS
+    ===================================================== */
+
+    function updateStats() {
+
+        const bookings =
+            getBookings();
+
+
+        const flightCount =
+            bookings.filter(
+                function(booking) {
+
+                    return booking.type === "flight";
+
+                }
+            ).length;
+
+
+        const hotelCount =
+            bookings.filter(
+                function(booking) {
+
+                    return booking.type === "hotel";
+
+                }
+            ).length;
+
+
+        const trainCount =
+            bookings.filter(
+                function(booking) {
+
+                    return booking.type === "train";
+
+                }
+            ).length;
+
+
+        document.getElementById(
+            "totalBookings"
+        ).textContent =
+            bookings.length;
+
+
+        document.getElementById(
+            "flightBookings"
+        ).textContent =
+            flightCount;
+
+
+        document.getElementById(
+            "hotelBookings"
+        ).textContent =
+            hotelCount;
+
+
+        document.getElementById(
+            "trainBookings"
+        ).textContent =
+            trainCount;
+
+    }
+
+
+    /* =====================================================
+       SHOW PAGE
+    ===================================================== */
+
+    function showPage(
+        pageId,
+        clickedButton
+    ) {
+
+
+        const pages =
+            document.querySelectorAll(
+                ".page"
+            );
+
+
+        pages.forEach(
+            function(page) {
+
+                page.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+        const selectedPage =
+            document.getElementById(
+                pageId
+            );
+
+
+        if (selectedPage) {
+
+            selectedPage.classList.add(
+                "active"
+            );
+
+        }
+
+
+        const links =
+            document.querySelectorAll(
+                ".sidebar-link"
+            );
+
+
+        links.forEach(
+            function(link) {
+
+                link.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+        if (clickedButton) {
+
+            clickedButton.classList.add(
+                "active"
+            );
+
+        }
+
+
+        window.scrollTo(
+            0,
+            0
+        );
+
+    }
+
+
+    /* =====================================================
+       SHOW PAGE BY ID
+    ===================================================== */
+
+    function showPageById(
+        pageId
+    ) {
+
+
+        const buttons =
+            document.querySelectorAll(
+                ".sidebar-link"
+            );
+
+
+        let matchingButton = null;
+
+
+        buttons.forEach(
+            function(button) {
+
+                const onclick =
+                    button.getAttribute(
+                        "onclick"
+                    );
+
+
+                if (
+                    onclick &&
+                    onclick.includes(
+                        "'" + pageId + "'"
+                    )
+                ) {
+
+                    matchingButton =
+                        button;
+
+                }
+
+            }
+        );
+
+
+        showPage(
+            pageId,
+            matchingButton
+        );
+
+    }
+
+
+    /* =====================================================
+       LOGOUT
+    ===================================================== */
+
+    function logoutAdmin() {
+
+        localStorage.removeItem(
+            "adminLoggedIn"
+        );
+
+
+        window.location.href =
+            "admin-login.html";
+
+    }
+
+
+    /* =====================================================
+       CURRENT DATE
+    ===================================================== */
+
+    function showCurrentDate() {
+
+        const date =
+            new Date();
+
+
+        document.getElementById(
+            "currentDate"
+        ).textContent =
+            date.toLocaleDateString(
+                "en-IN",
+                {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+
+    }
+
+
+    /* =====================================================
+       INITIALIZE
+    ===================================================== */
+
+    function initializeAdmin() {
+
+        updateStats();
+
+        renderRecentBookings();
+
+        renderAllBookings();
+
+        renderUsers();
+
+        showCurrentDate();
+
+    }
+
+
+    initializeAdmin();
+
+
+</script>
+
+
+</body>
+
+</html>

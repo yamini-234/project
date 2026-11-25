@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Flight Results</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f8fc;
+            color: #172b4d;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 75px;
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 60px;
+
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #1677ff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #344054;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #1677ff;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .login-btn,
+        .signup-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .login-btn {
+            background: white;
+            border: 1px solid #1677ff;
+            color: #1677ff;
+        }
+
+        .signup-btn {
+            background: #1677ff;
+            border: 1px solid #1677ff;
+            color: white;
+        }
+
+        /* PAGE HEADER */
+
+        .page-header {
+            background:
+                linear-gradient(
+                    rgba(22,119,255,0.85),
+                    rgba(10,76,160,0.85)
+                ),
+                url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 65px 20px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+        }
+
+        /* SEARCH SUMMARY */
+
+        .search-summary {
+            max-width: 1100px;
+            margin: -30px auto 35px;
+
+            background: white;
+
+            border-radius: 15px;
+
+            padding: 20px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+            position: relative;
+        }
+
+        .summary-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .summary-item small {
+            color: #667085;
+            font-size: 13px;
+        }
+
+        .summary-item strong {
+            font-size: 16px;
+        }
+
+        .change-search {
+            background: #eef5ff;
+            color: #1677ff;
+
+            border: none;
+
+            padding: 11px 18px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-weight: 600;
+        }
+
+        /* RESULTS */
+
+        .results-section {
+            max-width: 1100px;
+            margin: 0 auto;
+
+            padding: 0 20px 70px;
+        }
+
+        .results-title {
+            margin-bottom: 20px;
+        }
+
+        .results-title h2 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .results-title p {
+            color: #667085;
+        }
+
+        /* FLIGHT CARD */
+
+        .flight-card {
+            background: white;
+
+            border-radius: 16px;
+
+            margin-bottom: 20px;
+
+            padding: 25px;
+
+            display: grid;
+
+            grid-template-columns:
+                1.2fr
+                1fr
+                1fr
+                0.8fr;
+
+            align-items: center;
+
+            gap: 25px;
+
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+
+            transition: 0.3s;
+        }
+
+        .flight-card:hover {
+            transform: translateY(-4px);
+
+            box-shadow: 0 14px 35px rgba(0,0,0,0.12);
+        }
+
+        .airline {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .airline-icon {
+            width: 50px;
+            height: 50px;
+
+            border-radius: 12px;
+
+            background: #eaf3ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 25px;
+        }
+
+        .airline h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .airline p {
+            font-size: 13px;
+            color: #667085;
+        }
+
+        .route {
+            text-align: center;
+        }
+
+        .route strong {
+            font-size: 20px;
+        }
+
+        .route span {
+            display: block;
+            color: #667085;
+            margin-top: 5px;
+            font-size: 13px;
+        }
+
+        .flight-time {
+            text-align: center;
+        }
+
+        .flight-time strong {
+            font-size: 17px;
+        }
+
+        .flight-time span {
+            display: block;
+            color: #667085;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .price-box {
+            text-align: right;
+        }
+
+        .price {
+            font-size: 23px;
+            font-weight: 700;
+            color: #1677ff;
+
+            margin-bottom: 12px;
+        }
+
+        .book-btn {
+            border: none;
+
+            background: #1677ff;
+            color: white;
+
+            padding: 11px 22px;
+
+            border-radius: 8px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .book-btn:hover {
+            background: #0b5ed7;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #172b4d;
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 850px) {
+
+            .navbar {
+                padding: 15px 25px;
+                height: auto;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .nav-links {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .search-summary {
+                margin: 20px;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .flight-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .airline {
+                justify-content: center;
+            }
+
+            .price-box {
+                text-align: center;
+            }
+        }
+
+        @media(max-width: 500px) {
+
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .nav-buttons {
+                display: none;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+    <div class="logo">
+        Travel<span>Go</span>
+    </div>
+
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="results.html">Flights</a>
+        <a href="hotels.html">Hotels</a>
+        <a href="trains.html">Trains</a>
+    </nav>
+
+    <div class="nav-buttons">
+
+        <button
+            class="login-btn"
+            onclick="window.location.href='login.html'"
+        >
+            Login
+        </button>
+
+        <button
+            class="signup-btn"
+            onclick="window.location.href='signup.html'"
+        >
+            Sign Up
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- HEADER -->
+
+<section class="page-header">
+
+    <h1>Available Flights</h1>
+
+    <p>
+        Choose the flight that suits your journey
+    </p>
+
+</section>
+
+
+<!-- SEARCH SUMMARY -->
+
+<div class="search-summary">
+
+    <div class="summary-item">
+        <small>From</small>
+        <strong id="fromDisplay">-</strong>
+    </div>
+
+    <div class="summary-item">
+        <small>To</small>
+        <strong id="toDisplay">-</strong>
+    </div>
+
+    <div class="summary-item">
+        <small>Departure</small>
+        <strong id="dateDisplay">-</strong>
+    </div>
+
+    <div class="summary-item">
+        <small>Travellers</small>
+        <strong id="travellersDisplay">1</strong>
+    </div>
+
+    <button
+        class="change-search"
+        onclick="window.location.href='index.html'"
+    >
+        Change Search
+    </button>
+
+</div>
+
+
+<!-- FLIGHT RESULTS -->
+
+<section class="results-section">
+
+    <div class="results-title">
+
+        <h2>Flight Results</h2>
+
+        <p>
+            3 flights available for your journey
+        </p>
+
+    </div>
+
+
+    <!-- FLIGHT 1 -->
+
+    <div class="flight-card">
+
+        <div class="airline">
+
+            <div class="airline-icon">
+                ✈️
+            </div>
+
+            <div>
+
+                <h3>IndiGo Airlines</h3>
+
+                <p>6E • Economy</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="route">
+
+            <strong id="flightFrom1">
+                Hyderabad
+            </strong>
+
+            <span>Departure</span>
+
+        </div>
+
+
+        <div class="flight-time">
+
+            <strong>10:30 AM</strong>
+
+            <span>2h 30m • Direct</span>
+
+        </div>
+
+
+        <div class="price-box">
+
+            <div class="price">
+                ₹18,999
+            </div>
+
+            <button
+                class="book-btn"
+                onclick="bookFlight('IndiGo Airlines', '₹18,999')"
+            >
+                Book Now
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- FLIGHT 2 -->
+
+    <div class="flight-card">
+
+        <div class="airline">
+
+            <div class="airline-icon">
+                ✈️
+            </div>
+
+            <div>
+
+                <h3>Air India</h3>
+
+                <p>AI • Economy</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="route">
+
+            <strong id="flightFrom2">
+                Hyderabad
+            </strong>
+
+            <span>Departure</span>
+
+        </div>
+
+
+        <div class="flight-time">
+
+            <strong>02:30 PM</strong>
+
+            <span>2h 20m • Direct</span>
+
+        </div>
+
+
+        <div class="price-box">
+
+            <div class="price">
+                ₹21,499
+            </div>
+
+            <button
+                class="book-btn"
+                onclick="bookFlight('Air India', '₹21,499')"
+            >
+                Book Now
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- FLIGHT 3 -->
+
+    <div class="flight-card">
+
+        <div class="airline">
+
+            <div class="airline-icon">
+                ✈️
+            </div>
+
+            <div>
+
+                <h3>Emirates</h3>
+
+                <p>EK • Economy</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="route">
+
+            <strong id="flightFrom3">
+                Hyderabad
+            </strong>
+
+            <span>Departure</span>
+
+        </div>
+
+
+        <div class="flight-time">
+
+            <strong>07:00 PM</strong>
+
+            <span>2h 45m • Direct</span>
+
+        </div>
+
+
+        <div class="price-box">
+
+            <div class="price">
+                ₹24,999
+            </div>
+
+            <button
+                class="book-btn"
+                onclick="bookFlight('Emirates', '₹24,999')"
+            >
+                Book Now
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    © 2026 TravelGo. All rights reserved.
+
+</footer>
+
+
+<script>
+
+    /* LOAD SEARCH DATA */
+
+    const from =
+        localStorage.getItem("travelFrom") ||
+        "Hyderabad";
+
+    const to =
+        localStorage.getItem("travelTo") ||
+        "Delhi";
+
+    const departure =
+        localStorage.getItem("travelDeparture") ||
+        "-";
+
+    const travellers =
+        localStorage.getItem("travelTravellers") ||
+        "1";
+
+
+    document.getElementById("fromDisplay").textContent =
+        from;
+
+    document.getElementById("toDisplay").textContent =
+        to;
+
+    document.getElementById("dateDisplay").textContent =
+        departure;
+
+    document.getElementById("travellersDisplay").textContent =
+        travellers;
+
+
+    document.getElementById("flightFrom1").textContent =
+        from;
+
+    document.getElementById("flightFrom2").textContent =
+        from;
+
+    document.getElementById("flightFrom3").textContent =
+        from;
+
+
+    /* BOOK FLIGHT */
+
+    function bookFlight(airline, price) {
+
+        localStorage.setItem(
+            "bookingType",
+            "flight"
+        );
+
+        localStorage.setItem(
+            "selectedAirline",
+            airline
+        );
+
+        localStorage.setItem(
+            "selectedPrice",
+            price
+        );
+
+
+        /* Clear hotel data */
+
+        localStorage.removeItem("selectedHotel");
+        localStorage.removeItem("selectedRoomType");
+        localStorage.removeItem("selectedHotelPrice");
+        localStorage.removeItem("hotelDestination");
+        localStorage.removeItem("hotelCheckIn");
+        localStorage.removeItem("hotelCheckOut");
+        localStorage.removeItem("hotelGuests");
+
+
+        /* Clear train data */
+
+        localStorage.removeItem("selectedTrain");
+        localStorage.removeItem("selectedTrainClass");
+        localStorage.removeItem("selectedTrainPrice");
+        localStorage.removeItem("trainAvailability");
+        localStorage.removeItem("trainFrom");
+        localStorage.removeItem("trainTo");
+        localStorage.removeItem("trainDate");
+        localStorage.removeItem("trainPassengers");
+
+
+        /* Clear old booking */
+
+        localStorage.removeItem("bookingId");
+        localStorage.removeItem("bookingStatus");
+
+
+        window.location.href =
+            "booking.html";
+    }
+
+</script>
+
+</body>
+</html>

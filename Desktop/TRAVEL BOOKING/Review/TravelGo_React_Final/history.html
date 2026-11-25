@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1268e8">
+  <title>My Bookings | TravelGo</title>
+  <link rel="stylesheet" href="src/history.css">
+  <style>
+    .notice{margin:18px 0;padding:12px 15px;border-radius:10px;background:#fff8e6;color:#8a6414;font-size:13px}
+    .error-box{padding:18px;background:#fff1f0;border:1px solid #ffd2cf;border-radius:12px;color:#9d2820}
+  </style>
+</head>
+<body>
+  <div id="app"><main class="page"><p>Loading your bookings…</p></main></div>
+  <script>
+  (function () {
+    'use strict';
+    const app = document.getElementById('app');
+    const read = (key, fallback = '') => { try { return localStorage.getItem(key) || fallback; } catch (_) { return fallback; } };
+    const esc = value => String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+    const money = value => value || 'Price unavailable';
+    const email = read('userEmail').trim().toLowerCase();
+    const name = read('userName', 'Traveller');
+
+    if (!email || read('loggedIn') !== 'true') {
+      app.innerHTML = '<main class="auth-wrap"><section class="auth-card"><div class="brand-mark">🎫</div><h1>Please log in first</h1><p>Log in with the same account you used to make your booking. Your tickets will appear here.</p><a class="primary" href="login.html">Log in to TravelGo</a><a class="back-link" href="index.html">← Back to home</a></section></main>';
+      return;
+    }
+
+    let bookings = [];
+    try {
+      const byUser = JSON.parse(read('bookingsByUser', '{}'));
+      if (byUser && Array.isArray(byUser[email])) bookings = byUser[email].slice();
+    } catch (_) {}
+
+    // Also read bookings created by the older payment flow.
+    try {
+      const old = JSON.parse(read('allBookings', '[]'));
+      if (Array.isArray(old)) {
+        old.filter(b => String(b.email || b.customerEmail || '').trim().toLowerCase() === email).forEach(b => {
+          const id = b.id || b.bookingId || ('TG-' + Date.now());
+          if (bookings.some(item => String(item.id) === String(id))) return;
+          const type = String(b.type || 'flight').toLowerCase();
+          bookings.push({
+            id, type, status: b.status || 'Confirmed', customerName: b.customer || b.customerName || name,
+            customerEmail: email, price: b.price || '₹0', bookedAt: b.bookedAt || b.dateCreated || new Date().toISOString(),
+            details: type === 'hotel' ? {hotel:b.hotel, room:b.room, destination:b.destination, checkIn:b.checkIn, checkOut:b.checkOut, guests:b.guests}
+              : type === 'train' ? {train:b.train, from:b.from, to:b.to, travelClass:b.trainClass, date:b.journeyDate, passengers:b.passengers}
+              : {airline:b.airline, from:b.from, to:b.to, date:b.travelDate || b.date, travellers:b.travellers}
+          });
+        });
+      }
+    } catch (_) {}
+
+    bookings.sort((a,b) => new Date(b.bookedAt || 0) - new Date(a.bookedAt || 0));
+    const typeIcon = type => type === 'hotel' ? '🏨' : type === 'train' ? '🚆' : '✈️';
+    const details = b => {
+      const d = b.details || {};
+      const rows = b.type === 'hotel' ? [['Hotel',d.hotel],['Room',d.room],['Destination',d.destination],['Check-in',d.checkIn],['Check-out',d.checkOut],['Guests',d.guests]]
+        : b.type === 'train' ? [['Train',d.train],['Route',(d.from || '-')+' → '+(d.to || '-')],['Class',d.travelClass],['Journey date',d.date],['Passengers',d.passengers]]
+        : [['Airline',d.airline],['Route',(d.from || '-')+' → '+(d.to || '-')],['Departure',d.date],['Travellers',d.travellers]];
+      return rows.filter(([,v]) => v !== undefined && v !== null && v !== '');
+    };
+
+    function render(filter = 'all', query = '') {
+      const visible = bookings.filter(b => (filter === 'all' || b.type === filter) && (String(b.id)+' '+JSON.stringify(b.details || {})).toLowerCase().includes(query.toLowerCase()));
+      const confirmed = bookings.filter(b => (b.status || 'Confirmed') === 'Confirmed').length;
+      const total = bookings.reduce((sum,b) => sum + (Number(String(b.price || '').replace(/[^0-9.]/g,'')) || 0), 0);
+      app.innerHTML = `
+        <header class="topbar"><a class="brand" href="index.html">Travel<span>Go</span></a><nav><a href="index.html">Home</a><a class="active" href="history.html">My Bookings</a></nav><div class="profile"><span class="avatar">${esc(name.charAt(0).toUpperCase())}</span><span>${esc(name)}</span><button id="logout" type="button" title="Log out">↪</button></div></header>
+        <main class="page"><section class="welcome"><div><p class="eyebrow">TRAVEL DASHBOARD</p><h1>Your booking history</h1><p class="muted">All your confirmed flights, hotels and train tickets in one place.</p></div><div class="welcome-icon">🎫</div></section>
+        <section class="stats"><div class="stat"><span class="stat-icon">🧳</span><div><strong>${bookings.length}</strong><small>Total bookings</small></div></div><div class="stat"><span class="stat-icon green">✓</span><div><strong>${confirmed}</strong><small>Confirmed</small></div></div><div class="stat"><span class="stat-icon gold">₹</span><div><strong>₹${total.toLocaleString('en-IN')}</strong><small>Total booked value</small></div></div></section>
+        <section class="history-panel"><div class="panel-head"><div><h2>My trips</h2><p class="muted">Bookings for ${esc(email)}</p></div><label class="search">⌕ <input id="search" placeholder="Search booking ID or destination" value="${esc(query)}"></label></div>
+        <div class="filters">${[['all','All bookings'],['flight','Flights'],['hotel','Hotels'],['train','Trains']].map(([v,l])=>`<button type="button" data-filter="${v}" class="${filter===v?'selected':''}">${l}</button>`).join('')}</div>
+        ${visible.length ? `<div class="booking-list">${visible.map(b=>`<article class="booking-card"><div class="booking-head"><div class="type-icon">${typeIcon(b.type)}</div><div class="booking-title"><h3>${esc((b.type || 'flight').charAt(0).toUpperCase()+(b.type || 'flight').slice(1))} booking</h3><span>Booking ID: ${esc(b.id || 'Not available')}</span></div><span class="status">✓ ${esc(b.status || 'Confirmed')}</span></div><div class="details-grid">${details(b).map(([label,value])=>`<div class="detail"><small>${esc(label)}</small><strong>${esc(value)}</strong></div>`).join('')}</div><div class="booking-foot"><span>Booked on ${esc(b.bookedAt ? new Date(b.bookedAt).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}) : 'Date unavailable')}</span><strong>${esc(money(b.price))}</strong></div></article>`).join('')}</div>` : `<div class="empty"><div class="empty-icon">🎫</div><h3>${bookings.length ? 'No matching bookings' : 'No bookings found for this account'}</h3><p>${bookings.length ? 'Try another search or filter.' : 'Complete a booking while logged in with this email address. If you booked before signing in, the ticket may be saved under another email.'}</p><a class="primary" href="index.html">Explore trips</a></div>`}
+        </section><footer>© 2026 TravelGo · Your journey starts here</footer></main>`;
+      document.getElementById('logout').addEventListener('click', () => { localStorage.removeItem('loggedIn'); location.href='login.html'; });
+      document.getElementById('search').addEventListener('input', e => { const pos=e.target.selectionStart; render(filter,e.target.value); const input=document.getElementById('search'); input.focus(); input.setSelectionRange(pos,pos); });
+      document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => render(button.dataset.filter, document.getElementById('search').value)));
+    }
+    render();
+  })();
+  </script>
+</body>
+</html>

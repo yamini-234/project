@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Login</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    rgba(15, 67, 120, 0.72),
+                    rgba(22, 119, 255, 0.55)
+                ),
+                url("https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1800&q=85");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-attachment: fixed;
+
+            color: #172b4d;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+
+            height: 75px;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 60px;
+
+            box-shadow:
+                0 2px 12px
+                rgba(0,0,0,0.10);
+        }
+
+
+        .logo {
+
+            font-size: 28px;
+
+            font-weight: 700;
+
+            color: #172b4d;
+        }
+
+
+        .logo span {
+
+            color: #1677ff;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 30px;
+        }
+
+
+        .nav-links a {
+
+            text-decoration: none;
+
+            color: #344054;
+
+            font-size: 16px;
+
+            font-weight: 500;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-links a:hover {
+
+            color: #1677ff;
+        }
+
+
+        .signup-nav-btn {
+
+            border: none;
+
+            background: #1677ff;
+
+            color: white;
+
+            padding: 10px 20px;
+
+            border-radius: 8px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .login-page {
+
+            min-height:
+                calc(100vh - 75px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 50px 20px;
+        }
+
+
+        .login-card {
+
+            width: 100%;
+
+            max-width: 900px;
+
+            background: rgba(
+                255,
+                255,
+                255,
+                0.97
+            );
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr;
+
+            box-shadow:
+                0 25px 60px
+                rgba(0,0,0,0.22);
+        }
+
+
+        /* ================= LEFT ================= */
+
+        .login-info {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #1677ff,
+                    #0753b8
+                );
+
+            color: white;
+
+            padding: 50px 40px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+
+        .login-info h1 {
+
+            font-size: 40px;
+
+            line-height: 1.15;
+
+            margin-bottom: 18px;
+        }
+
+
+        .login-info h1 span {
+
+            color: #b9ddff;
+        }
+
+
+        .login-info p {
+
+            color: #e5f1ff;
+
+            line-height: 1.7;
+
+            margin-bottom: 30px;
+        }
+
+
+        .travel-highlight {
+
+            background:
+                rgba(255,255,255,0.13);
+
+            border-radius: 13px;
+
+            padding: 17px;
+
+            margin-bottom: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .highlight-icon {
+
+            font-size: 23px;
+        }
+
+
+        .travel-highlight span {
+
+            font-size: 14px;
+
+            color: white;
+        }
+
+
+        /* ================= FORM ================= */
+
+        .login-form-area {
+
+            padding: 50px 45px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+
+        .login-form-area h2 {
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .login-subtitle {
+
+            color: #667085;
+
+            margin-bottom: 30px;
+
+            font-size: 15px;
+        }
+
+
+        .form-group {
+
+            margin-bottom: 20px;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: #344054;
+
+            margin-bottom: 7px;
+        }
+
+
+        .form-group input {
+
+            width: 100%;
+
+            height: 50px;
+
+            border: 1px solid #d0d5dd;
+
+            border-radius: 9px;
+
+            padding: 0 14px;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+
+        .form-group input:focus {
+
+            border-color: #1677ff;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(22,119,255,0.10);
+        }
+
+
+        .login-btn {
+
+            width: 100%;
+
+            height: 50px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #1677ff;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .login-btn:hover {
+
+            background: #0b5ed7;
+
+            transform: translateY(-1px);
+        }
+
+
+        .signup-text {
+
+            text-align: center;
+
+            margin-top: 23px;
+
+            color: #667085;
+
+            font-size: 14px;
+        }
+
+
+        .signup-text a {
+
+            color: #1677ff;
+
+            font-weight: 700;
+
+            text-decoration: none;
+        }
+
+
+        .signup-text a:hover {
+
+            text-decoration: underline;
+        }
+
+
+        .home-link {
+
+            display: block;
+
+            text-align: center;
+
+            margin-top: 15px;
+
+            color: #667085;
+
+            text-decoration: none;
+
+            font-size: 14px;
+        }
+
+
+        .home-link:hover {
+
+            color: #1677ff;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 800px) {
+
+            .navbar {
+
+                height: auto;
+
+                padding: 18px 25px;
+
+                flex-wrap: wrap;
+
+                gap: 15px;
+            }
+
+
+            .nav-links {
+
+                display: none;
+            }
+
+
+            .login-page {
+
+                padding: 30px 15px;
+            }
+
+
+            .login-card {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .login-info {
+
+                padding: 35px 30px;
+            }
+
+
+            .login-info h1 {
+
+                font-size: 32px;
+            }
+
+
+            .login-form-area {
+
+                padding: 35px 30px;
+            }
+        }
+
+
+        @media(max-width: 450px) {
+
+            .navbar {
+
+                padding: 18px;
+            }
+
+
+            .login-info {
+
+                padding: 30px 22px;
+            }
+
+
+            .login-form-area {
+
+                padding: 30px 22px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        Travel<span>Go</span>
+
+    </div>
+
+
+    <nav class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="results.html">
+            Flights
+        </a>
+
+        <a href="hotels.html">
+            Hotels
+        </a>
+
+        <a href="trains.html">
+            Trains
+        </a>
+
+        <a href="history.html">
+            My Bookings
+        </a>
+
+    </nav>
+
+
+    <button
+        class="signup-nav-btn"
+        onclick="window.location.href='signup.html'"
+    >
+        Sign Up
+    </button>
+
+</header>
+
+
+<!-- ================= LOGIN ================= -->
+
+<main class="login-page">
+
+
+    <div class="login-card">
+
+
+        <!-- LEFT -->
+
+        <section class="login-info">
+
+            <h1>
+
+                Welcome Back to
+                <span>TravelGo</span>
+
+            </h1>
+
+
+            <p>
+
+                Login to continue your journey
+                and manage all your travel
+                bookings in one place.
+
+            </p>
+
+
+            <div class="travel-highlight">
+
+                <div class="highlight-icon">
+                    ✈️
+                </div>
+
+                <span>
+                    Book and manage flights
+                </span>
+
+            </div>
+
+
+            <div class="travel-highlight">
+
+                <div class="highlight-icon">
+                    🏨
+                </div>
+
+                <span>
+                    Manage your hotel stays
+                </span>
+
+            </div>
+
+
+            <div class="travel-highlight">
+
+                <div class="highlight-icon">
+                    🚆
+                </div>
+
+                <span>
+                    Manage your train journeys
+                </span>
+
+            </div>
+
+
+            <div class="travel-highlight">
+
+                <div class="highlight-icon">
+                    🎫
+                </div>
+
+                <span>
+                    View your booking information
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT -->
+
+        <section class="login-form-area">
+
+            <h2>
+                Login
+            </h2>
+
+
+            <p class="login-subtitle">
+
+                Enter your account details to continue.
+
+            </p>
+
+
+            <form id="loginForm">
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                >
+                    Login
+                </button>
+
+
+            </form>
+
+
+            <p class="signup-text">
+
+                Don't have an account?
+
+                <a href="signup.html">
+                    Create Account
+                </a>
+
+            </p>
+
+
+            <a
+                href="index.html"
+                class="home-link"
+            >
+                ← Back to Home
+            </a>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<script>
+
+    document.getElementById(
+        "loginForm"
+    ).addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const email =
+                document.getElementById(
+                    "email"
+                ).value.trim().toLowerCase();
+
+
+            const password =
+                document.getElementById(
+                    "password"
+                ).value;
+
+
+            /* ================= ADMIN LOGIN ================= */
+
+            if (
+                email === "admin" &&
+                password === "admin123"
+            ) {
+
+                localStorage.setItem(
+                    "adminLoggedIn",
+                    "true"
+                );
+
+
+                window.location.href =
+                    "admin.html";
+
+                return;
+            }
+
+
+            /* ================= NORMAL USER ================= */
+
+            const savedEmail =
+                (localStorage.getItem("userEmail") || "").trim().toLowerCase();
+
+
+            const savedPassword =
+                localStorage.getItem(
+                    "userPassword"
+                );
+
+
+            const savedName =
+                localStorage.getItem(
+                    "userName"
+                );
+
+
+            if (
+                email === savedEmail &&
+                password === savedPassword
+            ) {
+
+                localStorage.setItem(
+                    "loggedIn",
+                    "true"
+                );
+
+
+                alert(
+                    "Login successful!"
+                );
+
+
+                window.location.href =
+                    "history.html";
+
+            }
+
+            else {
+
+                alert(
+                    "Invalid email or password."
+                );
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Login</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="login-page">
+
+        <div class="login-card">
+
+            <div class="login-logo">
+                ✈️ TravelGo
+            </div>
+
+
+            <h1>Welcome Back!</h1>
+
+            <p>
+                Login to continue your journey
+            </p>
+
+
+            <form id="loginForm">
+
+
+                <!-- EMAIL -->
+
+                <label>
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required>
+
+
+                <!-- PASSWORD -->
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required>
+
+
+                <!-- OPTIONS -->
+
+                <div class="login-options">
+
+                    <label>
+
+                        <input type="checkbox">
+
+                        Remember me
+
+                    </label>
+
+
+                    <a href="#">
+                        Forgot Password?
+                    </a>
+
+                </div>
+
+
+                <!-- LOGIN -->
+
+                <button
+                    type="submit"
+                    class="login-submit">
+
+                    Login
+
+                </button>
+
+            </form>
+
+
+            <!-- SIGN UP -->
+
+            <p class="register-text">
+
+                Don't have an account?
+
+                <a href="signup.html">
+                    Sign Up
+                </a>
+
+            </p>
+
+
+            <!-- HOME -->
+
+            <a
+                href="index.html"
+                class="back-home">
+
+                ← Back to Home
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        document.getElementById(
+            "loginForm"
+        ).addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                // GET SAVED ACCOUNT
+
+                const savedEmail =
+                    localStorage.getItem(
+                        "userEmail"
+                    );
+
+
+                const savedPassword =
+                    localStorage.getItem(
+                        "userPassword"
+                    );
+
+
+                const userName =
+                    localStorage.getItem(
+                        "userName"
+                    );
+
+
+                // ENTERED DETAILS
+
+                const email =
+                    document.getElementById(
+                        "email"
+                    ).value;
+
+
+                const password =
+                    document.getElementById(
+                        "password"
+                    ).value;
+
+
+                // CHECK ACCOUNT
+
+                if (
+                    email === savedEmail &&
+                    password === savedPassword
+                ) {
+
+                    alert(
+                        "Login successful! 🎉\n\n" +
+                        "Welcome back, " +
+                        userName +
+                        "!"
+                    );
+
+
+                    // GO TO HOME
+
+                    window.location.href =
+                        "index.html";
+
+                }
+
+                else {
+
+                    alert(
+                        "Invalid email or password.\n\n" +
+                        "Please create an account first or check your login details."
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

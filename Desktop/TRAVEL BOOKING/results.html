@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Flight Results</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="results-page">
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            TravelGo
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="results.html">Flights</a>
+            <a href="hotels.html">Hotels</a>
+            <a href="trains.html">Trains</a>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="login-btn" onclick="window.location.href='login.html'">
+                Login
+            </button>
+
+            <button class="signup-btn" onclick="window.location.href='signup.html'">
+                Sign Up
+            </button>
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         RESULTS SECTION
+    ========================== -->
+
+    <section class="results-section">
+
+        <div class="results-container">
+
+            <h1>Available Flights</h1>
+
+            <p class="results-subtitle">
+                Choose the best flight for your journey
+            </p>
+
+
+            <!-- =========================
+                 SEARCH SUMMARY
+            ========================== -->
+
+            <div class="search-summary">
+
+                <div>
+                    <strong>From</strong>
+                    <span id="resultFrom">Hyderabad</span>
+                </div>
+
+                <div>
+                    <strong>To</strong>
+                    <span id="resultTo">Dubai</span>
+                </div>
+
+                <div>
+                    <strong>Departure</strong>
+                    <span id="resultDate">-</span>
+                </div>
+
+                <div>
+                    <strong>Travellers</strong>
+                    <span id="resultTravellers">1</span>
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 FLIGHT 1
+            ========================== -->
+
+            <div class="result-card">
+
+                <div class="result-left">
+
+                    <div class="airline-icon">
+                        ✈️
+                    </div>
+
+                    <div>
+                        <h2>IndiGo Airlines</h2>
+
+                        <p>
+                            Non-stop
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="result-middle">
+
+                    <div class="flight-line">
+
+                        <div>
+                            <strong>10:30 AM</strong>
+                            <span>HYD</span>
+                        </div>
+
+                        <div class="route-arrow">
+                            ✈
+                        </div>
+
+                        <div>
+                            <strong>12:40 PM</strong>
+                            <span>DXB</span>
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Hyderabad → Dubai • 4h 10m
+                    </p>
+
+                </div>
+
+
+                <div class="result-right">
+
+                    <div class="price">
+                        ₹18,999
+                    </div>
+
+                    <button
+                        class="search-btn"
+                        onclick="bookFlight('IndiGo Airlines', '₹18,999')">
+                        Book Now
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 FLIGHT 2
+            ========================== -->
+
+            <div class="result-card">
+
+                <div class="result-left">
+
+                    <div class="airline-icon">
+                        ✈️
+                    </div>
+
+                    <div>
+                        <h2>Air India</h2>
+
+                        <p>
+                            Non-stop
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="result-middle">
+
+                    <div class="flight-line">
+
+                        <div>
+                            <strong>02:15 PM</strong>
+                            <span>HYD</span>
+                        </div>
+
+                        <div class="route-arrow">
+                            ✈
+                        </div>
+
+                        <div>
+                            <strong>04:35 PM</strong>
+                            <span>DXB</span>
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Hyderabad → Dubai • 4h 20m
+                    </p>
+
+                </div>
+
+
+                <div class="result-right">
+
+                    <div class="price">
+                        ₹21,499
+                    </div>
+
+                    <button
+                        class="search-btn"
+                        onclick="bookFlight('Air India', '₹21,499')">
+                        Book Now
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 FLIGHT 3
+            ========================== -->
+
+            <div class="result-card">
+
+                <div class="result-left">
+
+                    <div class="airline-icon">
+                        ✈️
+                    </div>
+
+                    <div>
+                        <h2>Emirates</h2>
+
+                        <p>
+                            Non-stop
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="result-middle">
+
+                    <div class="flight-line">
+
+                        <div>
+                            <strong>07:45 PM</strong>
+                            <span>HYD</span>
+                        </div>
+
+                        <div class="route-arrow">
+                            ✈
+                        </div>
+
+                        <div>
+                            <strong>09:50 PM</strong>
+                            <span>DXB</span>
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Hyderabad → Dubai • 4h 05m
+                    </p>
+
+                </div>
+
+
+                <div class="result-right">
+
+                    <div class="price">
+                        ₹24,999
+                    </div>
+
+                    <button
+                        class="search-btn"
+                        onclick="bookFlight('Emirates', '₹24,999')">
+                        Book Now
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- BACK BUTTON -->
+
+            <div class="back-results">
+
+                <button
+                    class="search-btn"
+                    onclick="window.location.href='index.html'">
+                    ← Back to Home
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        // =====================================
+        // DISPLAY SEARCH INFORMATION
+        // =====================================
+
+        const from =
+            localStorage.getItem("travelFrom");
+
+        const to =
+            localStorage.getItem("travelTo");
+
+        const departure =
+            localStorage.getItem("travelDeparture");
+
+        const travellers =
+            localStorage.getItem("travelTravellers");
+
+
+        if (from) {
+            document.getElementById("resultFrom").textContent = from;
+        }
+
+        if (to) {
+            document.getElementById("resultTo").textContent = to;
+        }
+
+        if (departure) {
+            document.getElementById("resultDate").textContent = departure;
+        }
+
+        if (travellers) {
+            document.getElementById("resultTravellers").textContent = travellers;
+        }
+
+
+        // =====================================
+        // BOOK FLIGHT
+        // =====================================
+
+        function bookFlight(airline, price) {
+
+            // IMPORTANT:
+            // Tell the next pages that this is a FLIGHT booking.
+
+            localStorage.setItem("bookingType", "flight");
+
+            // Save selected flight
+
+            localStorage.setItem(
+                "selectedAirline",
+                airline
+            );
+
+            localStorage.setItem(
+                "selectedPrice",
+                price
+            );
+
+
+            // =================================
+            // CLEAR OLD HOTEL DATA
+            // =================================
+
+            localStorage.removeItem("selectedHotel");
+            localStorage.removeItem("selectedRoomType");
+            localStorage.removeItem("selectedHotelPrice");
+
+            localStorage.removeItem("hotelDestination");
+            localStorage.removeItem("hotelCheckIn");
+            localStorage.removeItem("hotelCheckOut");
+            localStorage.removeItem("hotelGuests");
+
+
+            // =================================
+            // CLEAR OLD TRAIN DATA
+            // =================================
+
+            localStorage.removeItem("selectedTrain");
+            localStorage.removeItem("selectedTrainClass");
+            localStorage.removeItem("selectedTrainPrice");
+            localStorage.removeItem("trainAvailability");
+
+            localStorage.removeItem("trainFrom");
+            localStorage.removeItem("trainTo");
+            localStorage.removeItem("trainDate");
+            localStorage.removeItem("trainPassengers");
+
+
+            // Clear previous booking ID
+
+            localStorage.removeItem("bookingId");
+            localStorage.removeItem("bookingStatus");
+
+
+            alert(
+                "Flight Selected! ✈️\n\n" +
+                "Airline: " + airline +
+                "\nPrice: " + price +
+                "\n\nProceeding to passenger details..."
+            );
+
+
+            // Go to passenger details
+
+            window.location.href = "booking.html";
+        }
+
+    </script>
+
+</body>
+</html>

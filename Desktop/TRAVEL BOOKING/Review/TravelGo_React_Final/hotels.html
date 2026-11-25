@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Hotel Booking</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+            background: #f4f8fc;
+
+            color: #172b4d;
+        }
+
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 75px;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 60px;
+
+            box-shadow:
+                0 2px 12px
+                rgba(0,0,0,0.08);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+
+        .logo {
+            font-size: 28px;
+
+            font-weight: 700;
+        }
+
+
+        .logo span {
+            color: #1677ff;
+        }
+
+
+        .nav-links {
+            display: flex;
+
+            gap: 30px;
+        }
+
+
+        .nav-links a {
+            text-decoration: none;
+
+            color: #344054;
+
+            font-size: 16px;
+
+            font-weight: 500;
+        }
+
+
+        .nav-links a:hover {
+            color: #1677ff;
+        }
+
+
+        .nav-buttons {
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        .login-btn,
+        .signup-btn {
+            padding: 10px 20px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            font-weight: 600;
+        }
+
+
+        .login-btn {
+            background: white;
+
+            border: 1px solid #1677ff;
+
+            color: #1677ff;
+        }
+
+
+        .signup-btn {
+            background: #1677ff;
+
+            border: 1px solid #1677ff;
+
+            color: white;
+        }
+
+
+        /* HERO */
+
+        .hotel-hero {
+
+            background:
+                linear-gradient(
+                    rgba(10,70,130,0.78),
+                    rgba(10,70,130,0.78)
+                ),
+                url("https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+
+            background-position: center;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 70px 20px 110px;
+        }
+
+
+        .hotel-hero h1 {
+            font-size: 44px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .hotel-hero p {
+            font-size: 18px;
+        }
+
+
+        /* SEARCH BOX */
+
+        .hotel-search {
+
+            max-width: 1050px;
+
+            margin: -55px auto 45px;
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 12px 35px
+                rgba(0,0,0,0.13);
+
+            position: relative;
+        }
+
+
+        .search-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1.3fr
+                1fr
+                1fr
+                1fr
+                auto;
+
+            gap: 15px;
+
+            align-items: end;
+        }
+
+
+        .field {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+        }
+
+
+        .field label {
+
+            color: #667085;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .field input,
+        .field select {
+
+            height: 45px;
+
+            border: 1px solid #d0d5dd;
+
+            border-radius: 8px;
+
+            padding: 0 12px;
+
+            font-size: 14px;
+
+            outline: none;
+        }
+
+
+        .field input:focus,
+        .field select:focus {
+
+            border-color: #1677ff;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(22,119,255,0.1);
+        }
+
+
+        .search-btn {
+
+            height: 45px;
+
+            padding: 0 22px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #1677ff;
+
+            color: white;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        .search-btn:hover {
+            background: #0b5ed7;
+        }
+
+
+        /* CONTENT */
+
+        .hotel-section {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 0 20px 70px;
+        }
+
+
+        .section-heading {
+
+            margin-bottom: 25px;
+        }
+
+
+        .section-heading h2 {
+
+            font-size: 30px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .section-heading p {
+
+            color: #667085;
+        }
+
+
+        /* HOTEL GRID */
+
+        .hotel-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        /* HOTEL CARD */
+
+        .hotel-card {
+
+            background: white;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,0.07);
+
+            transition: 0.3s;
+        }
+
+
+        .hotel-card:hover {
+
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 15px 35px
+                rgba(0,0,0,0.12);
+        }
+
+
+        .hotel-image {
+
+            height: 210px;
+
+            background-size: cover;
+
+            background-position: center;
+        }
+
+
+        .hotel1 {
+            background-image:
+                url("https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=900&q=80");
+        }
+
+
+        .hotel2 {
+            background-image:
+                url("https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=900&q=80");
+        }
+
+
+        .hotel3 {
+            background-image:
+                url("https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=900&q=80");
+        }
+
+
+        .hotel-content {
+
+            padding: 22px;
+        }
+
+
+        .hotel-content h3 {
+
+            font-size: 23px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .stars {
+
+            color: #f5b400;
+
+            font-size: 17px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .location {
+
+            color: #667085;
+
+            margin-bottom: 15px;
+
+            font-size: 14px;
+        }
+
+
+        .room-label {
+
+            display: block;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            color: #667085;
+
+            margin-bottom: 7px;
+        }
+
+
+        .room-select {
+
+            width: 100%;
+
+            height: 42px;
+
+            border: 1px solid #d0d5dd;
+
+            border-radius: 8px;
+
+            padding: 0 10px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .amenities {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .amenity {
+
+            background: #f2f6fb;
+
+            color: #475467;
+
+            padding: 6px 9px;
+
+            border-radius: 6px;
+
+            font-size: 12px;
+        }
+
+
+        .hotel-bottom {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .hotel-price {
+
+            color: #1677ff;
+
+            font-size: 20px;
+
+            font-weight: 700;
+        }
+
+
+        .hotel-price small {
+
+            display: block;
+
+            color: #667085;
+
+            font-size: 11px;
+
+            font-weight: normal;
+        }
+
+
+        .book-btn {
+
+            border: none;
+
+            background: #1677ff;
+
+            color: white;
+
+            padding: 11px 18px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-weight: 600;
+        }
+
+
+        .book-btn:hover {
+            background: #0b5ed7;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+
+            background: #172b4d;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+        }
+
+
+        /* RESPONSIVE */
+
+        @media(max-width: 950px) {
+
+            .search-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .hotel-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media(max-width: 650px) {
+
+            .navbar {
+
+                height: auto;
+
+                padding: 18px 20px;
+
+                flex-wrap: wrap;
+
+                gap: 15px;
+            }
+
+
+            .nav-links {
+
+                order: 3;
+
+                width: 100%;
+
+                justify-content: center;
+
+                gap: 15px;
+            }
+
+
+            .nav-buttons {
+                display: none;
+            }
+
+
+            .hotel-hero h1 {
+                font-size: 34px;
+            }
+
+
+            .hotel-search {
+                margin: -40px 15px 35px;
+            }
+
+
+            .search-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .hotel-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+    <div class="logo">
+        Travel<span>Go</span>
+    </div>
+
+
+    <nav class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="results.html">
+            Flights
+        </a>
+
+        <a href="hotels.html">
+            Hotels
+        </a>
+
+        <a href="trains.html">
+            Trains
+        </a>
+
+    </nav>
+
+
+    <div class="nav-buttons">
+
+        <button
+            class="login-btn"
+            onclick="window.location.href='login.html'"
+        >
+            Login
+        </button>
+
+        <button
+            class="signup-btn"
+            onclick="window.location.href='signup.html'"
+        >
+            Sign Up
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hotel-hero">
+
+    <h1>
+        Find Your Perfect Hotel
+    </h1>
+
+    <p>
+        Comfortable stays for every journey
+    </p>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<section class="hotel-search">
+
+    <div class="search-grid">
+
+
+        <div class="field">
+
+            <label>
+                Destination
+            </label>
+
+            <input
+                type="text"
+                id="hotelDestination"
+                value="Hyderabad"
+                placeholder="Enter city"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Check-in
+            </label>
+
+            <input
+                type="date"
+                id="checkIn"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Check-out
+            </label>
+
+            <input
+                type="date"
+                id="checkOut"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Guests
+            </label>
+
+            <select id="hotelGuests">
+
+                <option value="1">
+                    1 Guest
+                </option>
+
+                <option value="2" selected>
+                    2 Guests
+                </option>
+
+                <option value="3">
+                    3 Guests
+                </option>
+
+                <option value="4">
+                    4 Guests
+                </option>
+
+                <option value="5">
+                    5 Guests
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            class="search-btn"
+            onclick="searchHotels()"
+        >
+            Search Hotels
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- HOTELS -->
+
+<section class="hotel-section">
+
+
+    <div class="section-heading">
+
+        <h2>
+            Available Hotels
+        </h2>
+
+        <p>
+            Choose a comfortable stay for your journey
+        </p>
+
+    </div>
+
+
+    <div class="hotel-grid">
+
+
+        <!-- HOTEL 1 -->
+
+        <div class="hotel-card">
+
+            <div class="hotel-image hotel1"></div>
+
+
+            <div class="hotel-content">
+
+                <h3>
+                    Grand Palace Hotel
+                </h3>
+
+                <div class="stars">
+                    ⭐⭐⭐⭐⭐
+                </div>
+
+                <div class="location">
+                    📍 Hyderabad
+                </div>
+
+
+                <label class="room-label">
+                    Select Room Type
+                </label>
+
+
+                <select
+                    class="room-select"
+                    id="hotel1Room"
+                    onchange="updateHotelPrice(
+                        'hotel1Room',
+                        'hotel1Price'
+                    )"
+                >
+
+                    <option value="Deluxe Room|₹4,999">
+                        Deluxe Room - ₹4,999/night
+                    </option>
+
+                    <option value="Executive Room|₹6,499">
+                        Executive Room - ₹6,499/night
+                    </option>
+
+                    <option value="Suite|₹8,999">
+                        Suite - ₹8,999/night
+                    </option>
+
+                </select>
+
+
+                <div class="amenities">
+
+                    <span class="amenity">
+                        🍳 Breakfast
+                    </span>
+
+                    <span class="amenity">
+                        📶 Free Wi-Fi
+                    </span>
+
+                    <span class="amenity">
+                        🏊 Pool
+                    </span>
+
+                </div>
+
+
+                <div class="hotel-bottom">
+
+                    <div
+                        class="hotel-price"
+                        id="hotel1Price"
+                    >
+                        ₹4,999
+
+                        <small>
+                            per night
+                        </small>
+
+                    </div>
+
+
+                    <button
+                        class="book-btn"
+                        onclick="bookHotel(
+                            'Grand Palace Hotel',
+                            'hotel1Room'
+                        )"
+                    >
+                        Book Now
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HOTEL 2 -->
+
+        <div class="hotel-card">
+
+            <div class="hotel-image hotel2"></div>
+
+
+            <div class="hotel-content">
+
+                <h3>
+                    Royal Residency
+                </h3>
+
+                <div class="stars">
+                    ⭐⭐⭐⭐
+                </div>
+
+                <div class="location">
+                    📍 Hyderabad
+                </div>
+
+
+                <label class="room-label">
+                    Select Room Type
+                </label>
+
+
+                <select
+                    class="room-select"
+                    id="hotel2Room"
+                    onchange="updateHotelPrice(
+                        'hotel2Room',
+                        'hotel2Price'
+                    )"
+                >
+
+                    <option value="Standard Room|₹3,499">
+                        Standard Room - ₹3,499/night
+                    </option>
+
+                    <option value="Deluxe Room|₹4,499">
+                        Deluxe Room - ₹4,499/night
+                    </option>
+
+                    <option value="Family Room|₹6,999">
+                        Family Room - ₹6,999/night
+                    </option>
+
+                </select>
+
+
+                <div class="amenities">
+
+                    <span class="amenity">
+                        🍳 Breakfast
+                    </span>
+
+                    <span class="amenity">
+                        📶 Free Wi-Fi
+                    </span>
+
+                    <span class="amenity">
+                        🅿️ Parking
+                    </span>
+
+                </div>
+
+
+                <div class="hotel-bottom">
+
+                    <div
+                        class="hotel-price"
+                        id="hotel2Price"
+                    >
+                        ₹3,499
+
+                        <small>
+                            per night
+                        </small>
+
+                    </div>
+
+
+                    <button
+                        class="book-btn"
+                        onclick="bookHotel(
+                            'Royal Residency',
+                            'hotel2Room'
+                        )"
+                    >
+                        Book Now
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HOTEL 3 -->
+
+        <div class="hotel-card">
+
+            <div class="hotel-image hotel3"></div>
+
+
+            <div class="hotel-content">
+
+                <h3>
+                    City View Inn
+                </h3>
+
+                <div class="stars">
+                    ⭐⭐⭐
+                </div>
+
+                <div class="location">
+                    📍 Hyderabad
+                </div>
+
+
+                <label class="room-label">
+                    Select Room Type
+                </label>
+
+
+                <select
+                    class="room-select"
+                    id="hotel3Room"
+                    onchange="updateHotelPrice(
+                        'hotel3Room',
+                        'hotel3Price'
+                    )"
+                >
+
+                    <option value="Standard Room|₹2,499">
+                        Standard Room - ₹2,499/night
+                    </option>
+
+                    <option value="Deluxe Room|₹3,299">
+                        Deluxe Room - ₹3,299/night
+                    </option>
+
+                    <option value="Family Room|₹4,999">
+                        Family Room - ₹4,999/night
+                    </option>
+
+                </select>
+
+
+                <div class="amenities">
+
+                    <span class="amenity">
+                        🍳 Breakfast
+                    </span>
+
+                    <span class="amenity">
+                        📶 Free Wi-Fi
+                    </span>
+
+                    <span class="amenity">
+                        🅿️ Parking
+                    </span>
+
+                </div>
+
+
+                <div class="hotel-bottom">
+
+                    <div
+                        class="hotel-price"
+                        id="hotel3Price"
+                    >
+                        ₹2,499
+
+                        <small>
+                            per night
+                        </small>
+
+                    </div>
+
+
+                    <button
+                        class="book-btn"
+                        onclick="bookHotel(
+                            'City View Inn',
+                            'hotel3Room'
+                        )"
+                    >
+                        Book Now
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    © 2026 TravelGo. All rights reserved.
+
+</footer>
+
+
+<script>
+
+    /* UPDATE ROOM PRICE */
+
+    function updateHotelPrice(
+        selectId,
+        priceId
+    ) {
+
+        const select =
+            document.getElementById(selectId);
+
+        const price =
+            document.getElementById(priceId);
+
+        const selected =
+            select.value.split("|");
+
+        price.innerHTML =
+            selected[1] +
+            "<small>per night</small>";
+    }
+
+
+    /* SEARCH HOTELS */
+
+    function searchHotels() {
+
+        const destination =
+            document.getElementById(
+                "hotelDestination"
+            ).value.trim();
+
+        const checkIn =
+            document.getElementById(
+                "checkIn"
+            ).value;
+
+        const checkOut =
+            document.getElementById(
+                "checkOut"
+            ).value;
+
+        const guests =
+            document.getElementById(
+                "hotelGuests"
+            ).value;
+
+
+        if (destination === "") {
+
+            alert(
+                "Please enter a destination."
+            );
+
+            return;
+        }
+
+
+        if (checkIn === "" || checkOut === "") {
+
+            alert(
+                "Please select check-in and check-out dates."
+            );
+
+            return;
+        }
+
+
+        if (checkOut <= checkIn) {
+
+            alert(
+                "Check-out date must be after check-in date."
+            );
+
+            return;
+        }
+
+
+        localStorage.setItem(
+            "hotelDestination",
+            destination
+        );
+
+        localStorage.setItem(
+            "hotelCheckIn",
+            checkIn
+        );
+
+        localStorage.setItem(
+            "hotelCheckOut",
+            checkOut
+        );
+
+        localStorage.setItem(
+            "hotelGuests",
+            guests
+        );
+
+        alert(
+            "Hotels found for " + destination
+        );
+
+    }
+
+
+    /* BOOK HOTEL */
+
+    function bookHotel(
+        hotel,
+        roomId
+    ) {
+
+        const select =
+            document.getElementById(roomId);
+
+        const selected =
+            select.value.split("|");
+
+        const roomType =
+            selected[0];
+
+        const roomPrice =
+            selected[1];
+
+
+        const destination =
+            document.getElementById(
+                "hotelDestination"
+            ).value || "Hyderabad";
+
+
+        const checkIn =
+            document.getElementById(
+                "checkIn"
+            ).value || "-";
+
+
+        const checkOut =
+            document.getElementById(
+                "checkOut"
+            ).value || "-";
+
+
+        const guests =
+            document.getElementById(
+                "hotelGuests"
+            ).value || "2";
+
+
+        /* BOOKING TYPE */
+
+        localStorage.setItem(
+            "bookingType",
+            "hotel"
+        );
+
+
+        /* HOTEL DATA */
+
+        localStorage.setItem(
+            "selectedHotel",
+            hotel
+        );
+
+        localStorage.setItem(
+            "selectedRoomType",
+            roomType
+        );
+
+        localStorage.setItem(
+            "selectedHotelPrice",
+            roomPrice
+        );
+
+        localStorage.setItem(
+            "hotelDestination",
+            destination
+        );
+
+        localStorage.setItem(
+            "hotelCheckIn",
+            checkIn
+        );
+
+        localStorage.setItem(
+            "hotelCheckOut",
+            checkOut
+        );
+
+        localStorage.setItem(
+            "hotelGuests",
+            guests
+        );
+
+
+        /* CLEAR FLIGHT DATA */
+
+        localStorage.removeItem(
+            "selectedAirline"
+        );
+
+        localStorage.removeItem(
+            "selectedPrice"
+        );
+
+
+        /* CLEAR TRAIN DATA */
+
+        localStorage.removeItem(
+            "selectedTrain"
+        );
+
+        localStorage.removeItem(
+            "selectedTrainClass"
+        );
+
+        localStorage.removeItem(
+            "selectedTrainPrice"
+        );
+
+        localStorage.removeItem(
+            "trainAvailability"
+        );
+
+        localStorage.removeItem(
+            "trainFrom"
+        );
+
+        localStorage.removeItem(
+            "trainTo"
+        );
+
+        localStorage.removeItem(
+            "trainDate"
+        );
+
+        localStorage.removeItem(
+            "trainPassengers"
+        );
+
+
+        /* CLEAR OLD BOOKING */
+
+        localStorage.removeItem(
+            "bookingId"
+        );
+
+        localStorage.removeItem(
+            "bookingStatus"
+        );
+
+
+        window.location.href =
+            "payment.html";
+    }
+
+</script>
+
+</body>
+</html>

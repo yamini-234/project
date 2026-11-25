@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Booking Confirmation</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body class="confirmation-page">
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            TravelGo
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="results.html">
+                Flights
+            </a>
+
+            <a href="hotels.html">
+                Hotels
+            </a>
+
+            <a href="trains.html">
+                Trains
+            </a>
+
+        </div>
+
+
+        <div class="nav-buttons">
+
+            <button
+                class="login-btn"
+                onclick="window.location.href='login.html'">
+
+                Login
+
+            </button>
+
+
+            <button
+                class="signup-btn"
+                onclick="window.location.href='signup.html'">
+
+                Sign Up
+
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         CONFIRMATION
+    ========================== -->
+
+    <section class="confirmation-section">
+
+        <div class="confirmation-container">
+
+
+            <!-- SUCCESS -->
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+
+            <h1>
+                Booking Confirmed!
+            </h1>
+
+
+            <p class="confirmation-message">
+                Your booking has been successfully confirmed.
+            </p>
+
+
+            <!-- BOOKING ID -->
+
+            <div class="booking-id">
+
+                <strong>
+                    Booking ID
+                </strong>
+
+                <span id="bookingId">
+                    TG2026
+                </span>
+
+            </div>
+
+
+
+            <!-- =========================
+                 TICKET CARD
+            ========================== -->
+
+            <div class="ticket-card">
+
+
+                <!-- =================================
+                     FLIGHT TICKET
+                ================================== -->
+
+                <div
+                    id="flightTicket"
+                    class="ticket-content"
+                    style="display:none;">
+
+                    <div class="ticket-header">
+
+                        <h2>
+                            ✈️ Flight Ticket
+                        </h2>
+
+                        <span>
+                            CONFIRMED
+                        </span>
+
+                    </div>
+
+
+                    <div class="ticket-section">
+
+                        <p>
+                            <strong>Passenger</strong>
+                        </p>
+
+                        <p id="flightPassenger">
+                            Guest
+                        </p>
+
+                    </div>
+
+
+                    <div class="ticket-route">
+
+                        <div>
+
+                            <span>
+                                From
+                            </span>
+
+                            <strong id="flightFrom">
+                                Hyderabad
+                            </strong>
+
+                        </div>
+
+
+                        <div class="route-arrow">
+                            ✈️
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                To
+                            </span>
+
+                            <strong id="flightTo">
+                                Dubai
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="ticket-details">
+
+
+                        <div>
+
+                            <span>
+                                Airline
+                            </span>
+
+                            <strong id="flightAirline">
+                                IndiGo Airlines
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Departure
+                            </span>
+
+                            <strong id="flightDate">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Travellers
+                            </span>
+
+                            <strong id="flightTravellers">
+                                1
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="confirmation-price">
+
+                        <span>
+                            Total Price
+                        </span>
+
+                        <strong id="flightPrice">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     HOTEL TICKET
+                ================================== -->
+
+                <div
+                    id="hotelTicket"
+                    class="ticket-content"
+                    style="display:none;">
+
+                    <div class="ticket-header">
+
+                        <h2>
+                            🏨 Hotel Booking
+                        </h2>
+
+                        <span>
+                            CONFIRMED
+                        </span>
+
+                    </div>
+
+
+                    <div class="ticket-section">
+
+                        <p>
+                            <strong>Guest</strong>
+                        </p>
+
+                        <p id="hotelGuest">
+                            Guest
+                        </p>
+
+                    </div>
+
+
+                    <div class="ticket-details">
+
+
+                        <div>
+
+                            <span>
+                                Hotel
+                            </span>
+
+                            <strong id="hotelName">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Room Type
+                            </span>
+
+                            <strong id="hotelRoom">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Destination
+                            </span>
+
+                            <strong id="hotelDestinationConfirm">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Check-in
+                            </span>
+
+                            <strong id="hotelCheckInConfirm">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Check-out
+                            </span>
+
+                            <strong id="hotelCheckOutConfirm">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Guests
+                            </span>
+
+                            <strong id="hotelGuestsConfirm">
+                                1
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="confirmation-price">
+
+                        <span>
+                            Total Price
+                        </span>
+
+                        <strong id="hotelPrice">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     TRAIN TICKET
+                ================================== -->
+
+                <div
+                    id="trainTicket"
+                    class="ticket-content"
+                    style="display:none;">
+
+                    <div class="ticket-header">
+
+                        <h2>
+                            🚆 Train Ticket
+                        </h2>
+
+                        <span>
+                            CONFIRMED
+                        </span>
+
+                    </div>
+
+
+                    <div class="ticket-section">
+
+                        <p>
+                            <strong>Passenger</strong>
+                        </p>
+
+                        <p id="trainPassenger">
+                            Guest
+                        </p>
+
+                    </div>
+
+
+                    <div class="ticket-route">
+
+                        <div>
+
+                            <span>
+                                From
+                            </span>
+
+                            <strong id="trainFromConfirm">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="route-arrow">
+                            🚆
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                To
+                            </span>
+
+                            <strong id="trainToConfirm">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="ticket-details">
+
+
+                        <div>
+
+                            <span>
+                                Train
+                            </span>
+
+                            <strong id="trainNameConfirm">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Class
+                            </span>
+
+                            <strong id="trainClassConfirm">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Journey Date
+                            </span>
+
+                            <strong id="trainDateConfirm">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Passengers
+                            </span>
+
+                            <strong id="trainPassengersConfirm">
+                                1
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Availability
+                            </span>
+
+                            <strong id="trainAvailabilityConfirm">
+                                Available
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="confirmation-price">
+
+                        <span>
+                            Total Price
+                        </span>
+
+                        <strong id="trainPrice">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     UNKNOWN BOOKING
+                ================================== -->
+
+                <div
+                    id="unknownTicket"
+                    style="display:none;">
+
+                    <div class="ticket-header">
+
+                        <h2>
+                            🎫 Booking Details
+                        </h2>
+
+                    </div>
+
+                    <p>
+                        Booking information could not be found.
+                    </p>
+
+                    <p>
+                        Please start a new booking.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================
+                 BUTTONS
+            ========================== -->
+
+            <div class="confirmation-buttons">
+
+
+                <button
+                    class="download-ticket"
+                    onclick="downloadTicket()">
+
+                    Download Ticket
+
+                </button>
+
+
+                <button
+                    class="home-button"
+                    onclick="window.location.href='index.html'">
+
+                    Back to Home
+
+                </button>
+
+            </div>
+
+
+            <p class="thank-you">
+
+                Thank you for choosing
+                <strong>TravelGo</strong>! ❤️
+
+            </p>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+
+        // =====================================
+        // GET BOOKING TYPE
+        // =====================================
+
+        const bookingType =
+            localStorage.getItem("bookingType");
+
+
+        // =====================================
+        // GET BOOKING ID
+        // =====================================
+
+        let bookingId =
+            localStorage.getItem("bookingId");
+
+
+        // If booking ID doesn't exist,
+        // create one.
+
+        if (!bookingId) {
+
+            const randomNumber =
+                Math.floor(
+                    100000 +
+                    Math.random() * 900000
+                );
+
+            bookingId =
+                "TG2026" + randomNumber;
+
+            localStorage.setItem(
+                "bookingId",
+                bookingId
+            );
+
+        }
+
+
+        document.getElementById(
+            "bookingId"
+        ).textContent = bookingId;
+
+
+
+        // =====================================
+        // GET PASSENGER
+        // =====================================
+
+        const passengerName =
+            localStorage.getItem("passengerName")
+            || "Guest";
+
+
+
+        // =====================================
+        // FLIGHT BOOKING
+        // =====================================
+
+        if (bookingType === "flight") {
+
+
+            document.getElementById(
+                "flightTicket"
+            ).style.display = "block";
+
+
+            document.getElementById(
+                "flightPassenger"
+            ).textContent = passengerName;
+
+
+            document.getElementById(
+                "flightFrom"
+            ).textContent =
+                localStorage.getItem("travelFrom")
+                || "Hyderabad";
+
+
+            document.getElementById(
+                "flightTo"
+            ).textContent =
+                localStorage.getItem("travelTo")
+                || "Dubai";
+
+
+            document.getElementById(
+                "flightAirline"
+            ).textContent =
+                localStorage.getItem("selectedAirline")
+                || "IndiGo Airlines";
+
+
+            document.getElementById(
+                "flightDate"
+            ).textContent =
+                localStorage.getItem("travelDeparture")
+                || "-";
+
+
+            document.getElementById(
+                "flightTravellers"
+            ).textContent =
+                localStorage.getItem("travelTravellers")
+                || "1";
+
+
+            document.getElementById(
+                "flightPrice"
+            ).textContent =
+                localStorage.getItem("selectedPrice")
+                || "₹0";
+
+        }
+
+
+
+        // =====================================
+        // HOTEL BOOKING
+        // =====================================
+
+        else if (bookingType === "hotel") {
+
+
+            document.getElementById(
+                "hotelTicket"
+            ).style.display = "block";
+
+
+            document.getElementById(
+                "hotelGuest"
+            ).textContent = passengerName;
+
+
+            document.getElementById(
+                "hotelName"
+            ).textContent =
+                localStorage.getItem("selectedHotel")
+                || "-";
+
+
+            document.getElementById(
+                "hotelRoom"
+            ).textContent =
+                localStorage.getItem("selectedRoomType")
+                || "-";
+
+
+            document.getElementById(
+                "hotelDestinationConfirm"
+            ).textContent =
+                localStorage.getItem("hotelDestination")
+                || "-";
+
+
+            document.getElementById(
+                "hotelCheckInConfirm"
+            ).textContent =
+                localStorage.getItem("hotelCheckIn")
+                || "-";
+
+
+            document.getElementById(
+                "hotelCheckOutConfirm"
+            ).textContent =
+                localStorage.getItem("hotelCheckOut")
+                || "-";
+
+
+            document.getElementById(
+                "hotelGuestsConfirm"
+            ).textContent =
+                localStorage.getItem("hotelGuests")
+                || "1";
+
+
+            document.getElementById(
+                "hotelPrice"
+            ).textContent =
+                localStorage.getItem("selectedHotelPrice")
+                || "₹0";
+
+        }
+
+
+
+        // =====================================
+        // TRAIN BOOKING
+        // =====================================
+
+        else if (bookingType === "train") {
+
+
+            document.getElementById(
+                "trainTicket"
+            ).style.display = "block";
+
+
+            document.getElementById(
+                "trainPassenger"
+            ).textContent = passengerName;
+
+
+            document.getElementById(
+                "trainFromConfirm"
+            ).textContent =
+                localStorage.getItem("trainFrom")
+                || "-";
+
+
+            document.getElementById(
+                "trainToConfirm"
+            ).textContent =
+                localStorage.getItem("trainTo")
+                || "-";
+
+
+            document.getElementById(
+                "trainNameConfirm"
+            ).textContent =
+                localStorage.getItem("selectedTrain")
+                || "-";
+
+
+            document.getElementById(
+                "trainClassConfirm"
+            ).textContent =
+                localStorage.getItem("selectedTrainClass")
+                || "-";
+
+
+            document.getElementById(
+                "trainDateConfirm"
+            ).textContent =
+                localStorage.getItem("trainDate")
+                || "-";
+
+
+            document.getElementById(
+                "trainPassengersConfirm"
+            ).textContent =
+                localStorage.getItem("trainPassengers")
+                || "1";
+
+
+            document.getElementById(
+                "trainAvailabilityConfirm"
+            ).textContent =
+                localStorage.getItem("trainAvailability")
+                || "Available";
+
+
+            document.getElementById(
+                "trainPrice"
+            ).textContent =
+                localStorage.getItem("selectedTrainPrice")
+                || "₹0";
+
+        }
+
+
+
+        // =====================================
+        // UNKNOWN BOOKING TYPE
+        // =====================================
+
+        else {
+
+            document.getElementById(
+                "unknownTicket"
+            ).style.display = "block";
+
+        }
+
+
+
+        // =====================================
+        // DOWNLOAD TICKET
+        // =====================================
+
+        function downloadTicket() {
+
+
+            let ticketType;
+
+
+            if (bookingType === "flight") {
+
+                ticketType = "Flight";
+
+            }
+
+            else if (bookingType === "hotel") {
+
+                ticketType = "Hotel";
+
+            }
+
+            else if (bookingType === "train") {
+
+                ticketType = "Train";
+
+            }
+
+            else {
+
+                ticketType = "Travel";
+
+            }
+
+
+            alert(
+                ticketType +
+                " ticket is ready!\n\n" +
+                "Booking ID: " +
+                bookingId +
+                "\n\n" +
+                "Thank you for choosing TravelGo."
+            );
+
+        }
+
+    </script>
+
+
+</body>
+</html>

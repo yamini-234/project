@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Travel Booking</title>
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f4f8fc;
+
+            color: #172b4d;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+
+            height: 78px;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 5%;
+
+            box-shadow:
+                0 2px 12px
+                rgba(0, 0, 0, 0.08);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+        }
+
+
+        .logo {
+
+            font-size: 30px;
+
+            font-weight: 700;
+
+            color: #172b4d;
+
+            text-decoration: none;
+        }
+
+
+        .logo span {
+
+            color: #1677ff;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 35px;
+        }
+
+
+        .nav-links a {
+
+            text-decoration: none;
+
+            color: #344054;
+
+            font-size: 16px;
+
+            font-weight: 500;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-links a:hover {
+
+            color: #1677ff;
+        }
+
+
+        /* =====================================================
+           NAV BUTTONS
+        ===================================================== */
+
+        .nav-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .login-btn,
+        .signup-btn {
+
+            height: 45px;
+
+            padding: 0 22px;
+
+            border-radius: 9px;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .login-btn {
+
+            background: white;
+
+            color: #1677ff;
+
+            border: 1px solid #1677ff;
+        }
+
+
+        .login-btn:hover {
+
+            background: #eef5ff;
+        }
+
+
+        .signup-btn {
+
+            background: #1677ff;
+
+            color: white;
+
+            border: 1px solid #1677ff;
+        }
+
+
+        .signup-btn:hover {
+
+            background: #0b5ed7;
+        }
+
+
+        /* =====================================================
+           LOGIN DROPDOWN
+        ===================================================== */
+
+        .login-dropdown {
+
+            position: relative;
+        }
+
+
+        .login-menu {
+
+            display: none;
+
+            position: absolute;
+
+            top: 54px;
+
+            right: 0;
+
+            width: 190px;
+
+            background: white;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.15);
+
+            border: 1px solid #eaecf0;
+        }
+
+
+        .login-menu.show {
+
+            display: block;
+        }
+
+
+        .login-menu a {
+
+            display: block;
+
+            padding: 14px 17px;
+
+            text-decoration: none;
+
+            color: #344054;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+
+        .login-menu a:hover {
+
+            background: #eef5ff;
+
+            color: #1677ff;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+
+            min-height: 720px;
+
+            background:
+
+                linear-gradient(
+                    rgba(9, 44, 78, 0.65),
+                    rgba(9, 44, 78, 0.60)
+                ),
+
+                url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=85");
+
+            background-size: cover;
+
+            background-position: center;
+
+            color: white;
+
+            padding: 100px 5% 70px;
+
+            position: relative;
+        }
+
+
+        .hero-content {
+
+            max-width: 950px;
+
+            margin: 0 auto;
+
+            text-align: center;
+        }
+
+
+        .hero-content h1 {
+
+            font-size: 62px;
+
+            line-height: 1.1;
+
+            margin-bottom: 18px;
+
+            font-weight: 700;
+        }
+
+
+        .hero-content h1 span {
+
+            color: #62b0ff;
+        }
+
+
+        .hero-content p {
+
+            font-size: 21px;
+
+            line-height: 1.6;
+
+            max-width: 760px;
+
+            margin: 0 auto 55px;
+
+            color: #f4f8fc;
+        }
+
+
+        /* =====================================================
+           BOOKING BOX
+        ===================================================== */
+
+        .booking-box {
+
+            max-width: 1150px;
+
+            margin: 0 auto;
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 18px 45px
+                rgba(0, 0, 0, 0.22);
+
+            color: #172b4d;
+
+            text-align: left;
+        }
+
+
+        /* =====================================================
+           TABS
+        ===================================================== */
+
+        .booking-tabs {
+
+            display: flex;
+
+            gap: 12px;
+
+            margin-bottom: 28px;
+        }
+
+
+        .booking-tab {
+
+            border: none;
+
+            padding: 14px 28px;
+
+            border-radius: 10px;
+
+            background: #eef3f9;
+
+            color: #344054;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .booking-tab:hover {
+
+            background: #e2ecfa;
+        }
+
+
+        .booking-tab.active {
+
+            background: #1677ff;
+
+            color: white;
+        }
+
+
+        /* =====================================================
+           SEARCH FORM
+        ===================================================== */
+
+        .search-form {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr
+                1fr
+                1fr
+                auto;
+
+            gap: 15px;
+
+            align-items: end;
+        }
+
+
+        .input-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+
+        .input-group label {
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            color: #667085;
+        }
+
+
+        .input-group input,
+        .input-group select {
+
+            height: 54px;
+
+            border: 1px solid #d0d5dd;
+
+            border-radius: 10px;
+
+            padding: 0 15px;
+
+            font-size: 14px;
+
+            color: #172b4d;
+
+            outline: none;
+
+            background: white;
+        }
+
+
+        .input-group input:focus,
+        .input-group select:focus {
+
+            border-color: #1677ff;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(22,119,255,0.10);
+        }
+
+
+        .search-btn {
+
+            height: 54px;
+
+            padding: 0 28px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #1677ff;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            white-space: nowrap;
+
+            transition: 0.3s;
+        }
+
+
+        .search-btn:hover {
+
+            background: #0b5ed7;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =====================================================
+           SECTIONS
+        ===================================================== */
+
+        .section {
+
+            padding: 80px 5%;
+        }
+
+
+        .section-title {
+
+            text-align: center;
+
+            margin-bottom: 45px;
+        }
+
+
+        .section-title h2 {
+
+            font-size: 38px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .section-title p {
+
+            color: #667085;
+
+            font-size: 17px;
+        }
+
+
+        /* =====================================================
+           DESTINATIONS
+        ===================================================== */
+
+        .destination-grid {
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 24px;
+        }
+
+
+        .destination-card {
+
+            min-height: 280px;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            background-size: cover;
+
+            background-position: center;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.10);
+
+            transition: 0.3s;
+        }
+
+
+        .destination-card:hover {
+
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 15px 35px
+                rgba(0, 0, 0, 0.18);
+        }
+
+
+        .destination-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    transparent 20%,
+                    rgba(0,0,0,0.75)
+                );
+        }
+
+
+        .destination-content {
+
+            position: absolute;
+
+            left: 22px;
+
+            right: 22px;
+
+            bottom: 22px;
+
+            color: white;
+
+            z-index: 2;
+        }
+
+
+        .destination-content h3 {
+
+            font-size: 25px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .destination-content p {
+
+            font-size: 14px;
+
+            color: #f0f0f0;
+
+            margin-bottom: 10px;
+        }
+
+
+        .destination-price {
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            color: #8ecbff;
+        }
+
+
+        .dubai {
+
+            background-image:
+                url("https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80");
+        }
+
+
+        .bali {
+
+            background-image:
+                url("https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80");
+        }
+
+
+        .tokyo {
+
+            background-image:
+                url("https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80");
+        }
+
+
+        .paris {
+
+            background-image:
+                url("https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80");
+        }
+
+
+        /* =====================================================
+           SERVICES
+        ===================================================== */
+
+        .services-section {
+
+            background: #eef5ff;
+        }
+
+
+        .services-grid {
+
+            max-width: 1050px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        .service-card {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 35px 25px;
+
+            text-align: center;
+
+            box-shadow:
+                0 7px 25px
+                rgba(0,0,0,0.07);
+
+            transition: 0.3s;
+        }
+
+
+        .service-card:hover {
+
+            transform: translateY(-5px);
+        }
+
+
+        .service-icon {
+
+            width: 65px;
+
+            height: 65px;
+
+            margin: 0 auto 18px;
+
+            border-radius: 16px;
+
+            background: #eaf3ff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 30px;
+        }
+
+
+        .service-card h3 {
+
+            font-size: 22px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .service-card p {
+
+            color: #667085;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .service-btn {
+
+            border: none;
+
+            background: #1677ff;
+
+            color: white;
+
+            padding: 11px 22px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-weight: 600;
+        }
+
+
+        .service-btn:hover {
+
+            background: #0b5ed7;
+        }
+
+
+        /* =====================================================
+           WHY TRAVELGO
+        ===================================================== */
+
+        .why-section {
+
+            background: white;
+        }
+
+
+        .why-grid {
+
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        .why-card {
+
+            text-align: center;
+
+            padding: 25px;
+        }
+
+
+        .why-icon {
+
+            font-size: 38px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .why-card h3 {
+
+            margin-bottom: 10px;
+
+            font-size: 20px;
+        }
+
+
+        .why-card p {
+
+            color: #667085;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+
+            background: #172b4d;
+
+            color: white;
+
+            padding: 40px 5% 25px;
+        }
+
+
+        .footer-content {
+
+            max-width: 1150px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                2fr
+                1fr
+                1fr;
+
+            gap: 40px;
+
+            padding-bottom: 30px;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.15);
+        }
+
+
+        .footer-brand h3 {
+
+            font-size: 25px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .footer-brand h3 span {
+
+            color: #62b0ff;
+        }
+
+
+        .footer-brand p {
+
+            color: #cbd5e1;
+
+            line-height: 1.6;
+
+            max-width: 400px;
+
+            font-size: 14px;
+        }
+
+
+        .footer-column h4 {
+
+            margin-bottom: 15px;
+
+            font-size: 16px;
+        }
+
+
+        .footer-column a {
+
+            display: block;
+
+            color: #cbd5e1;
+
+            text-decoration: none;
+
+            margin-bottom: 10px;
+
+            font-size: 14px;
+        }
+
+
+        .footer-column a:hover {
+
+            color: white;
+        }
+
+
+        .footer-bottom {
+
+            max-width: 1150px;
+
+            margin: 20px auto 0;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #98a2b3;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 1000px) {
+
+            .search-form {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .search-btn {
+
+                width: 100%;
+            }
+
+
+            .destination-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .services-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media(max-width: 750px) {
+
+            .navbar {
+
+                height: auto;
+
+                padding: 18px 25px;
+
+                flex-wrap: wrap;
+
+                gap: 15px;
+            }
+
+
+            .nav-links {
+
+                display: none;
+            }
+
+
+            .nav-actions {
+
+                margin-left: auto;
+            }
+
+
+            .hero {
+
+                padding:
+                    70px 20px
+                    50px;
+            }
+
+
+            .hero-content h1 {
+
+                font-size: 43px;
+            }
+
+
+            .hero-content p {
+
+                font-size: 17px;
+
+                margin-bottom: 35px;
+            }
+
+
+            .booking-box {
+
+                padding: 20px;
+            }
+
+
+            .search-form {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .booking-tabs {
+
+                overflow-x: auto;
+            }
+
+
+            .booking-tab {
+
+                white-space: nowrap;
+            }
+
+
+            .destination-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .services-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .why-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .footer-content {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .footer-bottom {
+
+                flex-direction: column;
+
+                gap: 10px;
+
+                text-align: center;
+            }
+        }
+
+
+        @media(max-width: 480px) {
+
+            .logo {
+
+                font-size: 25px;
+            }
+
+
+            .signup-btn {
+
+                padding: 0 15px;
+            }
+
+
+            .login-btn {
+
+                padding: 0 15px;
+            }
+
+
+            .hero-content h1 {
+
+                font-size: 35px;
+            }
+
+
+            .section {
+
+                padding: 60px 20px;
+            }
+
+
+            .section-title h2 {
+
+                font-size: 30px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+
+    <a
+        href="index.html"
+        class="logo"
+    >
+        Travel<span>Go</span>
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="results.html">
+            Flights
+        </a>
+
+        <a href="hotels.html">
+            Hotels
+        </a>
+
+        <a href="trains.html">
+            Trains
+        </a>
+
+    </nav>
+
+
+    <div class="nav-actions">
+
+
+        <!-- LOGIN DROPDOWN -->
+
+        <div class="login-dropdown">
+
+            <button
+                class="login-btn"
+                onclick="toggleLoginMenu()"
+            >
+                Login ▾
+            </button>
+
+
+            <div
+                class="login-menu"
+                id="loginMenu"
+            >
+
+                <a href="login.html">
+                    👤 User Login
+                </a>
+
+
+                <a href="admin-login.html">
+                    🔐 Admin Login
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- SIGN UP -->
+
+        <button
+            class="signup-btn"
+            onclick="window.location.href='signup.html'"
+        >
+            Sign Up
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+
+    <div class="hero-content">
+
+
+        <h1>
+
+            Explore the World
+
+            <br>
+
+            <span>
+                with TravelGo
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            Book flights, hotels and trains easily
+            and make your journey unforgettable.
+
+        </p>
+
+
+    </div>
+
+
+    <!-- =================================================
+         BOOKING BOX
+    ================================================= -->
+
+    <div class="booking-box">
+
+
+        <!-- TABS -->
+
+        <div class="booking-tabs">
+
+
+            <button
+                class="booking-tab active"
+                id="flightTab"
+                onclick="showFlightSearch()"
+            >
+                ✈️ Flights
+            </button>
+
+
+            <button
+                class="booking-tab"
+                id="hotelTab"
+                onclick="goToHotels()"
+            >
+                🏨 Hotels
+            </button>
+
+
+            <button
+                class="booking-tab"
+                id="trainTab"
+                onclick="goToTrains()"
+            >
+                🚆 Trains
+            </button>
+
+        </div>
+
+
+        <!-- FLIGHT SEARCH -->
+
+        <div
+            class="search-form"
+            id="flightSearch"
+        >
+
+
+            <div class="input-group">
+
+                <label>
+                    From
+                </label>
+
+                <input
+                    type="text"
+                    id="from"
+                    placeholder="Departure city"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    To
+                </label>
+
+                <input
+                    type="text"
+                    id="to"
+                    placeholder="Destination city"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Departure
+                </label>
+
+                <input
+                    type="date"
+                    id="departure"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Travellers
+                </label>
+
+                <select id="travellers">
+
+                    <option value="1">
+                        1 Traveller
+                    </option>
+
+                    <option value="2">
+                        2 Travellers
+                    </option>
+
+                    <option value="3">
+                        3 Travellers
+                    </option>
+
+                    <option value="4">
+                        4 Travellers
+                    </option>
+
+                    <option value="5">
+                        5 Travellers
+                    </option>
+
+                    <option value="6">
+                        6 Travellers
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                class="search-btn"
+                onclick="searchTravel()"
+            >
+                Search Flights
+            </button>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     POPULAR DESTINATIONS
+===================================================== -->
+
+<section class="section">
+
+
+    <div class="section-title">
+
+        <h2>
+            Popular Destinations
+        </h2>
+
+        <p>
+            Discover beautiful places around the world
+        </p>
+
+    </div>
+
+
+    <div class="destination-grid">
+
+
+        <!-- DUBAI -->
+
+        <div class="destination-card dubai">
+
+            <div class="destination-content">
+
+                <h3>
+                    Dubai
+                </h3>
+
+                <p>
+                    Luxury, adventure and modern attractions
+                </p>
+
+                <div class="destination-price">
+                    Starting from ₹18,999
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BALI -->
+
+        <div class="destination-card bali">
+
+            <div class="destination-content">
+
+                <h3>
+                    Bali
+                </h3>
+
+                <p>
+                    Beaches, nature and culture
+                </p>
+
+                <div class="destination-price">
+                    Starting from ₹22,999
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOKYO -->
+
+        <div class="destination-card tokyo">
+
+            <div class="destination-content">
+
+                <h3>
+                    Tokyo
+                </h3>
+
+                <p>
+                    Modern city and Japanese culture
+                </p>
+
+                <div class="destination-price">
+                    Starting from ₹32,999
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PARIS -->
+
+        <div class="destination-card paris">
+
+            <div class="destination-content">
+
+                <h3>
+                    Paris
+                </h3>
+
+                <p>
+                    Romance, art and history
+                </p>
+
+                <div class="destination-price">
+                    Starting from ₹39,999
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SERVICES
+===================================================== -->
+
+<section class="section services-section">
+
+
+    <div class="section-title">
+
+        <h2>
+            Our Services
+        </h2>
+
+        <p>
+            Everything you need for your journey
+        </p>
+
+    </div>
+
+
+    <div class="services-grid">
+
+
+        <!-- FLIGHTS -->
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                ✈️
+            </div>
+
+            <h3>
+                Flights
+            </h3>
+
+            <p>
+                Search and book flights to
+                destinations around the world.
+            </p>
+
+            <button
+                class="service-btn"
+                onclick="window.location.href='results.html'"
+            >
+                Book Flights
+            </button>
+
+        </div>
+
+
+        <!-- HOTELS -->
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                🏨
+            </div>
+
+            <h3>
+                Hotels
+            </h3>
+
+            <p>
+                Find comfortable hotels and
+                choose the room that suits you.
+            </p>
+
+            <button
+                class="service-btn"
+                onclick="window.location.href='hotels.html'"
+            >
+                Book Hotels
+            </button>
+
+        </div>
+
+
+        <!-- TRAINS -->
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                🚆
+            </div>
+
+            <h3>
+                Trains
+            </h3>
+
+            <p>
+                Search trains, choose your class
+                and book your journey.
+            </p>
+
+            <button
+                class="service-btn"
+                onclick="window.location.href='trains.html'"
+            >
+                Book Trains
+            </button>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     WHY TRAVELGO
+===================================================== -->
+
+<section class="section why-section">
+
+
+    <div class="section-title">
+
+        <h2>
+            Why Choose TravelGo?
+        </h2>
+
+        <p>
+            Making travel simple and convenient
+        </p>
+
+    </div>
+
+
+    <div class="why-grid">
+
+
+        <div class="why-card">
+
+            <div class="why-icon">
+                🔍
+            </div>
+
+            <h3>
+                Easy Search
+            </h3>
+
+            <p>
+                Quickly search flights, hotels
+                and trains from one platform.
+            </p>
+
+        </div>
+
+
+        <div class="why-card">
+
+            <div class="why-icon">
+                💳
+            </div>
+
+            <h3>
+                Simple Booking
+            </h3>
+
+            <p>
+                Complete your booking through
+                a simple and clear process.
+            </p>
+
+        </div>
+
+
+        <div class="why-card">
+
+            <div class="why-icon">
+                🎫
+            </div>
+
+            <h3>
+                Easy Confirmation
+            </h3>
+
+            <p>
+                Get your booking details and
+                confirmation in one place.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+
+    <div class="footer-content">
+
+
+        <div class="footer-brand">
+
+            <h3>
+                Travel<span>Go</span>
+            </h3>
+
+            <p>
+
+                Your simple travel booking platform
+                for flights, hotels and trains.
+
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Quick Links
+            </h4>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="results.html">
+                Flights
+            </a>
+
+            <a href="hotels.html">
+                Hotels
+            </a>
+
+            <a href="trains.html">
+                Trains
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Account
+            </h4>
+
+            <a href="login.html">
+                User Login
+            </a>
+
+            <a href="signup.html">
+                Sign Up
+            </a>
+
+            <a href="admin-login.html">
+                Admin Login
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 TravelGo. All rights reserved.
+        </span>
+
+        <span>
+            Travel made simple.
+        </span>
+
+    </div>
+
+
+</footer>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+    /* =====================================================
+       LOGIN DROPDOWN
+    ===================================================== */
+
+    function toggleLoginMenu() {
+
+        const menu =
+            document.getElementById(
+                "loginMenu"
+            );
+
+        menu.classList.toggle(
+            "show"
+        );
+
+    }
+
+
+    /* Close dropdown when clicking outside */
+
+    document.addEventListener(
+        "click",
+        function(event) {
+
+            const dropdown =
+                document.querySelector(
+                    ".login-dropdown"
+                );
+
+
+            const menu =
+                document.getElementById(
+                    "loginMenu"
+                );
+
+
+            if (
+                dropdown &&
+                !dropdown.contains(event.target)
+            ) {
+
+                menu.classList.remove(
+                    "show"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       FLIGHT SEARCH
+    ===================================================== */
+
+    function searchTravel() {
+
+
+        const from =
+            document.getElementById(
+                "from"
+            ).value.trim();
+
+
+        const to =
+            document.getElementById(
+                "to"
+            ).value.trim();
+
+
+        const departure =
+            document.getElementById(
+                "departure"
+            ).value;
+
+
+        const travellers =
+            document.getElementById(
+                "travellers"
+            ).value;
+
+
+        if (
+            from === "" ||
+            to === "" ||
+            departure === ""
+        ) {
+
+            alert(
+                "Please enter From, To and Departure date."
+            );
+
+            return;
+
+        }
+
+
+        if (
+            from.toLowerCase() ===
+            to.toLowerCase()
+        ) {
+
+            alert(
+                "From and To cities cannot be the same."
+            );
+
+            return;
+
+        }
+
+
+        /* Save flight search */
+
+        localStorage.setItem(
+            "travelFrom",
+            from
+        );
+
+
+        localStorage.setItem(
+            "travelTo",
+            to
+        );
+
+
+        localStorage.setItem(
+            "travelDeparture",
+            departure
+        );
+
+
+        localStorage.setItem(
+            "travelTravellers",
+            travellers
+        );
+
+
+        /* Set booking type */
+
+        localStorage.setItem(
+            "bookingType",
+            "flight"
+        );
+
+
+        /* Clear previous booking data */
+
+        localStorage.removeItem(
+            "selectedHotel"
+        );
+
+        localStorage.removeItem(
+            "selectedRoomType"
+        );
+
+        localStorage.removeItem(
+            "selectedHotelPrice"
+        );
+
+
+        localStorage.removeItem(
+            "selectedTrain"
+        );
+
+        localStorage.removeItem(
+            "selectedTrainClass"
+        );
+
+        localStorage.removeItem(
+            "selectedTrainPrice"
+        );
+
+
+        /* Open results */
+
+        window.location.href =
+            "results.html";
+
+    }
+
+
+    /* =====================================================
+       HOTEL
+    ===================================================== */
+
+    function goToHotels() {
+
+        window.location.href =
+            "hotels.html";
+
+    }
+
+
+    /* =====================================================
+       TRAIN
+    ===================================================== */
+
+    function goToTrains() {
+
+        window.location.href =
+            "trains.html";
+
+    }
+
+
+    /* =====================================================
+       FLIGHT TAB
+    ===================================================== */
+
+    function showFlightSearch() {
+
+        document
+            .getElementById("flightTab")
+            .classList.add("active");
+
+
+        document
+            .getElementById("hotelTab")
+            .classList.remove("active");
+
+
+        document
+            .getElementById("trainTab")
+            .classList.remove("active");
+
+    }
+
+
+</script>
+
+
+</body>
+
+</html>

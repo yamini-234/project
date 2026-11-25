@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelGo - Passenger Details</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f8fc;
+            color: #172b4d;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            height: 75px;
+
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 60px;
+
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #1677ff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #344054;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #1677ff;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .login-btn,
+        .signup-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .login-btn {
+            background: white;
+            color: #1677ff;
+            border: 1px solid #1677ff;
+        }
+
+        .signup-btn {
+            background: #1677ff;
+            color: white;
+            border: 1px solid #1677ff;
+        }
+
+        /* ================= PAGE HEADER ================= */
+
+        .page-header {
+            background:
+                linear-gradient(
+                    rgba(10,75,145,0.88),
+                    rgba(10,75,145,0.88)
+                ),
+                url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 55px 20px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+        }
+
+        /* ================= MAIN ================= */
+
+        .booking-container {
+            max-width: 1050px;
+            margin: 40px auto 70px;
+            padding: 0 20px;
+        }
+
+        /* ================= FLIGHT SUMMARY ================= */
+
+        .flight-summary {
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 28px;
+
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 25px;
+        }
+
+        .section-icon {
+            width: 45px;
+            height: 45px;
+
+            background: #eaf3ff;
+
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+        }
+
+        .section-title h2 {
+            font-size: 24px;
+        }
+
+        .flight-info {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #f7faff;
+
+            border-radius: 10px;
+
+            padding: 15px;
+        }
+
+        .info-box small {
+            display: block;
+
+            color: #667085;
+
+            font-size: 12px;
+
+            margin-bottom: 7px;
+        }
+
+        .info-box strong {
+            font-size: 15px;
+        }
+
+        .price-info strong {
+            color: #1677ff;
+            font-size: 18px;
+        }
+
+        /* ================= PASSENGER FORM ================= */
+
+        .form-card {
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 30px;
+
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .form-card h2 {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .form-card > p {
+            color: #667085;
+            margin-bottom: 25px;
+        }
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #344054;
+        }
+
+        .form-group input,
+        .form-group select {
+            height: 48px;
+
+            border: 1px solid #d0d5dd;
+
+            border-radius: 9px;
+
+            padding: 0 14px;
+
+            font-size: 14px;
+
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #1677ff;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(22,119,255,0.1);
+        }
+
+        /* ================= TERMS ================= */
+
+        .terms {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-top: 25px;
+
+            color: #475467;
+
+            font-size: 14px;
+        }
+
+        .terms input {
+            width: 17px;
+            height: 17px;
+        }
+
+        /* ================= BUTTONS ================= */
+
+        .form-actions {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-top: 30px;
+
+            gap: 15px;
+        }
+
+        .back-btn,
+        .continue-btn {
+            border: none;
+
+            padding: 13px 25px;
+
+            border-radius: 9px;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .back-btn {
+            background: #eef2f7;
+            color: #344054;
+        }
+
+        .continue-btn {
+            background: #1677ff;
+            color: white;
+        }
+
+        .continue-btn:hover {
+            background: #0b5ed7;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #172b4d;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 850px) {
+
+            .navbar {
+                padding: 15px 25px;
+                height: auto;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .nav-links {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .flight-info {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+        }
+
+        @media(max-width: 550px) {
+
+            .nav-buttons {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .flight-info {
+                grid-template-columns: 1fr;
+            }
+
+            .form-actions {
+                flex-direction: column-reverse;
+            }
+
+            .back-btn,
+            .continue-btn {
+                width: 100%;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        Travel<span>Go</span>
+    </div>
+
+    <nav class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="results.html">Flights</a>
+
+        <a href="hotels.html">Hotels</a>
+
+        <a href="trains.html">Trains</a>
+
+    </nav>
+
+    <div class="nav-buttons">
+
+        <button
+            class="login-btn"
+            onclick="window.location.href='login.html'"
+        >
+            Login
+        </button>
+
+        <button
+            class="signup-btn"
+            onclick="window.location.href='signup.html'"
+        >
+            Sign Up
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= HEADER ================= -->
+
+<section class="page-header">
+
+    <h1>Passenger Details</h1>
+
+    <p>
+        Enter your details to continue with your flight booking.
+    </p>
+
+</section>
+
+
+<!-- ================= CONTENT ================= -->
+
+<main class="booking-container">
+
+
+    <!-- FLIGHT SUMMARY -->
+
+    <section class="flight-summary">
+
+        <div class="section-title">
+
+            <div class="section-icon">
+                ✈️
+            </div>
+
+            <h2>
+                Selected Flight
+            </h2>
+
+        </div>
+
+
+        <div class="flight-info">
+
+            <div class="info-box">
+
+                <small>
+                    Airline
+                </small>
+
+                <strong id="airline">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <small>
+                    Route
+                </small>
+
+                <strong id="route">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <small>
+                    Departure
+                </small>
+
+                <strong id="departure">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <small>
+                    Travellers
+                </small>
+
+                <strong id="travellers">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="info-box price-info">
+
+                <small>
+                    Total Price
+                </small>
+
+                <strong id="price">
+                    ₹0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PASSENGER FORM -->
+
+    <section class="form-card">
+
+        <h2>
+            Passenger Information
+        </h2>
+
+        <p>
+            Please enter the passenger details exactly as they should appear on the ticket.
+        </p>
+
+
+        <form id="bookingForm">
+
+            <div class="form-grid">
+
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="passengerName"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="passengerEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="passengerPhone"
+                        placeholder="Enter your phone number"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- AGE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Age
+                    </label>
+
+                    <input
+                        type="number"
+                        id="passengerAge"
+                        placeholder="Enter age"
+                        min="1"
+                        max="120"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- GENDER -->
+
+                <div class="form-group">
+
+                    <label>
+                        Gender
+                    </label>
+
+                    <select
+                        id="passengerGender"
+                        required
+                    >
+
+                        <option value="">
+                            Select Gender
+                        </option>
+
+                        <option value="Male">
+                            Male
+                        </option>
+
+                        <option value="Female">
+                            Female
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- CITY -->
+
+                <div class="form-group">
+
+                    <label>
+                        City
+                    </label>
+
+                    <input
+                        type="text"
+                        id="passengerCity"
+                        placeholder="Enter your city"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- TERMS -->
+
+            <label class="terms">
+
+                <input
+                    type="checkbox"
+                    id="terms"
+                    required
+                >
+
+                <span>
+                    I agree to the terms and conditions.
+                </span>
+
+            </label>
+
+
+            <!-- ACTIONS -->
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="back-btn"
+                    onclick="window.location.href='results.html'"
+                >
+                    ← Back to Flights
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="continue-btn"
+                >
+                    Continue to Payment →
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    © 2026 TravelGo. All rights reserved.
+
+</footer>
+
+
+<script>
+
+    /* ================= LOAD FLIGHT DATA ================= */
+
+    const airline =
+        localStorage.getItem("selectedAirline") ||
+        "IndiGo Airlines";
+
+    const from =
+        localStorage.getItem("travelFrom") ||
+        "Hyderabad";
+
+    const to =
+        localStorage.getItem("travelTo") ||
+        "Dubai";
+
+    const departure =
+        localStorage.getItem("travelDeparture") ||
+        "-";
+
+    const travellers =
+        localStorage.getItem("travelTravellers") ||
+        "1";
+
+    const price =
+        localStorage.getItem("selectedPrice") ||
+        "₹0";
+
+
+    document.getElementById("airline").textContent =
+        airline;
+
+    document.getElementById("route").textContent =
+        from + " → " + to;
+
+    document.getElementById("departure").textContent =
+        departure;
+
+    document.getElementById("travellers").textContent =
+        travellers;
+
+    document.getElementById("price").textContent =
+        price;
+
+
+    /* ================= LOAD USER EMAIL ================= */
+
+    const savedEmail =
+        localStorage.getItem("userEmail");
+
+    if (savedEmail) {
+
+        document.getElementById(
+            "passengerEmail"
+        ).value = savedEmail;
+
+    }
+
+
+    /* ================= FORM ================= */
+
+    document.getElementById(
+        "bookingForm"
+    ).addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document.getElementById(
+                    "passengerName"
+                ).value.trim();
+
+            const email =
+                document.getElementById(
+                    "passengerEmail"
+                ).value.trim();
+
+            const phone =
+                document.getElementById(
+                    "passengerPhone"
+                ).value.trim();
+
+            const age =
+                document.getElementById(
+                    "passengerAge"
+                ).value;
+
+            const gender =
+                document.getElementById(
+                    "passengerGender"
+                ).value;
+
+            const city =
+                document.getElementById(
+                    "passengerCity"
+                ).value.trim();
+
+
+            localStorage.setItem(
+                "passengerName",
+                name
+            );
+
+            localStorage.setItem(
+                "passengerEmail",
+                email
+            );
+
+            localStorage.setItem(
+                "passengerPhone",
+                phone
+            );
+
+            localStorage.setItem(
+                "passengerAge",
+                age
+            );
+
+            localStorage.setItem(
+                "passengerGender",
+                gender
+            );
+
+            localStorage.setItem(
+                "passengerCity",
+                city
+            );
+
+            localStorage.setItem(
+                "bookingType",
+                "flight"
+            );
+
+
+            window.location.href =
+                "payment.html";
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
